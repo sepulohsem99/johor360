@@ -41,7 +41,7 @@ export function AdminDashboard() {
 
       <div className="grid gap-4 lg:grid-cols-[1fr_330px]">
         <div className="space-y-4">
-          <div className="rounded-2xl border border-line bg-white p-4">
+          <div className="rounded-2xl border border-line bg-raised p-4">
             <div className="mb-3 flex items-center justify-between">
               <h2 className="text-[14px] font-extrabold">Verification queue</h2>
               <Link to="/admin/verifications" className="text-[11px] font-bold text-royal"><T>Open queue</T></Link>
@@ -68,7 +68,7 @@ export function AdminDashboard() {
             )}
           </div>
 
-          <div className="rounded-2xl border border-line bg-white p-4">
+          <div className="rounded-2xl border border-line bg-raised p-4">
             <div className="mb-3 flex items-center justify-between">
               <h2 className="text-[14px] font-extrabold">Recent activity</h2>
               <DemoTag label="Audit log" />
@@ -92,7 +92,7 @@ export function AdminDashboard() {
         </div>
 
         <aside className="space-y-3">
-          <div className="rounded-2xl border border-line bg-white p-4">
+          <div className="rounded-2xl border border-line bg-raised p-4">
             <p className="text-[10px] font-bold uppercase tracking-wider text-ink-faint">Needs attention</p>
             <div className="mt-2.5 space-y-2">
               {[
@@ -101,7 +101,7 @@ export function AdminDashboard() {
                 { l: 'Operators with changes requested', n: operators.filter((o) => o.verification === 'changes_requested').length, to: '/admin/operators', t: 'johor' },
               ].map((r) => (
                 <Link key={r.l} to={r.to} className="flex items-center justify-between rounded-lg border border-line px-2.5 py-2 transition-colors hover:border-navy-200">
-                  <span className="text-[11.5px] text-ink-soft">{r.l}</span>
+                  <span className="text-[11.5px] text-ink-soft"><T>{r.l}</T></span>
                   <span className={clsx('rounded px-1.5 py-0.5 text-[10px] font-bold text-white',
                     r.t === 'gold' ? 'bg-gold' : r.t === 'johor' ? 'bg-johor' : 'bg-royal')}>{r.n}</span>
                 </Link>
@@ -109,7 +109,7 @@ export function AdminDashboard() {
             </div>
           </div>
 
-          <div className="rounded-2xl border border-line bg-white p-4">
+          <div className="rounded-2xl border border-line bg-raised p-4">
             <p className="text-[10px] font-bold uppercase tracking-wider text-ink-faint">Corridor coverage</p>
             <div className="mt-2.5 space-y-1.5">
               {CORRIDOR.map((s) => {
@@ -198,7 +198,7 @@ export function AdminVerifications() {
           {queue.map((e) => {
             const o = operatorById(e.operatorId)
             return (
-              <div key={e.id} className="flex flex-col overflow-hidden rounded-2xl border border-line bg-white">
+              <div key={e.id} className="flex flex-col overflow-hidden rounded-2xl border border-line bg-raised">
                 <div className="relative h-[104px] bg-navy-900">
                   <Scene seed={e.id} category={e.category} className="h-full w-full" variant="thumb" />
                   <div className="absolute right-2 top-2"><VerificationBadge status={e.verification} size="xs" /></div>
@@ -346,7 +346,7 @@ export function AdminOperators() {
         <input className="field !h-9 !w-auto !text-[12px]" placeholder={tx("Search operators…")} value={q} onChange={(e) => setQ(e.target.value)} />
       </div>
 
-      <div className="overflow-hidden rounded-2xl border border-line bg-white">
+      <div className="overflow-hidden rounded-2xl border border-line bg-raised">
         <div className="overflow-x-auto">
           <table className="w-full min-w-[720px] text-left">
             <thead>
@@ -431,7 +431,7 @@ export function AdminExperiences() {
       {list.length === 0 ? (
         <EmptyState icon="search-x" title={tx("No listings match")} body={tx("Try clearing the search or status filter.")} />
       ) : (
-        <div className="overflow-hidden rounded-2xl border border-line bg-white">
+        <div className="overflow-hidden rounded-2xl border border-line bg-raised">
           <div className="overflow-x-auto">
             <table className="w-full min-w-[780px] text-left">
               <thead>
@@ -509,7 +509,7 @@ export function AdminReviews() {
       ) : (
         <div className="space-y-2">
           {list.map((r) => (
-            <div key={r.id} className="rounded-2xl border border-line bg-white p-3.5">
+            <div key={r.id} className="rounded-2xl border border-line bg-raised p-3.5">
               <div className="flex flex-wrap items-start justify-between gap-2">
                 <div className="flex items-center gap-2">
                   <span className="grid h-7 w-7 place-items-center rounded-full bg-navy-100 text-[10.5px] font-bold text-navy-600">
@@ -585,7 +585,7 @@ export function AdminAnalytics() {
       </div>
 
       <div className="grid gap-4 lg:grid-cols-2">
-        <div className="rounded-2xl border border-line bg-white p-4">
+        <div className="rounded-2xl border border-line bg-raised p-4">
           <p className="text-[12px] font-bold text-navy">Visitor purpose distribution</p>
           <div className="mt-4 space-y-3">
             {purposeDist.map((p) => (
@@ -605,7 +605,7 @@ export function AdminAnalytics() {
           </p>
         </div>
 
-        <div className="rounded-2xl border border-line bg-white p-4">
+        <div className="rounded-2xl border border-line bg-raised p-4">
           <p className="text-[12px] font-bold text-navy">Most explored stations</p>
           <div className="mt-3 space-y-2">
             {stationInterest.map(({ s, n }) => (
@@ -624,7 +624,7 @@ export function AdminAnalytics() {
         </div>
       </div>
 
-      <div className="rounded-2xl border border-line bg-white p-4">
+      <div className="rounded-2xl border border-line bg-raised p-4">
         <p className="text-[12px] font-bold text-navy">Category interest</p>
         <div className="mt-3 grid gap-2 sm:grid-cols-2 lg:grid-cols-5">
           {CATEGORIES.slice(0, 10).map((c, i) => {
@@ -714,7 +714,7 @@ export function AdminImpact() {
 
       {/* station distribution */}
       <div className="grid gap-4 lg:grid-cols-[1.15fr_0.85fr]">
-        <div className="rounded-2xl border border-line bg-white p-4">
+        <div className="rounded-2xl border border-line bg-raised p-4">
           <div className="mb-3 flex items-center justify-between">
             <p className="text-[12px] font-bold text-navy">SME discovery & enquiries by station</p>
             <DemoTag label={tx("Per station")} />
@@ -751,7 +751,7 @@ export function AdminImpact() {
         </div>
 
         <div className="space-y-3">
-          <div className="rounded-2xl border border-line bg-white p-4">
+          <div className="rounded-2xl border border-line bg-raised p-4">
             <p className="text-[10px] font-bold uppercase tracking-wider text-ink-faint"><T>Enquiry conversion</T></p>
             <div className="mt-2 space-y-2.5">
               {[
@@ -771,7 +771,7 @@ export function AdminImpact() {
             </div>
           </div>
 
-          <div className="rounded-2xl border border-line bg-white p-4">
+          <div className="rounded-2xl border border-line bg-raised p-4">
             <p className="text-[10px] font-bold uppercase tracking-wider text-ink-faint"><T>Distribution of discovery</T></p>
             <div className="mt-2 flex h-3 overflow-hidden rounded-full">
               <div className="bg-emerald2" style={{ width: `${shareBeyond}%` }} />
@@ -832,7 +832,7 @@ export function AdminSettings() {
         <p className="mt-1 text-[13px] text-ink-mute"><T>Configuration for the demo environment. Changes are local only.</T></p>
       </div>
 
-      <div className="rounded-2xl border border-line bg-white p-5">
+      <div className="rounded-2xl border border-line bg-raised p-5">
         <p className="text-[13px] font-extrabold">Verification policy</p>
         <div className="mt-3 space-y-2">
           {[
@@ -852,7 +852,7 @@ export function AdminSettings() {
                 className={clsx('relative mt-0.5 h-5 w-9 shrink-0 rounded-full transition-colors',
                   toggles[k as keyof typeof toggles] ? 'bg-emerald2' : 'bg-navy-200')}
               >
-                <span className={clsx('absolute top-0.5 h-4 w-4 rounded-full bg-white shadow transition-transform',
+                <span className={clsx('absolute top-0.5 h-4 w-4 rounded-full bg-raised shadow transition-transform',
                   toggles[k as keyof typeof toggles] ? 'translate-x-[18px]' : 'translate-x-0.5')} />
               </button>
             </label>
@@ -860,7 +860,7 @@ export function AdminSettings() {
         </div>
       </div>
 
-      <div className="rounded-2xl border border-line bg-white p-5">
+      <div className="rounded-2xl border border-line bg-raised p-5">
         <p className="text-[13px] font-extrabold">Content & features</p>
         <div className="mt-3 space-y-2">
           {[
@@ -880,7 +880,7 @@ export function AdminSettings() {
                 className={clsx('relative mt-0.5 h-5 w-9 shrink-0 rounded-full transition-colors',
                   toggles[k as keyof typeof toggles] ? 'bg-emerald2' : 'bg-navy-200')}
               >
-                <span className={clsx('absolute top-0.5 h-4 w-4 rounded-full bg-white shadow transition-transform',
+                <span className={clsx('absolute top-0.5 h-4 w-4 rounded-full bg-raised shadow transition-transform',
                   toggles[k as keyof typeof toggles] ? 'translate-x-[18px]' : 'translate-x-0.5')} />
               </button>
             </label>
@@ -888,7 +888,7 @@ export function AdminSettings() {
         </div>
       </div>
 
-      <div className="rounded-2xl border border-line bg-white p-5">
+      <div className="rounded-2xl border border-line bg-raised p-5">
         <p className="text-[13px] font-extrabold">Data source register</p>
         <p className="mt-1 text-[11.5px] text-ink-mute"><T>Every external claim in the product traces to a source here.</T></p>
         <div className="mt-3 space-y-1.5">

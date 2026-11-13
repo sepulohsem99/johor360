@@ -147,7 +147,7 @@ export default function ItineraryBuilder() {
               key={i.id}
               onClick={() => setActiveId(i.id)}
               className={clsx('shrink-0 rounded-xl border px-3 py-2 text-left transition-all',
-                i.id === active.id ? 'border-navy bg-navy text-white' : 'border-line bg-white text-ink-soft hover:border-navy-200')}
+                i.id === active.id ? 'border-navy bg-navy text-white' : 'border-line bg-raised text-ink-soft hover:border-navy-200')}
             >
               <p className="max-w-[180px] truncate text-[12px] font-bold">{i.name}</p>
               <p className={clsx('text-[10px]', i.id === active.id ? 'text-white/60' : 'text-ink-faint')}>
@@ -164,7 +164,7 @@ export default function ItineraryBuilder() {
           {sorted.length === 0 ? (
             <EmptyState icon="calendar-x" title={tx("This itinerary is empty")} body={tx("Add an experience from the corridor, or generate a plan from your matches.")} action={<Button onClick={() => setAddOpen(true)} icon="plus"><T>Add a stop</T></Button>} />
           ) : (
-            <div className="rounded-2xl border border-line bg-white p-4">
+            <div className="rounded-2xl border border-line bg-raised p-4">
               <div className="mb-3 flex items-center justify-between">
                 <h2 className="text-[14px] font-extrabold">Timeline</h2>
                 <p className="text-[10.5px] text-ink-faint"><T>Drag to reorder · times auto-assign</T></p>
@@ -199,11 +199,11 @@ export default function ItineraryBuilder() {
                           onDrop={() => onDrop(item.id)}
                           className={clsx(
                             'relative flex gap-3 rounded-xl border p-2.5 transition-all',
-                            dragging === item.id ? 'border-royal opacity-50' : 'border-line bg-white hover:border-navy-200 hover:shadow-card'
+                            dragging === item.id ? 'border-royal opacity-50' : 'border-line bg-raised hover:border-navy-200 hover:shadow-card'
                           )}
                         >
                           <div className="flex flex-col items-center pt-1">
-                            <span className="z-10 grid h-[15px] w-[15px] place-items-center rounded-full border-2 border-royal bg-white">
+                            <span className="z-10 grid h-[15px] w-[15px] place-items-center rounded-full border-2 border-royal bg-raised">
                               <span className="h-1.5 w-1.5 rounded-full bg-royal" />
                             </span>
                           </div>
@@ -260,7 +260,7 @@ export default function ItineraryBuilder() {
 
           {/* cost table */}
           {totals && (
-            <div className="rounded-2xl border border-line bg-white p-4">
+            <div className="rounded-2xl border border-line bg-raised p-4">
               <div className="mb-3 flex items-center justify-between">
                 <h2 className="text-[14px] font-extrabold">Estimated cost</h2>
                 <DemoTag label="Illustrative" />
@@ -301,7 +301,7 @@ export default function ItineraryBuilder() {
 
         {/* sidebar */}
         <aside className="space-y-3 lg:sticky lg:top-24 lg:self-start">
-          <div className="rounded-2xl border border-line bg-white p-4">
+          <div className="rounded-2xl border border-line bg-raised p-4">
             <p className="text-[10px] font-bold uppercase tracking-wider text-ink-faint">Plan summary</p>
             <div className="mt-2.5 space-y-2">
               {[
@@ -319,7 +319,7 @@ export default function ItineraryBuilder() {
             </div>
           </div>
 
-          <div className="rounded-2xl border border-line bg-white p-4">
+          <div className="rounded-2xl border border-line bg-raised p-4">
             <div className="flex items-center justify-between">
               <p className="text-[10px] font-bold uppercase tracking-wider text-ink-faint">ETS reference</p>
               <a href={RAIL_SOURCE.url} target="_blank" rel="noreferrer noopener" className="text-[10px] font-bold text-royal underline">
@@ -343,7 +343,7 @@ export default function ItineraryBuilder() {
             </p>
           </div>
 
-          <div className="rounded-2xl border border-line bg-white p-4">
+          <div className="rounded-2xl border border-line bg-raised p-4">
             <p className="text-[10px] font-bold uppercase tracking-wider text-ink-faint">Last mile</p>
             <div className="mt-2 space-y-1.5">
               {station?.lastMile.slice(0, 3).map((l) => (
@@ -500,7 +500,7 @@ export function ItinerariesIndex() {
             const t = itineraryTotals(it)
             const d = itineraryDuration(it)
             return (
-              <div key={it.id} className="group flex flex-col rounded-2xl border border-line bg-white p-4 transition-all hover:border-navy-200 hover:shadow-card">
+              <div key={it.id} className="group flex flex-col rounded-2xl border border-line bg-raised p-4 transition-all hover:border-navy-200 hover:shadow-card">
                 <div className="flex items-start justify-between">
                   <div className="min-w-0">
                     <p className="truncate text-[14px] font-extrabold text-navy">{it.name}</p>

@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { T } from '../components/ui/T'
 import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom'
 import clsx from 'clsx'
 import { useApp } from '../app/store'
@@ -36,7 +37,7 @@ export default function Logo({ light = false, compact = false }: { light?: boole
               light ? 'text-white/55' : 'text-ink-faint'
             )}
           >
-            Beyond the city
+            <T>Beyond the city</T>
           </span>
         </span>
       )}

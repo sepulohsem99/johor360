@@ -66,7 +66,7 @@ export default function Onboarding() {
           </p>
         </div>
 
-        <div className="rounded-2xl border border-line bg-white p-5 sm:p-6">
+        <div className="rounded-2xl border border-line bg-raised p-5 sm:p-6">
           {/* STEP 0 — purpose */}
           {step === 0 && (
             <div className="grid gap-3 sm:grid-cols-2">
@@ -112,7 +112,7 @@ export default function Onboarding() {
                       'rounded-full border px-3.5 py-2 text-[12.5px] font-semibold transition-all',
                       draft.interests.includes(i.id)
                         ? 'border-navy bg-navy text-white'
-                        : 'border-line bg-white text-ink-soft hover:border-navy-300'
+                        : 'border-line bg-raised text-ink-soft hover:border-navy-300'
                     )}
                   >
                     {draft.interests.includes(i.id) && <Icon name="check" size={12} className="mr-1 inline" strokeWidth={3} />}

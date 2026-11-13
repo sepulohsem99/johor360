@@ -32,7 +32,7 @@ export function VisitorDashboard() {
   if (!profile.onboarded) {
     return (
       <div className="mx-auto max-w-2xl py-16">
-        <div className="rounded-2xl border border-line bg-white p-8 text-center">
+        <div className="rounded-2xl border border-line bg-raised p-8 text-center">
           <span className="mx-auto grid h-12 w-12 place-items-center rounded-2xl bg-navy text-white">
             <Icon name="compass" size={22} />
           </span>
@@ -90,7 +90,7 @@ export function VisitorDashboard() {
       </div>
 
       {/* plans */}
-      <div className="rounded-2xl border border-line bg-white p-4">
+      <div className="rounded-2xl border border-line bg-raised p-4">
         <div className="mb-3 flex items-center justify-between">
           <div>
             <h2 className="text-[15px] font-extrabold">Suggested windows</h2>
@@ -144,7 +144,7 @@ export function VisitorDashboard() {
 
       {/* trips + saved */}
       <div className="grid gap-4 lg:grid-cols-2">
-        <div className="rounded-2xl border border-line bg-white p-4">
+        <div className="rounded-2xl border border-line bg-raised p-4">
           <div className="mb-3 flex items-center justify-between">
             <h2 className="text-[14px] font-extrabold"><T>Your itineraries</T></h2>
             <Link to="/visitor/itineraries" className="text-[11px] font-bold text-royal"><T>All trips</T></Link>
@@ -171,7 +171,7 @@ export function VisitorDashboard() {
           )}
         </div>
 
-        <div className="rounded-2xl border border-line bg-white p-4">
+        <div className="rounded-2xl border border-line bg-raised p-4">
           <div className="mb-3 flex items-center justify-between">
             <h2 className="text-[14px] font-extrabold"><T>Saved experiences</T></h2>
             <Link to="/visitor/favourites" className="text-[11px] font-bold text-royal"><T>All saved</T></Link>
@@ -273,7 +273,7 @@ export function Recommendations() {
             {[
               ['Interest', 25], ['Time', 25], ['Rail access', 25], ['Budget', 15], ['Purpose', 10],
             ].map(([l, w]) => (
-              <div key={l as string} className="rounded-lg bg-white px-2.5 py-2">
+              <div key={l as string} className="rounded-lg bg-raised px-2.5 py-2">
                 <p className="text-[10px] font-bold uppercase tracking-wider text-ink-faint">{l}</p>
                 <p className="mt-0.5 text-[16px] font-extrabold text-navy num">{w}%</p>
               </div>
@@ -288,7 +288,7 @@ export function Recommendations() {
       )}
 
       {/* scenario controls */}
-      <div className="rounded-2xl border border-line bg-white p-4">
+      <div className="rounded-2xl border border-line bg-raised p-4">
         <div className="mb-3 flex items-center justify-between">
           <p className="text-[13px] font-extrabold"><T>Adjust the scenario</T></p>
           <button onClick={reset} className="text-[11px] font-semibold text-royal hover:text-royal-700"><T>Reset to saved</T></button>
@@ -376,7 +376,7 @@ export function Recommendations() {
         </div>
         <div className="grid gap-3 lg:grid-cols-3">
           {plans.map((p) => (
-            <div key={p.id} className="flex flex-col rounded-2xl border border-line bg-white p-4">
+            <div key={p.id} className="flex flex-col rounded-2xl border border-line bg-raised p-4">
               <div className="flex items-start justify-between">
                 <div>
                   <p className="text-[13px] font-extrabold text-navy">{p.label}</p>
@@ -432,7 +432,7 @@ export function Recommendations() {
         ) : (
           <div className="space-y-2.5">
             {results.map((r) => (
-              <div key={r.experience.id} className="rounded-2xl border border-line bg-white p-3 transition-all hover:border-navy-200 hover:shadow-card">
+              <div key={r.experience.id} className="rounded-2xl border border-line bg-raised p-3 transition-all hover:border-navy-200 hover:shadow-card">
                 <div className="flex flex-col gap-3 sm:flex-row">
                   <div className="flex-1">
                     <ExperienceCard exp={r.experience} variant="row" matchScore={r.score} reasons={r.reasons} />
@@ -493,7 +493,7 @@ export function VisitorProfilePage() {
         <p className="mt-1 text-[13px] text-ink-mute">Changes apply to matching immediately after saving.</p>
       </div>
 
-      <div className="rounded-2xl border border-line bg-white p-5">
+      <div className="rounded-2xl border border-line bg-raised p-5">
         <h2 className="text-[14px] font-extrabold"><T>About you</T></h2>
         <div className="mt-3 grid gap-3 sm:grid-cols-2">
           <Field label={tx("Display name")}>
@@ -515,7 +515,7 @@ export function VisitorProfilePage() {
         </div>
       </div>
 
-      <div className="rounded-2xl border border-line bg-white p-5">
+      <div className="rounded-2xl border border-line bg-raised p-5">
         <h2 className="text-[14px] font-extrabold">Travel purpose</h2>
         <div className="mt-3 grid gap-2 sm:grid-cols-4">
           {PURPOSES.map((p) => (
@@ -529,7 +529,7 @@ export function VisitorProfilePage() {
         </div>
       </div>
 
-      <div className="rounded-2xl border border-line bg-white p-5">
+      <div className="rounded-2xl border border-line bg-raised p-5">
         <h2 className="text-[14px] font-extrabold">Time, budget & station</h2>
         <div className="mt-3 space-y-4">
           <div>
@@ -561,7 +561,7 @@ export function VisitorProfilePage() {
         </div>
       </div>
 
-      <div className="rounded-2xl border border-line bg-white p-5">
+      <div className="rounded-2xl border border-line bg-raised p-5">
         <h2 className="text-[14px] font-extrabold">Interests</h2>
         <div className="mt-3 flex flex-wrap gap-1.5">
           {INTERESTS.map((i) => (
@@ -574,7 +574,7 @@ export function VisitorProfilePage() {
         </div>
       </div>
 
-      <div className="rounded-2xl border border-line bg-white p-5">
+      <div className="rounded-2xl border border-line bg-raised p-5">
         <h2 className="text-[14px] font-extrabold">Accessibility requirements</h2>
         <p className="mt-1 text-[11.5px] text-ink-mute"><T>Applied as hard constraints, not soft preferences.</T></p>
         <div className="mt-3 grid gap-2 sm:grid-cols-2">
@@ -588,7 +588,7 @@ export function VisitorProfilePage() {
         </div>
       </div>
 
-      <div className="sticky bottom-20 flex items-center justify-between rounded-2xl border border-line bg-white p-3.5 shadow-lift lg:bottom-4">
+      <div className="sticky bottom-20 flex items-center justify-between rounded-2xl border border-line bg-raised p-3.5 shadow-lift lg:bottom-4">
         <p className="text-[11.5px] text-ink-mute">{dirty ? 'You have unsaved changes' : 'All changes saved'}</p>
         <div className="flex gap-2">
           <Button variant="ghost" size="sm" onClick={() => { setDraft({ ...profile }); setDirty(false) }} disabled={!dirty}>Reset</Button>

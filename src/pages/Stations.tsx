@@ -51,7 +51,7 @@ export function StationsIndex() {
       </div>
 
       <div className="shell py-8">
-        <div className="mb-6 rounded-2xl border border-line bg-white px-4 py-3">
+        <div className="mb-6 rounded-2xl border border-line bg-raised px-4 py-3">
           <RailCorridor counts={counts} />
         </div>
 
@@ -62,7 +62,7 @@ export function StationsIndex() {
               <Link
                 key={s.id}
                 to={`/explore/stations/${s.id}`}
-                className="group flex flex-col overflow-hidden rounded-2xl border border-line bg-white transition-all hover:-translate-y-1 hover:border-navy-200 hover:shadow-lift"
+                className="group flex flex-col overflow-hidden rounded-2xl border border-line bg-raised transition-all hover:-translate-y-1 hover:border-navy-200 hover:shadow-lift"
               >
                 <div className="relative h-[124px] overflow-hidden bg-navy-900">
                   <Scene seed={s.id} category={s.order > 3 ? 'nature' : 'heritage'} className="h-full w-full transition-transform duration-500 group-hover:scale-105" variant="thumb" motif={s.order > 4 ? 'field' : 'shophouse'} />
@@ -103,7 +103,7 @@ export function StationsIndex() {
           })}
         </div>
 
-        <div className="mt-6 rounded-2xl border border-line bg-white p-4">
+        <div className="mt-6 rounded-2xl border border-line bg-raised p-4">
           <div className="flex items-start gap-2.5">
             <Icon name="info" size={15} className="mt-0.5 shrink-0 text-royal" />
             <div className="text-[11.5px] leading-relaxed text-ink-mute">
@@ -216,7 +216,7 @@ export function StationDetail() {
           </div>
 
           <aside className="space-y-4">
-            <div className="rounded-2xl border border-line bg-white p-4">
+            <div className="rounded-2xl border border-line bg-raised p-4">
               <p className="mb-3 text-[12px] font-bold uppercase tracking-wider text-ink-faint">Getting here</p>
               <div className="space-y-2.5">
                 <div className="flex items-start gap-2">
@@ -240,7 +240,7 @@ export function StationDetail() {
               </div>
             </div>
 
-            <div className="rounded-2xl border border-line bg-white p-4">
+            <div className="rounded-2xl border border-line bg-raised p-4">
               <p className="mb-3 text-[12px] font-bold uppercase tracking-wider text-ink-faint">Last mile</p>
               <div className="space-y-2.5">
                 {station.lastMile.map((l) => (
@@ -267,7 +267,7 @@ export function StationDetail() {
               </p>
             </div>
 
-            <div className="rounded-2xl border border-line bg-white p-4">
+            <div className="rounded-2xl border border-line bg-raised p-4">
               <p className="mb-2.5 text-[12px] font-bold uppercase tracking-wider text-ink-faint">Nearby towns</p>
               <div className="flex flex-wrap gap-1.5">
                 {station.towns.map((t) => (

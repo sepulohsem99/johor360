@@ -128,7 +128,7 @@ export default function ExploreMap() {
 
   return (
     <div className="min-h-screen bg-canvas">
-      <div className="border-b border-line bg-white">
+      <div className="border-b border-line bg-raised">
         <div className="shell py-6">
           <div className="flex flex-wrap items-end justify-between gap-3">
             <div>
@@ -159,7 +159,7 @@ export default function ExploreMap() {
               ))}
             </div>
 
-            <div className="relative overflow-hidden rounded-2xl border border-line bg-white">
+            <div className="relative overflow-hidden rounded-2xl border border-line bg-raised">
               <div ref={mapRef} className="h-[420px] w-full sm:h-[520px]" aria-label={tx("Map of Johor ETS corridor experiences")} />
               <div className="pointer-events-none absolute bottom-2 left-2 rounded-lg bg-white/90 px-2 py-1 text-[9.5px] text-ink-mute backdrop-blur-sm">
                 Map data © OpenStreetMap contributors
@@ -174,7 +174,7 @@ export default function ExploreMap() {
           </div>
 
           <aside className="space-y-3">
-            <div className="rounded-2xl border border-line bg-white p-4">
+            <div className="rounded-2xl border border-line bg-raised p-4">
               <div className="mb-2.5 flex items-center justify-between">
                 <p className="text-[11px] font-bold uppercase tracking-wider text-ink-faint"><T>Category filter</T></p>
                 {category && (
@@ -191,7 +191,7 @@ export default function ExploreMap() {
               </div>
             </div>
 
-            <div className="rounded-2xl border border-line bg-white p-4">
+            <div className="rounded-2xl border border-line bg-raised p-4">
               <p className="mb-2.5 text-[11px] font-bold uppercase tracking-wider text-ink-faint">
                 {filtered.length} experiences
               </p>
@@ -266,7 +266,7 @@ export function OperatorProfile() {
           </nav>
 
           <div className="flex flex-wrap items-start gap-4">
-            <span className="grid h-16 w-16 shrink-0 place-items-center rounded-2xl bg-white text-[17px] font-extrabold text-navy">
+            <span className="grid h-16 w-16 shrink-0 place-items-center rounded-2xl bg-raised text-[17px] font-extrabold text-navy">
               {operator.logoAdopt}
             </span>
             <div className="min-w-0 flex-1">
@@ -311,7 +311,7 @@ export function OperatorProfile() {
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {listings.map((e) => (
               <Link key={e.id} to={`/experiences/${e.id}`}
-                className="group flex flex-col overflow-hidden rounded-2xl border border-line bg-white transition-all hover:-translate-y-1 hover:border-navy-200 hover:shadow-lift">
+                className="group flex flex-col overflow-hidden rounded-2xl border border-line bg-raised transition-all hover:-translate-y-1 hover:border-navy-200 hover:shadow-lift">
                 <div className="relative h-[136px] overflow-hidden bg-navy-900">
                   <Scene seed={e.id} category={e.category} className="h-full w-full transition-transform duration-500 group-hover:scale-105" variant="thumb" />
                 </div>
@@ -329,7 +329,7 @@ export function OperatorProfile() {
           </div>
         )}
 
-        <div className="mt-6 rounded-2xl border border-line bg-white p-4">
+        <div className="mt-6 rounded-2xl border border-line bg-raised p-4">
           <div className="flex items-start gap-2.5">
             <Icon name="shield-check" size={15} className="mt-0.5 shrink-0 text-emerald2-600" />
             <div>

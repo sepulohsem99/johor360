@@ -71,7 +71,7 @@ export function SmeDashboard() {
       <div className="grid gap-4 lg:grid-cols-[1fr_320px]">
         <div className="space-y-4">
           {/* listings */}
-          <div className="rounded-2xl border border-line bg-white p-4">
+          <div className="rounded-2xl border border-line bg-raised p-4">
             <div className="mb-3 flex items-center justify-between">
               <h2 className="text-[14px] font-extrabold"><T>Your listings</T></h2>
               <Link to="/sme/listings" className="text-[11px] font-bold text-royal"><T>Manage all</T></Link>
@@ -94,7 +94,7 @@ export function SmeDashboard() {
           </div>
 
           {/* enquiries */}
-          <div className="rounded-2xl border border-line bg-white p-4">
+          <div className="rounded-2xl border border-line bg-raised p-4">
             <div className="mb-3 flex items-center justify-between">
               <h2 className="text-[14px] font-extrabold"><T>Recent enquiries</T></h2>
               <Link to="/sme/enquiries" className="text-[11px] font-bold text-royal"><T>View all</T></Link>
@@ -117,7 +117,7 @@ export function SmeDashboard() {
         </div>
 
         <aside className="space-y-3">
-          <div className="rounded-2xl border border-line bg-white p-4">
+          <div className="rounded-2xl border border-line bg-raised p-4">
             <p className="text-[10px] font-bold uppercase tracking-wider text-ink-faint"><T>Enquiry funnel</T></p>
             <div className="mt-3 space-y-2.5">
               {[
@@ -137,7 +137,7 @@ export function SmeDashboard() {
             </div>
           </div>
 
-          <div className="rounded-2xl border border-line bg-white p-4">
+          <div className="rounded-2xl border border-line bg-raised p-4">
             <p className="text-[10px] font-bold uppercase tracking-wider text-ink-faint">Listing views</p>
             <div className="mt-3 space-y-2">
               {listings.slice(0, 4).map((l) => (
@@ -214,7 +214,7 @@ export function SmeListings() {
       ) : (
         <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
           {shown.map((l) => (
-            <div key={l.id} className="group flex flex-col overflow-hidden rounded-2xl border border-line bg-white transition-all hover:border-navy-200 hover:shadow-card">
+            <div key={l.id} className="group flex flex-col overflow-hidden rounded-2xl border border-line bg-raised transition-all hover:border-navy-200 hover:shadow-card">
               <div className="relative h-[110px] overflow-hidden bg-navy-900">
                 <Scene seed={l.id} category={l.category} className="h-full w-full" variant="thumb" />
                 <div className="absolute right-2 top-2"><VerificationBadge status={l.verification} size="xs" /></div>
@@ -366,7 +366,7 @@ export function SmeListingForm() {
   if (submitted) {
     return (
       <div className="mx-auto max-w-xl py-10">
-        <div className="rounded-2xl border border-line bg-white p-6 text-center">
+        <div className="rounded-2xl border border-line bg-raised p-6 text-center">
           <span className="mx-auto grid h-14 w-14 place-items-center rounded-2xl bg-gold-100 text-gold-700">
             <Icon name="clipboard-check" size={26} />
           </span>
@@ -425,7 +425,7 @@ export function SmeListingForm() {
         {Steps.map((s, i) => (
           <button key={s} onClick={() => i < step && setStep(i)}
             className={clsx('flex flex-1 items-center gap-2 rounded-lg border px-2.5 py-2 text-left transition-all',
-              i === step ? 'border-royal bg-royal-50/60' : i < step ? 'border-emerald2-200 bg-emerald2-50/40' : 'border-line bg-white')}>
+              i === step ? 'border-royal bg-royal-50/60' : i < step ? 'border-emerald2-200 bg-emerald2-50/40' : 'border-line bg-raised')}>
             <span className={clsx('grid h-5 w-5 shrink-0 place-items-center rounded-full text-[10px] font-bold',
               i === step ? 'bg-royal text-white' : i < step ? 'bg-emerald2 text-white' : 'bg-navy-100 text-ink-faint')}>
               {i < step ? '✓' : i + 1}
@@ -435,7 +435,7 @@ export function SmeListingForm() {
         ))}
       </div>
 
-      <div className="rounded-2xl border border-line bg-white p-5">
+      <div className="rounded-2xl border border-line bg-raised p-5">
         {step === 0 && (
           <div className="space-y-3">
             <Field label={tx("Experience title")} required error={errors.title} hint="Specific beats clever. What will they actually do?">
@@ -637,7 +637,7 @@ export function SmeEnquiries() {
           {shown.map((e) => {
             const exp = experiences.find((x) => x.id === e.experienceId)
             return (
-              <div key={e.id} className="rounded-2xl border border-line bg-white p-3.5 transition-all hover:border-navy-200">
+              <div key={e.id} className="rounded-2xl border border-line bg-raised p-3.5 transition-all hover:border-navy-200">
                 <div className="flex flex-wrap items-start justify-between gap-2">
                   <div className="flex min-w-0 items-start gap-2.5">
                     <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-navy-100 text-[11px] font-bold text-navy-600">
@@ -727,7 +727,7 @@ export function SmeReviews() {
       </div>
 
       <div className="grid gap-3 lg:grid-cols-[280px_1fr]">
-        <div className="rounded-2xl border border-line bg-white p-4">
+        <div className="rounded-2xl border border-line bg-raised p-4">
           <p className="text-[10px] font-bold uppercase tracking-wider text-ink-faint">Overall rating</p>
           <div className="mt-1 flex items-end gap-2">
             <p className="text-[40px] font-extrabold leading-none text-navy num">{avg ? avg.toFixed(1) : '—'}</p>
@@ -755,7 +755,7 @@ export function SmeReviews() {
 
         <div className="space-y-2">
           {opsReviews.map((r) => (
-            <div key={r.id} className="rounded-2xl border border-line bg-white p-3.5">
+            <div key={r.id} className="rounded-2xl border border-line bg-raised p-3.5">
               <div className="flex flex-wrap items-start justify-between gap-2">
                 <div className="flex items-center gap-2">
                   <span className="grid h-7 w-7 place-items-center rounded-full bg-navy-100 text-[10.5px] font-bold text-navy-600">
@@ -808,7 +808,7 @@ export function SmeAnalytics() {
       </div>
 
       <div className="grid gap-4 lg:grid-cols-2">
-        <div className="rounded-2xl border border-line bg-white p-4">
+        <div className="rounded-2xl border border-line bg-raised p-4">
           <p className="text-[12px] font-bold text-navy">Views over 7 days</p>
           <div className="mt-4 flex h-[132px] items-end gap-2">
             {weekly.map((v, i) => (
@@ -821,7 +821,7 @@ export function SmeAnalytics() {
           <p className="mt-2 text-[10px] text-ink-faint"><T>Simulated traffic pattern for the mockup.</T></p>
         </div>
 
-        <div className="rounded-2xl border border-line bg-white p-4">
+        <div className="rounded-2xl border border-line bg-raised p-4">
           <p className="text-[12px] font-bold text-navy"><T>Enquiry sources</T></p>
           <div className="mt-3 space-y-2.5">
             {[
@@ -841,7 +841,7 @@ export function SmeAnalytics() {
         </div>
       </div>
 
-      <div className="rounded-2xl border border-line bg-white p-4">
+      <div className="rounded-2xl border border-line bg-raised p-4">
         <p className="text-[12px] font-bold text-navy">Listing performance</p>
         <div className="mt-3 overflow-x-auto">
           <table className="w-full min-w-[520px] text-left">
@@ -895,7 +895,7 @@ export function SmeProfilePage() {
         <VerificationBadge status={operator.verification} />
       </div>
 
-      <div className="rounded-2xl border border-line bg-white p-5">
+      <div className="rounded-2xl border border-line bg-raised p-5">
         <div className="flex items-center gap-3">
           <span className="grid h-14 w-14 place-items-center rounded-2xl bg-navy text-[15px] font-extrabold text-white">
             {operator.logoAdopt}
@@ -931,7 +931,7 @@ export function SmeProfilePage() {
         </div>
       </div>
 
-      <div className="rounded-2xl border border-line bg-white p-5">
+      <div className="rounded-2xl border border-line bg-raised p-5">
         <p className="text-[13px] font-extrabold">Verification documents</p>
         <p className="mt-1 text-[11.5px] text-ink-mute"><T>Uploads are simulated — no files leave this browser.</T></p>
         <div className="mt-3 space-y-1.5">
@@ -950,7 +950,7 @@ export function SmeProfilePage() {
         </Button>
       </div>
 
-      <div className="rounded-2xl border border-line bg-white p-5">
+      <div className="rounded-2xl border border-line bg-raised p-5">
         <p className="text-[13px] font-extrabold">Promotions & packages</p>
         <p className="mt-1 text-[11.5px] text-ink-mute">Bundle listings or run a seasonal offer.</p>
         <div className="mt-3 space-y-1.5">

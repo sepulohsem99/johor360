@@ -162,7 +162,7 @@ export default function ExperienceDetail() {
   return (
     <div className="min-h-screen bg-canvas">
       {/* gallery header */}
-      <div className="border-b border-line bg-white">
+      <div className="border-b border-line bg-raised">
         <div className="shell py-5">
           <nav className="mb-4 flex flex-wrap items-center gap-1.5 text-[11.5px] text-ink-faint" aria-label="Breadcrumb">
             <Link to="/" className="hover:text-navy">Home</Link>
@@ -197,7 +197,7 @@ export default function ExperienceDetail() {
                     key={i}
                     onClick={() => setGallery(i)}
                     aria-label={`View image ${i + 1}`}
-                    className={clsx('h-1.5 rounded-full transition-all', gallery === i ? 'w-6 bg-white' : 'w-1.5 bg-white/50 hover:bg-white/80')}
+                    className={clsx('h-1.5 rounded-full transition-all', gallery === i ? 'w-6 bg-raised' : 'w-1.5 bg-white/50 hover:bg-white/80')}
                   />
                 ))}
               </div>
@@ -270,7 +270,7 @@ export default function ExperienceDetail() {
                 { i: 'users', l: 'Max group', v: `${exp.capacity} people` },
                 { i: 'gauge', l: 'Intensity', v: exp.intensity.charAt(0).toUpperCase() + exp.intensity.slice(1) },
               ].map((f) => (
-                <div key={f.l} className="rounded-xl border border-line bg-white px-3 py-2.5">
+                <div key={f.l} className="rounded-xl border border-line bg-raised px-3 py-2.5">
                   <Icon name={f.i} size={14} className="text-royal" />
                   <p className="mt-1.5 text-[10px] font-bold uppercase tracking-wider text-ink-faint">{f.l}</p>
                   <p className="mt-0.5 text-[12.5px] font-bold text-navy">{f.v}</p>
@@ -312,7 +312,7 @@ export default function ExperienceDetail() {
             </div>
 
             {/* getting there */}
-            <div className="mt-7 rounded-2xl border border-line bg-white p-4">
+            <div className="mt-7 rounded-2xl border border-line bg-raised p-4">
               <h2 className="text-[15px] font-extrabold">Getting there</h2>
               <div className="mt-3 grid gap-3 sm:grid-cols-2">
                 <div className="rounded-xl bg-navy-50/70 p-3">
@@ -347,7 +347,7 @@ export default function ExperienceDetail() {
             </div>
 
             {/* accessibility */}
-            <div className="mt-5 rounded-2xl border border-line bg-white p-4">
+            <div className="mt-5 rounded-2xl border border-line bg-raised p-4">
               <h2 className="text-[15px] font-extrabold">Accessibility</h2>
               <div className="mt-3 grid gap-2 sm:grid-cols-3">
                 {[
@@ -365,14 +365,14 @@ export default function ExperienceDetail() {
             </div>
 
             {/* availability */}
-            <div className="mt-5 rounded-2xl border border-line bg-white p-4">
+            <div className="mt-5 rounded-2xl border border-line bg-raised p-4">
               <div className="flex items-center justify-between">
                 <h2 className="text-[15px] font-extrabold">Sample availability</h2>
                 <DemoTag label="Sample schedule" />
               </div>
               <div className="mt-3 grid grid-cols-7 gap-1.5">
                 {exp.availability.map((a) => (
-                  <div key={a.day} className={clsx('rounded-lg border px-1 py-2 text-center', a.times.length ? 'border-line bg-white' : 'border-dashed border-navy-200 bg-navy-50/40')}>
+                  <div key={a.day} className={clsx('rounded-lg border px-1 py-2 text-center', a.times.length ? 'border-line bg-raised' : 'border-dashed border-navy-200 bg-navy-50/40')}>
                     <p className="text-[10px] font-bold uppercase text-ink-faint">{a.day}</p>
                     {a.times.length ? (
                       <p className="mt-0.5 text-[11px] font-bold text-navy num">{a.times.length}×</p>
@@ -402,7 +402,7 @@ export default function ExperienceDetail() {
               </div>
 
               <div className="mt-3 grid gap-4 sm:grid-cols-[200px_1fr]">
-                <div className="rounded-xl border border-line bg-white p-4 text-center">
+                <div className="rounded-xl border border-line bg-raised p-4 text-center">
                   <p className="text-[38px] font-extrabold leading-none text-navy num">{exp.rating || '—'}</p>
                   <div className="mt-1.5 flex justify-center"><Stars value={exp.rating} size={13} /></div>
                   <p className="mt-1 text-[11px] text-ink-faint">{expReviews.length} demo reviews</p>
@@ -427,7 +427,7 @@ export default function ExperienceDetail() {
                     <EmptyState icon="message-square" title={tx("No reviews yet")} body={tx("Be the first to leave demonstration feedback for this listing.")} />
                   ) : (
                     expReviews.slice(0, 4).map((r) => (
-                      <div key={r.id} className="rounded-xl border border-line bg-white p-3.5">
+                      <div key={r.id} className="rounded-xl border border-line bg-raised p-3.5">
                         <div className="flex items-start justify-between gap-3">
                           <div className="flex items-center gap-2">
                             <span className="grid h-7 w-7 place-items-center rounded-full bg-navy-100 text-[11px] font-bold text-navy-600">
@@ -453,7 +453,7 @@ export default function ExperienceDetail() {
 
           {/* sticky booking card */}
           <aside className="lg:sticky lg:top-24 lg:self-start">
-            <div className="rounded-2xl border border-line bg-white p-4 shadow-card">
+            <div className="rounded-2xl border border-line bg-raised p-4 shadow-card">
               <div className="flex items-end justify-between">
                 <div>
                   <p className="text-[10.5px] font-bold uppercase tracking-wider text-ink-faint"><T>Indicative price</T></p>
@@ -525,7 +525,7 @@ export default function ExperienceDetail() {
               </div>
             </div>
 
-            <div className="mt-3 rounded-xl border border-line bg-white px-3.5 py-3">
+            <div className="mt-3 rounded-xl border border-line bg-raised px-3.5 py-3">
               <p className="flex items-start gap-1.5 text-[10.5px] leading-relaxed text-ink-faint">
                 <Icon name="shield-check" size={12} className="mt-0.5 shrink-0 text-emerald2-600" />
                 Operator verified by JOHOR360 staff. Verification covers business registration and safety

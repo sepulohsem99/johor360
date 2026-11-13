@@ -35,7 +35,7 @@ export function About() {
               ['Rail changed the geography, not the behaviour', 'ETS now reaches JB Sentral, with four through-services per direction per day. The RTS Link will add more. The infrastructure exists; the discovery layer does not.'],
               ['Visitors with time do not find them', 'Medical travellers with three days between appointments, business travellers with a four-hour window, education groups scouting field visits — all have time and no map.'],
             ].map(([t, d]) => (
-              <div key={t} className="flex items-start gap-3 rounded-2xl border border-line bg-white p-4">
+              <div key={t} className="flex items-start gap-3 rounded-2xl border border-line bg-raised p-4">
                 <span className="mt-0.5 grid h-7 w-7 shrink-0 place-items-center rounded-lg bg-johor-50 text-johor">
                   <Icon name="alert-circle" size={14} />
                 </span>
@@ -64,7 +64,7 @@ export function About() {
         </div>
       </Section>
 
-      <section className="border-y border-line bg-white py-14">
+      <section className="border-y border-line bg-raised py-14">
         <div className="shell">
           <p className="eyebrow mb-2.5">Three commitments</p>
           <h2 className="max-w-xl text-[26px] font-extrabold leading-[1.14] sm:text-[34px]">
@@ -103,13 +103,13 @@ export function About() {
 
       <Section eyebrow="The corridor" title={tx("What we cover, and what we verified")}>
         <div className="grid gap-5 lg:grid-cols-[1.2fr_0.8fr]">
-          <div className="rounded-2xl border border-line bg-white p-4">
+          <div className="rounded-2xl border border-line bg-raised p-4">
             <p className="mb-3 text-[12px] font-bold text-navy"><T>Station sequence (north → south)</T></p>
             <div className="space-y-1">
               {CORRIDOR.map((s, i) => (
                 <div key={s.id} className="flex items-center gap-2.5">
                   <span className="w-4 text-[9.5px] text-ink-faint num">{i + 1}</span>
-                  <span className="h-2 w-2 shrink-0 rounded-full border border-navy-300 bg-white" />
+                  <span className="h-2 w-2 shrink-0 rounded-full border border-navy-300 bg-raised" />
                   <span className="w-[78px] shrink-0 text-[11.5px] font-bold text-navy">{s.name}</span>
                   <span className="flex-1 truncate text-[10.5px] text-ink-mute">{s.district}, {s.state}</span>
                   <span className="shrink-0 text-[10px] text-ink-faint num">~{s.minutesFromJB}m</span>
@@ -189,7 +189,7 @@ export function HowItWorks() {
 
   return (
     <div>
-      <div className="border-b border-line bg-white">
+      <div className="border-b border-line bg-raised">
         <div className="shell py-12 sm:py-16">
           <p className="eyebrow mb-2.5">How JOHOR360 works</p>
           <h1 className="max-w-2xl text-[30px] font-extrabold leading-[1.1] sm:text-[42px]">
@@ -206,7 +206,7 @@ export function HowItWorks() {
       <Section eyebrow="The visitor flow" title={tx("Six steps, in order")}>
         <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
           {steps.map((s) => (
-            <div key={s.n} className="relative overflow-hidden rounded-2xl border border-line bg-white p-5">
+            <div key={s.n} className="relative overflow-hidden rounded-2xl border border-line bg-raised p-5">
               <span className="absolute right-3 top-2 text-[38px] font-extrabold leading-none text-navy-50 num">{s.n}</span>
               <span className="relative grid h-9 w-9 place-items-center rounded-xl bg-navy text-white">
                 <Icon name={s.icon} size={16} />
@@ -218,7 +218,7 @@ export function HowItWorks() {
         </div>
       </Section>
 
-      <section className="border-y border-line bg-white py-14">
+      <section className="border-y border-line bg-raised py-14">
         <div className="shell">
           <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:gap-14">
             <div>
@@ -247,7 +247,7 @@ export function HowItWorks() {
                 ['Budget compatibility', 15, 'Price against your stated budget, favouring the sweet spot over the cheapest option.'],
                 ['Purpose relevance', 10, 'Category affinity tuned per traveller type.'],
               ].map(([l, w, d]) => (
-                <div key={l as string} className="rounded-xl border border-line bg-white p-3.5">
+                <div key={l as string} className="rounded-xl border border-line bg-raised p-3.5">
                   <div className="flex items-center justify-between gap-3">
                     <span className="text-[13px] font-bold text-navy">{l}</span>
                     <span className="rounded-md bg-navy px-1.5 py-0.5 text-[11px] font-extrabold text-white num">{w}%</span>
@@ -272,7 +272,7 @@ export function HowItWorks() {
             ['Gross time mismatch', 'Anything needing 60% more than your window is dropped before scoring.', 'clock'],
           ].map(([t, d, i]) => (
             <div key={t} className="rounded-2xl border border-johor-200 bg-johor-50/40 p-4">
-              <span className="grid h-8 w-8 place-items-center rounded-lg bg-white text-johor"><Icon name={i} size={15} /></span>
+              <span className="grid h-8 w-8 place-items-center rounded-lg bg-raised text-johor"><Icon name={i} size={15} /></span>
               <p className="mt-2.5 text-[12.5px] font-extrabold text-navy">{t}</p>
               <p className="mt-1 text-[11px] leading-relaxed text-ink-mute">{d}</p>
             </div>
@@ -286,7 +286,7 @@ export function HowItWorks() {
 
       <section className="py-14">
         <div className="shell">
-          <div className="rounded-3xl border border-line bg-white p-6 sm:p-9">
+          <div className="rounded-3xl border border-line bg-raised p-6 sm:p-9">
             <div className="grid gap-8 lg:grid-cols-2">
               <div>
                 <p className="eyebrow mb-2.5"><T>For operators</T></p>
@@ -324,7 +324,7 @@ export function HowItWorks() {
                     ['Publish unverified listings', 'Nothing appears in discovery until a human approves it.'],
                     ['Guess train times', 'Schedules are labelled illustrative and link to KTMB.'],
                   ].map(([t, d]) => (
-                    <div key={t} className="flex items-start gap-2 rounded-lg bg-white px-2.5 py-2">
+                    <div key={t} className="flex items-start gap-2 rounded-lg bg-raised px-2.5 py-2">
                       <Icon name="x-circle" size={12} className="mt-0.5 shrink-0 text-johor" />
                       <div>
                         <p className="text-[11.5px] font-bold text-navy">{t}</p>

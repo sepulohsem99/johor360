@@ -287,7 +287,7 @@ export function ForgotPassword() {
         <Icon name="arrow-left" size={13} /> <T>Back to sign in</T>
       </Link>
       {sent ? (
-        <div className="rounded-2xl border border-line bg-white p-6 text-center">
+        <div className="rounded-2xl border border-line bg-raised p-6 text-center">
           <span className="mx-auto grid h-12 w-12 place-items-center rounded-2xl bg-emerald2-50 text-emerald2-700">
             <Icon name="mail" size={22} />
           </span>
