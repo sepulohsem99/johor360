@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { T } from '../../components/ui/T'
 import { useNavigate } from 'react-router-dom'
 import clsx from 'clsx'
 import Icon from '../../components/ui/Icon'
@@ -99,7 +100,7 @@ export default function Onboarding() {
           {/* STEP 1 — interests */}
           {step === 1 && (
             <div>
-              <p className="mb-3 text-[12.5px] text-ink-mute">Pick as many as you like. At least one.</p>
+              <p className="mb-3 text-[12.5px] text-ink-mute"><T>Pick as many as you like. At least one.</T></p>
               <div className="flex flex-wrap gap-2">
                 {INTERESTS.map((i) => (
                   <button
@@ -137,7 +138,7 @@ export default function Onboarding() {
           {step === 2 && (
             <div className="space-y-5">
               <div>
-                <p className="label">How much time do you have?</p>
+                <p className="label"><T>How much time do you have?</T></p>
                 <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
                   {DURATION_PRESETS.map((d) => (
                     <button
@@ -155,7 +156,7 @@ export default function Onboarding() {
                     className={clsx('rounded-xl border-2 px-3 py-3 text-center transition-all',
                       draft.availableMins === 420 ? 'border-royal bg-royal-50/60' : 'border-line hover:border-navy-200')}
                   >
-                    <p className="text-[14px] font-extrabold text-navy">Full day</p>
+                    <p className="text-[14px] font-extrabold text-navy"><T>Full day</T></p>
                     <p className="mt-0.5 text-[10.5px] text-ink-faint">7 hours</p>
                   </button>
                 </div>
@@ -163,7 +164,7 @@ export default function Onboarding() {
 
               <div>
                 <div className="mb-1.5 flex items-center justify-between">
-                  <p className="label !mb-0">Budget per person</p>
+                  <p className="label !mb-0"><T>Budget per person</T></p>
                   <span className="text-[14px] font-extrabold text-navy num">{money(draft.budget)}</span>
                 </div>
                 <input type="range" min={30} max={600} step={10} value={draft.budget}
@@ -211,7 +212,7 @@ export default function Onboarding() {
               </div>
 
               <div>
-                <p className="label">Transport you will use for the last mile</p>
+                <p className="label"><T>Transport you will use for the last mile</T></p>
                 <div className="flex flex-wrap gap-2">
                   {TRANSPORT_OPTIONS.map((t) => (
                     <button key={t.id} onClick={() => toggle('transport', t.id)}
@@ -224,7 +225,7 @@ export default function Onboarding() {
               </div>
 
               <div className="rounded-xl bg-navy-50 p-3.5">
-                <p className="text-[11.5px] font-bold text-navy">Your setup so far</p>
+                <p className="text-[11.5px] font-bold text-navy"><T>Your setup so far</T></p>
                 <div className="mt-2 grid grid-cols-2 gap-2 text-[11.5px] sm:grid-cols-4">
                   {[
                     ['Purpose', draft.purpose ? PURPOSES.find((p) => p.id === draft.purpose)?.label.replace(' traveller', '') : '—'],
@@ -253,7 +254,7 @@ export default function Onboarding() {
             </Button>
             {step < STEP_COUNT - 1 ? (
               <Button onClick={() => setStep(step + 1)} disabled={!canNext()} iconRight="arrow-right">
-                Continue
+                <T>Continue</T>
               </Button>
             ) : (
               <Button onClick={finish} icon="sparkles">
@@ -264,7 +265,7 @@ export default function Onboarding() {
         </div>
 
         <p className="mt-6 text-center text-[11px] text-ink-faint">
-          <DemoTag label="No account needed" /> Preferences are stored in this browser only.
+          <DemoTag label="No account needed" /> <T>Preferences are stored in this browser only.</T>
         </p>
       </div>
     </div>

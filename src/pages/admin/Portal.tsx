@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react'
+import { T } from '../../components/ui/T'
 import { Link, useNavigate } from 'react-router-dom'
 import clsx from 'clsx'
 import Icon from '../../components/ui/Icon'
@@ -24,7 +25,7 @@ export function AdminDashboard() {
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div>
           <h1 className="text-[24px] font-extrabold">Platform overview</h1>
-          <p className="mt-1 text-[13px] text-ink-mute">Content operations, verification queue and platform health.</p>
+          <p className="mt-1 text-[13px] text-ink-mute"><T>Content operations, verification queue and platform health.</T></p>
         </div>
         <DemoTag label="Simulated metrics" />
       </div>
@@ -41,10 +42,10 @@ export function AdminDashboard() {
           <div className="rounded-2xl border border-line bg-white p-4">
             <div className="mb-3 flex items-center justify-between">
               <h2 className="text-[14px] font-extrabold">Verification queue</h2>
-              <Link to="/admin/verifications" className="text-[11px] font-bold text-royal">Open queue</Link>
+              <Link to="/admin/verifications" className="text-[11px] font-bold text-royal"><T>Open queue</T></Link>
             </div>
             {pending.length === 0 ? (
-              <p className="rounded-xl bg-canvas px-3 py-6 text-center text-[12px] text-ink-faint">Queue is clear.</p>
+              <p className="rounded-xl bg-canvas px-3 py-6 text-center text-[12px] text-ink-faint"><T>Queue is clear.</T></p>
             ) : (
               <div className="space-y-2">
                 {pending.map((e) => (
@@ -58,7 +59,7 @@ export function AdminDashboard() {
                         {operatorById(e.operatorId)?.name} · submitted {e.createdAt ? timeAgo(e.createdAt) : 'recently'}
                       </p>
                     </div>
-                    <Link to="/admin/verifications" className="shrink-0 rounded-lg bg-gold px-2 py-1 text-[10.5px] font-bold text-navy">Review</Link>
+                    <Link to="/admin/verifications" className="shrink-0 rounded-lg bg-gold px-2 py-1 text-[10.5px] font-bold text-navy"><T>Review</T></Link>
                   </div>
                 ))}
               </div>
@@ -167,14 +168,14 @@ export function AdminVerifications() {
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
           <h1 className="text-[24px] font-extrabold">Listing verification</h1>
-          <p className="mt-1 text-[13px] text-ink-mute">Approve listings to make them visible in visitor discovery.</p>
+          <p className="mt-1 text-[13px] text-ink-mute"><T>Approve listings to make them visible in visitor discovery.</T></p>
         </div>
         <div className="flex gap-1.5">
           <button onClick={() => setTab('pending')} className={clsx('chip', tab === 'pending' && 'chip-active')}>
-            Pending <span className="num opacity-60">{experiences.filter((e) => e.verification === 'pending').length}</span>
+            <T>Pending</T> <span className="num opacity-60">{experiences.filter((e) => e.verification === 'pending').length}</span>
           </button>
           <button onClick={() => setTab('all')} className={clsx('chip', tab === 'all' && 'chip-active')}>
-            All unresolved <span className="num opacity-60">{experiences.filter((e) => e.verification !== 'verified').length}</span>
+            <T>All unresolved</T> <span className="num opacity-60">{experiences.filter((e) => e.verification !== 'verified').length}</span>
           </button>
         </div>
       </div>
@@ -225,7 +226,7 @@ export function AdminVerifications() {
       <Modal open={!!exp} onClose={() => { setActive(null); setNote('') }} title="Inspect listing" width="max-w-2xl"
         footer={exp && (
           <>
-            <Button variant="quiet" size="sm" onClick={() => { setActive(null); setNote('') }}>Cancel</Button>
+            <Button variant="quiet" size="sm" onClick={() => { setActive(null); setNote('') }}><T>Cancel</T></Button>
             <Button variant="danger" size="sm" icon="x" onClick={() => act('rejected')}>Reject</Button>
             <Button variant="ghost" size="sm" icon="alert-circle" onClick={() => act('changes_requested')}>Request changes</Button>
             <Button size="sm" icon="check" onClick={() => act('verified')}>Approve</Button>
@@ -258,7 +259,7 @@ export function AdminVerifications() {
             </div>
 
             <div className="rounded-xl border border-line p-3">
-              <p className="text-[10px] font-bold uppercase tracking-wider text-ink-faint">Operator</p>
+              <p className="text-[10px] font-bold uppercase tracking-wider text-ink-faint"><T>Operator</T></p>
               <div className="mt-1.5 flex items-center gap-2">
                 <span className="grid h-8 w-8 place-items-center rounded-lg bg-navy text-[10px] font-bold text-white">{op?.logoAdopt}</span>
                 <div className="min-w-0 flex-1">
@@ -335,7 +336,7 @@ export function AdminOperators() {
     <div className="space-y-5">
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
-          <h1 className="text-[24px] font-extrabold">Operators</h1>
+          <h1 className="text-[24px] font-extrabold"><T>Operators</T></h1>
           <p className="mt-1 text-[13px] text-ink-mute">{operators.length} registered · {operators.filter((o) => o.verification === 'verified').length} verified</p>
         </div>
         <input className="field !h-9 !w-auto !text-[12px]" placeholder="Search operators…" value={q} onChange={(e) => setQ(e.target.value)} />
@@ -346,12 +347,12 @@ export function AdminOperators() {
           <table className="w-full min-w-[720px] text-left">
             <thead>
               <tr className="border-b border-line bg-canvas text-[10px] uppercase tracking-wider text-ink-faint">
-                <th className="px-4 py-2.5 font-bold">Operator</th>
+                <th className="px-4 py-2.5 font-bold"><T>Operator</T></th>
                 <th className="px-4 py-2.5 font-bold">Category</th>
-                <th className="px-4 py-2.5 font-bold">Station</th>
+                <th className="px-4 py-2.5 font-bold"><T>Station</T></th>
                 <th className="px-4 py-2.5 font-bold">Listings</th>
                 <th className="px-4 py-2.5 font-bold">Rating</th>
-                <th className="px-4 py-2.5 font-bold">Status</th>
+                <th className="px-4 py-2.5 font-bold"><T>Status</T></th>
                 <th className="px-4 py-2.5 font-bold"></th>
               </tr>
             </thead>
@@ -406,15 +407,15 @@ export function AdminExperiences() {
     <div className="space-y-5">
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
-          <h1 className="text-[24px] font-extrabold">Experience management</h1>
+          <h1 className="text-[24px] font-extrabold"><T>Experience management</T></h1>
           <p className="mt-1 text-[13px] text-ink-mute">{experiences.length} listings across {STATIONS.length} stations</p>
         </div>
         <div className="flex gap-2">
           <input className="field !h-9 !w-auto !text-[12px]" placeholder="Search listings…" value={q} onChange={(e) => setQ(e.target.value)} />
           <select className="field !h-9 !w-auto !py-0 !text-[12px]" value={status} onChange={(e) => setStatus(e.target.value)}>
-            <option value="all">All statuses</option>
-            <option value="verified">Verified</option>
-            <option value="pending">Pending</option>
+            <option value="all"><T>All statuses</T></option>
+            <option value="verified"><T>Verified</T></option>
+            <option value="pending"><T>Pending</T></option>
             <option value="draft">Draft</option>
             <option value="changes_requested">Changes requested</option>
             <option value="rejected">Rejected</option>
@@ -431,12 +432,12 @@ export function AdminExperiences() {
               <thead>
                 <tr className="border-b border-line bg-canvas text-[10px] uppercase tracking-wider text-ink-faint">
                   <th className="px-4 py-2.5 font-bold">Listing</th>
-                  <th className="px-4 py-2.5 font-bold">Operator</th>
-                  <th className="px-4 py-2.5 font-bold">Station</th>
-                  <th className="px-4 py-2.5 font-bold">Price</th>
+                  <th className="px-4 py-2.5 font-bold"><T>Operator</T></th>
+                  <th className="px-4 py-2.5 font-bold"><T>Station</T></th>
+                  <th className="px-4 py-2.5 font-bold"><T>Price</T></th>
                   <th className="px-4 py-2.5 font-bold">Views</th>
-                  <th className="px-4 py-2.5 font-bold">Status</th>
-                  <th className="px-4 py-2.5 font-bold">Action</th>
+                  <th className="px-4 py-2.5 font-bold"><T>Status</T></th>
+                  <th className="px-4 py-2.5 font-bold"><T>Action</T></th>
                 </tr>
               </thead>
               <tbody>
@@ -485,7 +486,7 @@ export function AdminReviews() {
     <div className="space-y-5">
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
-          <h1 className="text-[24px] font-extrabold">Review moderation</h1>
+          <h1 className="text-[24px] font-extrabold"><T>Review moderation</T></h1>
           <p className="mt-1 text-[13px] text-ink-mute">{reviews.filter((r) => r.status === 'pending').length} awaiting moderation</p>
         </div>
         <div className="flex gap-1.5">
@@ -564,7 +565,7 @@ export function AdminAnalytics() {
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
           <h1 className="text-[24px] font-extrabold">Visitor insights</h1>
-          <p className="mt-1 text-[13px] text-ink-mute">Distribution of visitor intent across purpose, station and category.</p>
+          <p className="mt-1 text-[13px] text-ink-mute"><T>Distribution of visitor intent across purpose, station and category.</T></p>
         </div>
         <DemoTag label="Simulated analytics" />
       </div>
@@ -668,7 +669,7 @@ export function AdminImpact() {
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
           <h1 className="text-[24px] font-extrabold">Economic discovery impact</h1>
-          <p className="mt-1 text-[13px] text-ink-mute">The metrics that show whether attention is actually moving outside the city.</p>
+          <p className="mt-1 text-[13px] text-ink-mute"><T>The metrics that show whether attention is actually moving outside the city.</T></p>
         </div>
         <DemoTag label="Simulated data" />
       </div>
@@ -714,10 +715,10 @@ export function AdminImpact() {
             <table className="w-full min-w-[440px] text-left">
               <thead>
                 <tr className="border-b border-line text-[9.5px] uppercase tracking-wider text-ink-faint">
-                  <th className="pb-2 font-bold">Station</th>
-                  <th className="pb-2 font-bold">Operators</th>
+                  <th className="pb-2 font-bold"><T>Station</T></th>
+                  <th className="pb-2 font-bold"><T>Operators</T></th>
                   <th className="pb-2 font-bold">Listings</th>
-                  <th className="pb-2 font-bold">Enquiries</th>
+                  <th className="pb-2 font-bold"><T>Enquiries</T></th>
                   <th className="pb-2 font-bold">Share</th>
                 </tr>
               </thead>
@@ -743,7 +744,7 @@ export function AdminImpact() {
 
         <div className="space-y-3">
           <div className="rounded-2xl border border-line bg-white p-4">
-            <p className="text-[10px] font-bold uppercase tracking-wider text-ink-faint">Enquiry conversion</p>
+            <p className="text-[10px] font-bold uppercase tracking-wider text-ink-faint"><T>Enquiry conversion</T></p>
             <div className="mt-2 space-y-2.5">
               {[
                 ['Sent to operator', totalEnq, 'royal'],
@@ -763,7 +764,7 @@ export function AdminImpact() {
           </div>
 
           <div className="rounded-2xl border border-line bg-white p-4">
-            <p className="text-[10px] font-bold uppercase tracking-wider text-ink-faint">Distribution of discovery</p>
+            <p className="text-[10px] font-bold uppercase tracking-wider text-ink-faint"><T>Distribution of discovery</T></p>
             <div className="mt-2 flex h-3 overflow-hidden rounded-full">
               <div className="bg-emerald2" style={{ width: `${shareBeyond}%` }} />
               <div className="bg-johor" style={{ width: `${100 - shareBeyond}%` }} />
@@ -782,7 +783,7 @@ export function AdminImpact() {
 
       {/* what this proves */}
       <div className="rounded-2xl border border-emerald2-200 bg-emerald2-50/50 p-4">
-        <p className="text-[12px] font-bold text-emerald2-900">What this dashboard is designed to prove</p>
+        <p className="text-[12px] font-bold text-emerald2-900"><T>What this dashboard is designed to prove</T></p>
         <div className="mt-2.5 grid gap-2 sm:grid-cols-2">
           {[
             ['Attention moves out of the city', 'Share of enquiries to operators outside JB Sentral — the core distribution claim.'],
@@ -820,7 +821,7 @@ export function AdminSettings() {
     <div className="mx-auto max-w-3xl space-y-5">
       <div>
         <h1 className="text-[24px] font-extrabold">Platform settings</h1>
-        <p className="mt-1 text-[13px] text-ink-mute">Configuration for the demo environment. Changes are local only.</p>
+        <p className="mt-1 text-[13px] text-ink-mute"><T>Configuration for the demo environment. Changes are local only.</T></p>
       </div>
 
       <div className="rounded-2xl border border-line bg-white p-5">
@@ -881,7 +882,7 @@ export function AdminSettings() {
 
       <div className="rounded-2xl border border-line bg-white p-5">
         <p className="text-[13px] font-extrabold">Data source register</p>
-        <p className="mt-1 text-[11.5px] text-ink-mute">Every external claim in the product traces to a source here.</p>
+        <p className="mt-1 text-[11.5px] text-ink-mute"><T>Every external claim in the product traces to a source here.</T></p>
         <div className="mt-3 space-y-1.5">
           {[
             { n: 'ETS station names & order', s: 'KTMB route information', u: 'https://www.ktmb.com.my/', v: '2026-11-13' },

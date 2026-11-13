@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react'
+import { T } from '../../components/ui/T'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import clsx from 'clsx'
 import Icon from '../../components/ui/Icon'
@@ -45,8 +46,8 @@ export function SmeDashboard() {
           </p>
         </div>
         <div className="flex gap-2">
-          <Button variant="ghost" size="sm" icon="eye" onClick={() => nav(`/operators/${operator.id}`)}>View public profile</Button>
-          <Button size="sm" icon="plus" onClick={() => nav('/sme/listings/new')}>New listing</Button>
+          <Button variant="ghost" size="sm" icon="eye" onClick={() => nav(`/operators/${operator.id}`)}><T>View public profile</T></Button>
+          <Button size="sm" icon="plus" onClick={() => nav('/sme/listings/new')}><T>New listing</T></Button>
         </div>
       </div>
 
@@ -70,8 +71,8 @@ export function SmeDashboard() {
           {/* listings */}
           <div className="rounded-2xl border border-line bg-white p-4">
             <div className="mb-3 flex items-center justify-between">
-              <h2 className="text-[14px] font-extrabold">Your listings</h2>
-              <Link to="/sme/listings" className="text-[11px] font-bold text-royal">Manage all</Link>
+              <h2 className="text-[14px] font-extrabold"><T>Your listings</T></h2>
+              <Link to="/sme/listings" className="text-[11px] font-bold text-royal"><T>Manage all</T></Link>
             </div>
             <div className="space-y-2">
               {listings.map((l) => (
@@ -86,15 +87,15 @@ export function SmeDashboard() {
                   <VerificationBadge status={l.verification} size="xs" />
                 </Link>
               ))}
-              {listings.length === 0 && <p className="py-6 text-center text-[12px] text-ink-faint">No listings yet.</p>}
+              {listings.length === 0 && <p className="py-6 text-center text-[12px] text-ink-faint"><T>No listings yet.</T></p>}
             </div>
           </div>
 
           {/* enquiries */}
           <div className="rounded-2xl border border-line bg-white p-4">
             <div className="mb-3 flex items-center justify-between">
-              <h2 className="text-[14px] font-extrabold">Recent enquiries</h2>
-              <Link to="/sme/enquiries" className="text-[11px] font-bold text-royal">View all</Link>
+              <h2 className="text-[14px] font-extrabold"><T>Recent enquiries</T></h2>
+              <Link to="/sme/enquiries" className="text-[11px] font-bold text-royal"><T>View all</T></Link>
             </div>
             <div className="space-y-2">
               {opsEnquiries.slice(0, 4).map((e) => (
@@ -115,7 +116,7 @@ export function SmeDashboard() {
 
         <aside className="space-y-3">
           <div className="rounded-2xl border border-line bg-white p-4">
-            <p className="text-[10px] font-bold uppercase tracking-wider text-ink-faint">Enquiry funnel</p>
+            <p className="text-[10px] font-bold uppercase tracking-wider text-ink-faint"><T>Enquiry funnel</T></p>
             <div className="mt-3 space-y-2.5">
               {[
                 ['Received', opsEnquiries.length, 'royal'],
@@ -152,7 +153,7 @@ export function SmeDashboard() {
           </div>
 
           <div className="rounded-2xl bg-navy p-4">
-            <p className="text-[10px] font-bold uppercase tracking-wider text-white/45">Next step</p>
+            <p className="text-[10px] font-bold uppercase tracking-wider text-white/45"><T>Next step</T></p>
             <p className="mt-1 text-[12.5px] font-bold text-white">
               {listings.some((l) => l.verification === 'pending') ? 'A listing is waiting for verification' : 'Respond to new enquiries'}
             </p>
@@ -162,7 +163,7 @@ export function SmeDashboard() {
                 : 'Fast replies are the single biggest factor in visitor conversion.'}
             </p>
             <Button size="sm" variant="ghost" className="mt-3 w-full !bg-white/10 !border-white/20 !text-white hover:!bg-white/15" onClick={() => nav('/sme/enquiries')}>
-              Open enquiries
+              <T>Open enquiries</T>
             </Button>
           </div>
         </aside>
@@ -365,9 +366,9 @@ export function SmeListingForm() {
           <span className="mx-auto grid h-14 w-14 place-items-center rounded-2xl bg-gold-100 text-gold-700">
             <Icon name="clipboard-check" size={26} />
           </span>
-          <h1 className="mt-4 text-[21px] font-extrabold">Submitted for verification</h1>
+          <h1 className="mt-4 text-[21px] font-extrabold"><T>Submitted for verification</T></h1>
           <p className="mx-auto mt-2 max-w-sm text-[13px] leading-relaxed text-ink-mute">
-            “{f.title}” is now in the admin verification queue with status <strong>Pending verification</strong>. It
+            “{f.title}” is now in the admin verification queue with status <strong><T>Pending verification</T></strong>. It
             will not appear in visitor discovery until an administrator approves it.
           </p>
           <div className="mx-auto mt-4 max-w-xs rounded-xl bg-canvas p-3 text-left">
@@ -384,8 +385,8 @@ export function SmeListingForm() {
             ))}
           </div>
           <div className="mt-5 flex flex-col gap-2 sm:flex-row sm:justify-center">
-            <Button variant="ghost" onClick={() => nav('/sme/listings')} icon="package">Back to listings</Button>
-            <Button onClick={() => nav('/admin/verifications')} icon="shield-check">Open admin queue</Button>
+            <Button variant="ghost" onClick={() => nav('/sme/listings')} icon="package"><T>Back to listings</T></Button>
+            <Button onClick={() => nav('/admin/verifications')} icon="shield-check"><T>Open admin queue</T></Button>
           </div>
           <p className="mt-3 text-[10.5px] text-ink-faint">
             Tip: switch role to Administrator to approve this listing and see it appear in visitor discovery.
@@ -510,7 +511,7 @@ export function SmeListingForm() {
           <div className="space-y-3">
             <div>
               <p className="label">Accessibility</p>
-              <p className="mb-2 text-[11.5px] text-ink-mute">Answer honestly — these become hard constraints in matching.</p>
+              <p className="mb-2 text-[11.5px] text-ink-mute"><T>Answer honestly — these become hard constraints in matching.</T></p>
               <div className="grid gap-2 sm:grid-cols-3">
                 {([['wheelchair', 'Wheelchair accessible'], ['stepFree', 'Step-free route'], ['seatedOption', 'Seated option']] as const).map(([k, l]) => (
                   <label key={k} className={clsx('flex cursor-pointer items-center gap-2 rounded-xl border px-3 py-2.5 transition-colors',
@@ -555,7 +556,7 @@ export function SmeListingForm() {
             <div className="rounded-xl border border-gold-200 bg-gold-50/60 p-3">
               <p className="flex items-start gap-2 text-[11px] leading-relaxed text-gold-900">
                 <Icon name="shield-check" size={13} className="mt-0.5 shrink-0" />
-                Submitting sends this listing to the admin queue with status <strong>Pending verification</strong>. It
+                <T>Submitting sends this listing to the admin queue with status</T> <strong><T>Pending verification</T></strong>. It
                 will not be visible to visitors until approved. In this mockup, you can approve it yourself by
                 switching to the Administrator role.
               </p>
@@ -571,13 +572,13 @@ export function SmeListingForm() {
         <div className="flex gap-2">
           {existing && (
             <Button variant="ghost" size="sm" onClick={() => { setExperienceStatus(existing.id, 'draft'); toast('Saved as draft', 'Not submitted for verification.', 'info'); nav('/sme/listings') }}>
-              Save draft
+              <T>Save draft</T>
             </Button>
           )}
           {step < 3 ? (
-            <Button onClick={() => setStep(step + 1)} disabled={!canNext()} iconRight="arrow-right">Continue</Button>
+            <Button onClick={() => setStep(step + 1)} disabled={!canNext()} iconRight="arrow-right"><T>Continue</T></Button>
           ) : (
-            <Button onClick={submit} icon="send">Submit for verification</Button>
+            <Button onClick={submit} icon="send"><T>Submit for verification</T></Button>
           )}
         </div>
       </div>
@@ -604,8 +605,8 @@ export function SmeEnquiries() {
     <div className="space-y-5">
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
-          <h1 className="text-[24px] font-extrabold">Enquiries</h1>
-          <p className="mt-1 text-[13px] text-ink-mute">Visitor enquiries are not bookings. You keep control of the conversation.</p>
+          <h1 className="text-[24px] font-extrabold"><T>Enquiries</T></h1>
+          <p className="mt-1 text-[13px] text-ink-mute"><T>Visitor enquiries are not bookings. You keep control of the conversation.</T></p>
         </div>
         <DemoTag label="Demo enquiries" />
       </div>
@@ -653,7 +654,7 @@ export function SmeEnquiries() {
                       aria-label="Update enquiry status"
                     >
                       <option value="new">New</option>
-                      <option value="in_review">In review</option>
+                      <option value="in_review"><T>In review</T></option>
                       <option value="responded">Responded</option>
                       <option value="closed">Closed</option>
                     </select>
@@ -662,7 +663,7 @@ export function SmeEnquiries() {
                 <p className="mt-2 rounded-lg bg-canvas px-2.5 py-2 text-[11.5px] leading-relaxed text-ink-soft">{e.message}</p>
                 <div className="mt-2 flex items-center justify-between">
                   <p className="truncate text-[10px] text-ink-faint">re: {exp?.title ?? 'Listing'}</p>
-                  <button onClick={() => setOpen(e.id)} className="text-[10.5px] font-bold text-royal hover:text-royal-700">Open details</button>
+                  <button onClick={() => setOpen(e.id)} className="text-[10.5px] font-bold text-royal hover:text-royal-700"><T>Open details</T></button>
                 </div>
               </div>
             )
@@ -672,7 +673,7 @@ export function SmeEnquiries() {
 
       <Modal open={!!active} onClose={() => setOpen(null)} title="Enquiry details"
         footer={<>
-          <Button variant="quiet" size="sm" onClick={() => setOpen(null)}>Close</Button>
+          <Button variant="quiet" size="sm" onClick={() => setOpen(null)}><T>Close</T></Button>
           <Button size="sm" icon="send" onClick={() => { if (active) { setStatus(active.id, 'responded'); setOpen(null) } }}>Mark responded</Button>
         </>}>
         {active && (
@@ -689,7 +690,7 @@ export function SmeEnquiries() {
               ))}
             </div>
             <div className="rounded-lg border border-line px-2.5 py-2">
-              <p className="text-[9.5px] font-bold uppercase tracking-wider text-ink-faint">Message</p>
+              <p className="text-[9.5px] font-bold uppercase tracking-wider text-ink-faint"><T>Message</T></p>
               <p className="mt-1 text-[12px] leading-relaxed text-ink-soft">{active.message}</p>
             </div>
             <div className="rounded-lg bg-gold-50 px-2.5 py-2 text-[10.5px] leading-relaxed text-gold-900">
@@ -787,7 +788,7 @@ export function SmeAnalytics() {
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
           <h1 className="text-[24px] font-extrabold">Performance</h1>
-          <p className="mt-1 text-[13px] text-ink-mute">All figures are simulated demonstration data.</p>
+          <p className="mt-1 text-[13px] text-ink-mute"><T>All figures are simulated demonstration data.</T></p>
         </div>
         <DemoTag label="Simulated metrics" />
       </div>
@@ -810,11 +811,11 @@ export function SmeAnalytics() {
               </div>
             ))}
           </div>
-          <p className="mt-2 text-[10px] text-ink-faint">Simulated traffic pattern for the mockup.</p>
+          <p className="mt-2 text-[10px] text-ink-faint"><T>Simulated traffic pattern for the mockup.</T></p>
         </div>
 
         <div className="rounded-2xl border border-line bg-white p-4">
-          <p className="text-[12px] font-bold text-navy">Enquiry sources</p>
+          <p className="text-[12px] font-bold text-navy"><T>Enquiry sources</T></p>
           <div className="mt-3 space-y-2.5">
             {[
               ['Station page', 42], ['Matching engine', 31], ['Map view', 16], ['Direct link', 11],
@@ -841,7 +842,7 @@ export function SmeAnalytics() {
               <tr className="border-b border-line text-[10px] uppercase tracking-wider text-ink-faint">
                 <th className="pb-2 font-bold">Listing</th>
                 <th className="pb-2 font-bold">Views</th>
-                <th className="pb-2 font-bold">Enquiries</th>
+                <th className="pb-2 font-bold"><T>Enquiries</T></th>
                 <th className="pb-2 font-bold">Rate</th>
                 <th className="pb-2 font-bold">Rating</th>
               </tr>
@@ -880,8 +881,8 @@ export function SmeProfilePage() {
     <div className="mx-auto max-w-3xl space-y-5">
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div>
-          <h1 className="text-[24px] font-extrabold">Operator profile</h1>
-          <p className="mt-1 text-[13px] text-ink-mute">This is what visitors see when they tap your business name.</p>
+          <h1 className="text-[24px] font-extrabold"><T>Operator profile</T></h1>
+          <p className="mt-1 text-[13px] text-ink-mute"><T>This is what visitors see when they tap your business name.</T></p>
         </div>
         <VerificationBadge status={operator.verification} />
       </div>
@@ -918,20 +919,20 @@ export function SmeProfilePage() {
         </div>
 
         <div className="mt-4 flex justify-end">
-          <Button onClick={() => toast('Profile saved (mock)', 'Changes stored in this browser only.', 'success')} icon="save">Save changes</Button>
+          <Button onClick={() => toast('Profile saved (mock)', 'Changes stored in this browser only.', 'success')} icon="save"><T>Save changes</T></Button>
         </div>
       </div>
 
       <div className="rounded-2xl border border-line bg-white p-5">
         <p className="text-[13px] font-extrabold">Verification documents</p>
-        <p className="mt-1 text-[11.5px] text-ink-mute">Uploads are simulated — no files leave this browser.</p>
+        <p className="mt-1 text-[11.5px] text-ink-mute"><T>Uploads are simulated — no files leave this browser.</T></p>
         <div className="mt-3 space-y-1.5">
           {operator.documents.map((d) => (
             <div key={d} className="flex items-center justify-between rounded-lg border border-line px-2.5 py-2">
               <span className="flex items-center gap-2 text-[11.5px] text-ink-soft">
                 <Icon name="file-text" size={13} className="text-ink-faint" /> {d}
               </span>
-              <span className="rounded bg-emerald2-50 px-1.5 py-0.5 text-[9.5px] font-bold text-emerald2-700">On file</span>
+              <span className="rounded bg-emerald2-50 px-1.5 py-0.5 text-[9.5px] font-bold text-emerald2-700"><T>On file</T></span>
             </div>
           ))}
         </div>

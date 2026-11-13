@@ -1,4 +1,5 @@
 import React, { useMemo, useState } from 'react'
+import { T } from '../components/ui/T'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import clsx from 'clsx'
 import Icon from '../components/ui/Icon'
@@ -51,7 +52,7 @@ export default function ExperienceDetail() {
           icon="package-x"
           title="Experience not found"
           body="This listing may have been removed, or it is still awaiting admin verification."
-          action={<Link to="/explore" className="btn btn-primary btn-md">Browse experiences</Link>}
+          action={<Link to="/explore" className="btn btn-primary btn-md"><T>Browse experiences</T></Link>}
         />
       </div>
     )
@@ -185,7 +186,7 @@ export default function ExperienceDetail() {
                   {cat?.label}
                 </span>
                 <span className="rounded-md bg-emerald2/90 px-2 py-1 text-[10px] font-bold uppercase tracking-wider text-white backdrop-blur-sm">
-                  Verified operator
+                  <T>Verified operator</T>
                 </span>
               </div>
               <div className="absolute bottom-3 left-3 flex gap-1.5">
@@ -277,7 +278,7 @@ export default function ExperienceDetail() {
 
             {/* about */}
             <div className="mt-7">
-              <h2 className="text-[16px] font-extrabold">About this experience</h2>
+              <h2 className="text-[16px] font-extrabold"><T>About this experience</T></h2>
               <p className="mt-2.5 whitespace-pre-line text-[14px] leading-[1.75] text-ink-soft">{exp.description}</p>
             </div>
 
@@ -313,7 +314,7 @@ export default function ExperienceDetail() {
               <h2 className="text-[15px] font-extrabold">Getting there</h2>
               <div className="mt-3 grid gap-3 sm:grid-cols-2">
                 <div className="rounded-xl bg-navy-50/70 p-3">
-                  <p className="text-[10.5px] font-bold uppercase tracking-wider text-ink-faint">Nearest ETS station</p>
+                  <p className="text-[10.5px] font-bold uppercase tracking-wider text-ink-faint"><T>Nearest ETS station</T></p>
                   <p className="mt-1 text-[13.5px] font-bold text-navy">{station?.name}</p>
                   <p className="mt-0.5 text-[11.5px] text-ink-mute">
                     {exp.stationId === 'jb-sentral' ? 'At the terminus' : `~${station?.minutesFromJB} min from JB Sentral`}
@@ -393,7 +394,7 @@ export default function ExperienceDetail() {
                 <div className="flex items-center gap-2">
                   <DemoTag label="Demo reviews" />
                   <Button variant="ghost" size="sm" icon="pen-line" onClick={() => setReviewOpen(true)}>
-                    Write a review
+                    <T>Write a review</T>
                   </Button>
                 </div>
               </div>
@@ -453,25 +454,25 @@ export default function ExperienceDetail() {
             <div className="rounded-2xl border border-line bg-white p-4 shadow-card">
               <div className="flex items-end justify-between">
                 <div>
-                  <p className="text-[10.5px] font-bold uppercase tracking-wider text-ink-faint">Indicative price</p>
+                  <p className="text-[10.5px] font-bold uppercase tracking-wider text-ink-faint"><T>Indicative price</T></p>
                   <p className="mt-0.5 text-[26px] font-extrabold leading-none text-navy num">{money(exp.price)}</p>
                   <p className="mt-1 text-[11px] text-ink-faint">per person · illustrative estimate</p>
                 </div>
                 <span className="rounded-md bg-emerald2-50 px-2 py-1 text-[10px] font-bold uppercase tracking-wide text-emerald2-700">
-                  Verified
+                  <T>Verified</T>
                 </span>
               </div>
 
               <div className="mt-4 space-y-2">
                 <div className="flex items-center justify-between rounded-lg bg-canvas px-2.5 py-2">
                   <span className="flex items-center gap-1.5 text-[11.5px] text-ink-mute">
-                    <Icon name="clock" size={12} /> Duration
+                    <Icon name="clock" size={12} /> <T>Duration</T>
                   </span>
                   <span className="text-[12px] font-bold text-navy">{hoursLabel(exp.durationMins)}</span>
                 </div>
                 <div className="flex items-center justify-between rounded-lg bg-canvas px-2.5 py-2">
                   <span className="flex items-center gap-1.5 text-[11.5px] text-ink-mute">
-                    <Icon name="train-front" size={12} /> Station
+                    <Icon name="train-front" size={12} /> <T>Station</T>
                   </span>
                   <span className="text-[12px] font-bold text-navy">{station?.name}</span>
                 </div>
@@ -485,7 +486,7 @@ export default function ExperienceDetail() {
 
               <div className="mt-4 space-y-2">
                 <Button className="w-full" icon="message-square" onClick={() => setEnquiryOpen(true)}>
-                  Send enquiry
+                  <T>Send enquiry</T>
                 </Button>
                 <Button variant="navy" className="w-full" icon={inItinerary ? 'check' : 'plus'} onClick={addToItinerary}>
                   {inItinerary ? 'Add another to itinerary' : 'Add to itinerary'}
@@ -504,7 +505,7 @@ export default function ExperienceDetail() {
               </div>
 
               <p className="mt-3 rounded-lg bg-gold-50 px-2.5 py-2 text-[10.5px] leading-relaxed text-gold-900">
-                <strong>Mock booking enquiry.</strong> No payment is taken, no slot is reserved, and no booking is
+                <strong><T>Mock booking enquiry.</T></strong> No payment is taken, no slot is reserved, and no booking is
                 confirmed. The operator receives a message in the SME portal.
               </p>
 
@@ -538,7 +539,7 @@ export default function ExperienceDetail() {
             <div className="mb-4 flex items-center justify-between">
               <h2 className="text-[17px] font-extrabold">Also near {station?.name}</h2>
               <Link to={`/explore/stations/${exp.stationId}`} className="text-[12px] font-bold text-royal hover:text-royal-700">
-                See all
+                <T>See all</T>
               </Link>
             </div>
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -557,8 +558,8 @@ export default function ExperienceDetail() {
         title="Send an enquiry"
         footer={
           <>
-            <Button variant="quiet" size="sm" onClick={() => setEnquiryOpen(false)}>Cancel</Button>
-            <Button size="sm" icon="send" onClick={submitEnquiry}>Send enquiry</Button>
+            <Button variant="quiet" size="sm" onClick={() => setEnquiryOpen(false)}><T>Cancel</T></Button>
+            <Button size="sm" icon="send" onClick={submitEnquiry}><T>Send enquiry</T></Button>
           </>
         }
       >
@@ -609,8 +610,8 @@ export default function ExperienceDetail() {
         title="Write a review"
         footer={
           <>
-            <Button variant="quiet" size="sm" onClick={() => setReviewOpen(false)}>Cancel</Button>
-            <Button size="sm" icon="send" onClick={submitReview}>Submit review</Button>
+            <Button variant="quiet" size="sm" onClick={() => setReviewOpen(false)}><T>Cancel</T></Button>
+            <Button size="sm" icon="send" onClick={submitReview}><T>Submit review</T></Button>
           </>
         }
       >

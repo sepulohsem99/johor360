@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { T } from '../components/ui/T'
 import Icon from '../components/ui/Icon'
 import { Button, DemoTag, Section } from '../components/ui'
 import Scene from '../components/art/Scene'
@@ -45,7 +46,7 @@ export function About() {
           </div>
 
           <div className="rounded-2xl border border-navy-200 bg-navy-900 p-5 text-white">
-            <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-gold">The official question</p>
+            <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-gold"><T>The official question</T></p>
             <blockquote className="mt-3 text-[17px] font-bold leading-[1.45]">
               “How might we help visitors in Johor discover leisure and educational activities, focusing on small and
               medium operators, across the ETS line?”
@@ -65,7 +66,7 @@ export function About() {
         <div className="shell">
           <p className="eyebrow mb-2.5">Three commitments</p>
           <h2 className="max-w-xl text-[26px] font-extrabold leading-[1.14] sm:text-[34px]">
-            How we chose to be different
+            <T>How we chose to be different</T>
           </h2>
 
           <div className="mt-8 grid gap-4 lg:grid-cols-3">
@@ -101,7 +102,7 @@ export function About() {
       <Section eyebrow="The corridor" title="What we cover, and what we verified">
         <div className="grid gap-5 lg:grid-cols-[1.2fr_0.8fr]">
           <div className="rounded-2xl border border-line bg-white p-4">
-            <p className="mb-3 text-[12px] font-bold text-navy">Station sequence (north → south)</p>
+            <p className="mb-3 text-[12px] font-bold text-navy"><T>Station sequence (north → south)</T></p>
             <div className="space-y-1">
               {CORRIDOR.map((s, i) => (
                 <div key={s.id} className="flex items-center gap-2.5">
@@ -122,7 +123,7 @@ export function About() {
 
           <div className="space-y-3">
             <div className="rounded-2xl border border-gold-200 bg-gold-50/60 p-4">
-              <p className="text-[12px] font-extrabold text-navy">What is real in this mockup</p>
+              <p className="text-[12px] font-extrabold text-navy"><T>What is real in this mockup</T></p>
               <ul className="mt-2 space-y-1.5">
                 {['Station names and rail order', 'District and town geography', 'Map tiles from OpenStreetMap', 'The matching logic and scoring'].map((x) => (
                   <li key={x} className="flex items-start gap-1.5 text-[11.5px] text-ink-soft">
@@ -132,7 +133,7 @@ export function About() {
               </ul>
             </div>
             <div className="rounded-2xl border border-johor-200 bg-johor-50/60 p-4">
-              <p className="text-[12px] font-extrabold text-navy">What is simulated</p>
+              <p className="text-[12px] font-extrabold text-navy"><T>What is simulated</T></p>
               <ul className="mt-2 space-y-1.5">
                 {['All 15 operators and 30+ listings', 'All prices, ratings and reviews', 'All enquiries and view counts', 'All schedules and journey times'].map((x) => (
                   <li key={x} className="flex items-start gap-1.5 text-[11.5px] text-ink-soft">
@@ -149,7 +150,7 @@ export function About() {
       <section className="py-14">
         <div className="shell">
           <div className="rounded-3xl bg-navy-900 px-6 py-10 sm:px-10">
-            <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-gold">Built for</p>
+            <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-gold"><T>Built for</T></p>
             <h2 className="mt-2 max-w-lg text-[24px] font-extrabold leading-[1.16] text-white sm:text-[30px]">
               Johor Innovation Challenge 2026
             </h2>
@@ -160,10 +161,10 @@ export function About() {
             </p>
             <div className="mt-6 flex flex-wrap gap-2.5">
               <Link to="/explore" className="btn btn-primary btn-md">
-                Try the product <Icon name="arrow-right" size={15} />
+                <T>Try the product</T> <Icon name="arrow-right" size={15} />
               </Link>
               <Link to="/admin/impact" className="btn btn-md !bg-white/10 !border !border-white/20 !text-white hover:!bg-white/15">
-                See the impact model
+                <T>See the impact model</T>
               </Link>
             </div>
           </div>
@@ -218,7 +219,7 @@ export function HowItWorks() {
         <div className="shell">
           <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:gap-14">
             <div>
-              <p className="eyebrow mb-2.5">The scoring model</p>
+              <p className="eyebrow mb-2.5"><T>The scoring model</T></p>
               <h2 className="text-[26px] font-extrabold leading-[1.14] sm:text-[34px]">
                 Transparent by default
               </h2>
@@ -285,9 +286,9 @@ export function HowItWorks() {
           <div className="rounded-3xl border border-line bg-white p-6 sm:p-9">
             <div className="grid gap-8 lg:grid-cols-2">
               <div>
-                <p className="eyebrow mb-2.5">For operators</p>
+                <p className="eyebrow mb-2.5"><T>For operators</T></p>
                 <h2 className="text-[22px] font-extrabold leading-[1.18] sm:text-[28px]">
-                  Five steps from unlisted to discoverable
+                  <T>Five steps from unlisted to discoverable</T>
                 </h2>
                 <div className="mt-5 space-y-2.5">
                   {[
@@ -307,12 +308,12 @@ export function HowItWorks() {
                   ))}
                 </div>
                 <Link to="/sme/dashboard" className="btn btn-navy btn-md mt-6">
-                  Open operator portal <Icon name="arrow-right" size={15} />
+                  <T>Open operator portal</T> <Icon name="arrow-right" size={15} />
                 </Link>
               </div>
 
               <div className="rounded-2xl bg-canvas p-5">
-                <p className="text-[12px] font-extrabold text-navy">What we do not do</p>
+                <p className="text-[12px] font-extrabold text-navy"><T>What we do not do</T></p>
                 <div className="mt-3 space-y-2">
                   {[
                     ['Take bookings or payments', 'Enquiries only. Operators keep control and negotiate directly.'],

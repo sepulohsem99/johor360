@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
+import { T } from '../components/ui/T'
 import { Link, useParams } from 'react-router-dom'
 import clsx from 'clsx'
 import L from 'leaflet'
@@ -79,7 +80,7 @@ export default function ExploreMap() {
             <p style="margin:2px 0 0;font-size:14px;font-weight:800;color:#0B1F3A">${s.name}</p>
             <p style="margin:4px 0 0;font-size:11px;color:#3D4E66">${s.district} · ~${s.minutesFromJB} min from JB</p>
             <p style="margin:6px 0 0;font-size:11px;font-weight:700;color:#15856A">${count} experience${count === 1 ? '' : 's'}</p>
-            <a href="/explore/stations/${s.id}" style="display:inline-block;margin-top:8px;font-size:11px;font-weight:700;color:#1769AA;text-decoration:none">View station →</a>
+            <a href="/explore/stations/${s.id}" style="display:inline-block;margin-top:8px;font-size:11px;font-weight:700;color:#1769AA;text-decoration:none"><T>View station →</T></a>
           </div>`
         )
         .on('click', () => setStation(s.id))
@@ -129,8 +130,8 @@ export default function ExploreMap() {
         <div className="shell py-6">
           <div className="flex flex-wrap items-end justify-between gap-3">
             <div>
-              <p className="eyebrow mb-1.5">Experience map</p>
-              <h1 className="text-[24px] font-extrabold sm:text-[30px]">The corridor, geographically</h1>
+              <p className="eyebrow mb-1.5"><T>Experience map</T></p>
+              <h1 className="text-[24px] font-extrabold sm:text-[30px]"><T>The corridor, geographically</T></h1>
               <p className="mt-1.5 max-w-xl text-[13px] leading-relaxed text-ink-mute">
                 Station pins show how many verified experiences sit at each stop. Price pins are individual listings,
                 offset slightly so they stay readable.
@@ -147,7 +148,7 @@ export default function ExploreMap() {
             {/* filters */}
             <div className="flex flex-wrap items-center gap-1.5">
               <button onClick={() => setStation(null)} className={clsx('chip', !station && 'chip-active')}>
-                All stations
+                <T>All stations</T>
               </button>
               {CORRIDOR.map((s) => (
                 <button key={s.id} onClick={() => flyTo(s.id)} className={clsx('chip', station === s.id && 'chip-active')}>
@@ -173,7 +174,7 @@ export default function ExploreMap() {
           <aside className="space-y-3">
             <div className="rounded-2xl border border-line bg-white p-4">
               <div className="mb-2.5 flex items-center justify-between">
-                <p className="text-[11px] font-bold uppercase tracking-wider text-ink-faint">Category filter</p>
+                <p className="text-[11px] font-bold uppercase tracking-wider text-ink-faint"><T>Category filter</T></p>
                 {category && (
                   <button onClick={() => setCategory(null)} className="text-[10px] font-bold text-royal">Clear</button>
                 )}
@@ -194,7 +195,7 @@ export default function ExploreMap() {
               </p>
               <div className="max-h-[380px] space-y-1.5 overflow-y-auto">
                 {filtered.length === 0 ? (
-                  <p className="py-6 text-center text-[11.5px] text-ink-faint">No listings match these filters.</p>
+                  <p className="py-6 text-center text-[11.5px] text-ink-faint"><T>No listings match these filters.</T></p>
                 ) : (
                   filtered.map((e) => (
                     <Link key={e.id} to={`/experiences/${e.id}`}
@@ -218,7 +219,7 @@ export default function ExploreMap() {
                 <p className="text-[10px] font-bold uppercase tracking-wider text-royal">Highlighted</p>
                 <p className="mt-1 text-[12px] font-bold text-navy">{selectedExp.title}</p>
                 <Link to={`/experiences/${selectedExp.id}`} className="mt-2 inline-flex items-center gap-1 text-[11px] font-bold text-royal">
-                  Open listing <Icon name="arrow-right" size={11} />
+                  <T>Open listing</T> <Icon name="arrow-right" size={11} />
                 </Link>
               </div>
             )}
@@ -242,7 +243,7 @@ export function OperatorProfile() {
   if (!operator) {
     return (
       <div className="shell py-20">
-        <EmptyState icon="store" title="Operator not found" body="This demo operator does not exist in the dataset." action={<Link to="/explore" className="btn btn-primary btn-md">Browse experiences</Link>} />
+        <EmptyState icon="store" title="Operator not found" body="This demo operator does not exist in the dataset." action={<Link to="/explore" className="btn btn-primary btn-md"><T>Browse experiences</T></Link>} />
       </div>
     )
   }
@@ -269,7 +270,7 @@ export function OperatorProfile() {
               <div className="flex flex-wrap items-center gap-2">
                 <h1 className="text-[24px] font-extrabold text-white sm:text-[32px]">{operator.name}</h1>
                 <span className="rounded-md bg-emerald2 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-white">
-                  Verified
+                  <T>Verified</T>
                 </span>
               </div>
               <p className="mt-1 text-[12.5px] text-white/55">
@@ -329,7 +330,7 @@ export function OperatorProfile() {
           <div className="flex items-start gap-2.5">
             <Icon name="shield-check" size={15} className="mt-0.5 shrink-0 text-emerald2-600" />
             <div>
-              <p className="text-[12px] font-bold text-navy">About this verification</p>
+              <p className="text-[12px] font-bold text-navy"><T>About this verification</T></p>
               <p className="mt-1 text-[11.5px] leading-relaxed text-ink-mute">
                 This operator profile is a demonstration record created for the JOHOR360 mockup. In production,
                 verification would confirm business registration (SSM), public liability cover and an accessibility

@@ -1,4 +1,5 @@
 import React, { useMemo } from 'react'
+import { T } from '../components/ui/T'
 import { Link, useParams } from 'react-router-dom'
 import clsx from 'clsx'
 import Icon from '../components/ui/Icon'
@@ -29,7 +30,7 @@ export function StationsIndex() {
             <span className="text-white/70">ETS corridor</span>
           </nav>
           <h1 className="max-w-2xl text-[30px] font-extrabold leading-[1.1] text-white sm:text-[42px]">
-            Nine stations. One line. Most of them you have never heard of.
+            <T>Nine stations. One line. Most of them you have never heard of.</T>
           </h1>
           <p className="mt-3 max-w-xl text-[14px] leading-relaxed text-white/60">
             The ETS now runs from Gemas junction south through Segamat, Labis, Bekok, Paloh and Kluang to JB Sentral.
@@ -105,7 +106,7 @@ export function StationsIndex() {
           <div className="flex items-start gap-2.5">
             <Icon name="info" size={15} className="mt-0.5 shrink-0 text-royal" />
             <div className="text-[11.5px] leading-relaxed text-ink-mute">
-              <p className="font-bold text-navy">On rail accuracy</p>
+              <p className="font-bold text-navy"><T>On rail accuracy</T></p>
               <p className="mt-1">
                 Station names and order were verified against KTMB ETS route information on {RAIL_SOURCE.lastVerified}.
                 Not every station receives the same number of services, and journey times shown here are illustrative
@@ -131,7 +132,7 @@ export function StationDetail() {
   if (!station) {
     return (
       <div className="shell py-20">
-        <EmptyState icon="map-pin-off" title="Station not found" body="That station is not part of the JOHOR360 demo corridor." action={<Link to="/explore/stations" className="btn btn-primary btn-md">Back to corridor</Link>} />
+        <EmptyState icon="map-pin-off" title="Station not found" body="That station is not part of the JOHOR360 demo corridor." action={<Link to="/explore/stations" className="btn btn-primary btn-md"><T>Back to corridor</T></Link>} />
       </div>
     )
   }

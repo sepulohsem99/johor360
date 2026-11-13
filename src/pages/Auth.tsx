@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { T } from '../components/ui/T'
 import { Link, useNavigate } from 'react-router-dom'
 import clsx from 'clsx'
 import Icon from '../components/ui/Icon'
@@ -70,8 +71,8 @@ export function Login() {
         <DemoTag label="No real auth" />
       </div>
 
-      <h1 className="text-[24px] font-extrabold">Sign in</h1>
-      <p className="mt-1 text-[13px] text-ink-mute">Welcome back. Pick up where you left off.</p>
+      <h1 className="text-[24px] font-extrabold"><T>Sign in</T></h1>
+      <p className="mt-1 text-[13px] text-ink-mute"><T>Welcome back. Pick up where you left off.</T></p>
 
       <form onSubmit={submit} className="mt-6 space-y-3">
         <Field label="Email" required error={err && !/^\S+@\S+\.\S+$/.test(email) ? err : ''}>
@@ -94,7 +95,7 @@ export function Login() {
             Forgot password?
           </Link>
         </div>
-        <Button type="submit" className="w-full" size="lg">Sign in</Button>
+        <Button type="submit" className="w-full" size="lg"><T>Sign in</T></Button>
       </form>
 
       <div className="my-5 flex items-center gap-3">
@@ -121,12 +122,12 @@ export function Login() {
         ))}
         <button onClick={() => nav('/explore')}
           className="w-full rounded-xl px-3 py-2.5 text-center text-[12px] font-semibold text-ink-mute hover:bg-navy-50 hover:text-navy">
-          Continue as guest
+          <T>Continue as guest</T>
         </button>
       </div>
 
       <p className="mt-5 text-center text-[11.5px] text-ink-mute">
-        No account? <Link to="/register" className="font-bold text-royal hover:underline">Create one</Link>
+        <T>No account?</T> <Link to="/register" className="font-bold text-royal hover:underline">Create one</Link>
       </p>
     </AuthShell>
   )
@@ -173,7 +174,7 @@ export function Register() {
       side={
         <>
           <p className="max-w-sm text-[26px] font-extrabold leading-[1.2] text-white">
-            If you run it, visitors should be able to find it.
+            <T>If you run it, visitors should be able to find it.</T>
           </p>
           <p className="mt-3 max-w-xs text-[12.5px] leading-relaxed text-white/50">
             Free listing for operators with ten employees or fewer. Manual verification, no booking commission.
@@ -189,7 +190,7 @@ export function Register() {
       </div>
 
       <h1 className="text-[24px] font-extrabold">Create an account</h1>
-      <p className="mt-1 text-[13px] text-ink-mute">Choose what kind of account you need.</p>
+      <p className="mt-1 text-[13px] text-ink-mute"><T>Choose what kind of account you need.</T></p>
 
       <div className="mt-4 grid grid-cols-2 gap-2">
         {([['visitor', 'I am a visitor', 'compass'], ['sme', 'I run a business', 'store']] as const).map(([k, l, i]) => (
@@ -267,7 +268,7 @@ export function Register() {
       </div>
 
       <p className="mt-5 text-center text-[11.5px] text-ink-mute">
-        Already have one? <Link to="/login" className="font-bold text-royal hover:underline">Sign in</Link>
+        <T>Already have one?</T> <Link to="/login" className="font-bold text-royal hover:underline"><T>Sign in</T></Link>
       </p>
     </AuthShell>
   )
@@ -279,30 +280,30 @@ export function ForgotPassword() {
   return (
     <div className="mx-auto flex min-h-[calc(100vh-4rem)] max-w-sm flex-col justify-center px-5">
       <Link to="/login" className="mb-6 inline-flex items-center gap-1.5 text-[12px] font-semibold text-ink-mute hover:text-navy">
-        <Icon name="arrow-left" size={13} /> Back to sign in
+        <Icon name="arrow-left" size={13} /> <T>Back to sign in</T>
       </Link>
       {sent ? (
         <div className="rounded-2xl border border-line bg-white p-6 text-center">
           <span className="mx-auto grid h-12 w-12 place-items-center rounded-2xl bg-emerald2-50 text-emerald2-700">
             <Icon name="mail" size={22} />
           </span>
-          <h1 className="mt-4 text-[19px] font-extrabold">Check your inbox</h1>
+          <h1 className="mt-4 text-[19px] font-extrabold"><T>Check your inbox</T></h1>
           <p className="mt-2 text-[12.5px] leading-relaxed text-ink-mute">
             If an account exists for {email}, a reset link would be sent. This is a mockup — no email is sent.
           </p>
-          <Button variant="ghost" className="mt-5 w-full" onClick={() => setSent(false)}>Try another email</Button>
+          <Button variant="ghost" className="mt-5 w-full" onClick={() => setSent(false)}><T>Try another email</T></Button>
         </div>
       ) : (
         <>
           <h1 className="text-[24px] font-extrabold">Reset password</h1>
-          <p className="mt-1 text-[13px] text-ink-mute">Enter your email and we will send a reset link.</p>
+          <p className="mt-1 text-[13px] text-ink-mute"><T>Enter your email and we will send a reset link.</T></p>
           <div className="mt-5 space-y-3">
             <Field label="Email" required>
               <input className="field" type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="you@example.com" />
             </Field>
             <Button className="w-full" size="lg" onClick={() => setSent(true)} disabled={!/^\S+@\S+\.\S+$/.test(email)}>Send reset link</Button>
           </div>
-          <p className="mt-4 text-center text-[11.5px] text-ink-faint">Demo only — no email is dispatched.</p>
+          <p className="mt-4 text-center text-[11.5px] text-ink-faint"><T>Demo only — no email is dispatched.</T></p>
         </>
       )}
     </div>
