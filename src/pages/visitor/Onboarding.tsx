@@ -92,8 +92,8 @@ export default function Onboarding() {
                       </span>
                     )}
                   </div>
-                  <p className="mt-3 text-[14px] font-extrabold text-navy">{p.label}</p>
-                  <p className="mt-1 text-[12px] leading-relaxed text-ink-mute">{p.blurb}</p>
+                  <p className="mt-3 text-[14px] font-extrabold text-navy"><T>{p.label}</T></p>
+                  <p className="mt-1 text-[12px] leading-relaxed text-ink-mute"><T>{p.blurb}</T></p>
                 </button>
               ))}
             </div>

@@ -7,6 +7,7 @@
  * when rendering, so the lookup key must be the collapsed form.
  */
 export const UI_MS_EXTRA: Record<string, string> = {
+  All: 'Semua',
   Saved: 'Disimpan',
   'Save to favourites': 'Simpan ke kegemaran',
   'Remove from favourites': 'Buang dari kegemaran',

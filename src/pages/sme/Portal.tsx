@@ -412,7 +412,7 @@ export function SmeListingForm() {
     <div className="mx-auto max-w-3xl space-y-5">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-[24px] font-extrabold">{existing ? 'Edit listing' : 'Create a listing'}</h1>
+          <h1 className="text-[24px] font-extrabold">{existing ? tx('Edit listing') : tx('Create a listing')}</h1>
           <p className="mt-1 text-[13px] text-ink-mute">
             <T>New and edited listings enter the admin verification queue before appearing publicly.</T>
           </p>
