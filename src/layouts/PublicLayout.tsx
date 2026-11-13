@@ -37,7 +37,7 @@ export default function Logo({ light = false, compact = false }: { light?: boole
               light ? 'text-white/55' : 'text-ink-faint'
             )}
           >
-            <T><T>Beyond the city</T></T>
+            <T>Beyond the city</T>
           </span>
         </span>
       )}

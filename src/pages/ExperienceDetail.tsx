@@ -54,7 +54,7 @@ export default function ExperienceDetail() {
           icon="package-x"
           title={tx("Experience not found")}
           body={tx("This listing may have been removed, or it is still awaiting admin verification.")}
-          action={<Link to="/explore" className="btn btn-primary btn-md"><T><T>Browse experiences</T></T></Link>}
+          action={<Link to="/explore" className="btn btn-primary btn-md"><T>Browse experiences</T></Link>}
         />
       </div>
     )
@@ -188,7 +188,7 @@ export default function ExperienceDetail() {
                   {cat?.label}
                 </span>
                 <span className="rounded-md bg-emerald2/90 px-2 py-1 text-[10px] font-bold uppercase tracking-wider text-white backdrop-blur-sm">
-                  <T><T>Verified operator</T></T>
+                  <T>Verified operator</T>
                 </span>
               </div>
               <div className="absolute bottom-3 left-3 flex gap-1.5">
@@ -256,7 +256,7 @@ export default function ExperienceDetail() {
                 className={clsx('btn btn-sm shrink-0', saved ? 'btn-danger' : 'btn-ghost')}
               >
                 <Icon name="heart" size={14} className={saved ? 'fill-johor' : ''} />
-                {saved ? 'Saved' : 'Save'}
+                {saved ? tx('Saved') : tx('Save')}
               </button>
             </div>
 
@@ -280,7 +280,7 @@ export default function ExperienceDetail() {
 
             {/* about */}
             <div className="mt-7">
-              <h2 className="text-[16px] font-extrabold"><T><T>About this experience</T></T></h2>
+              <h2 className="text-[16px] font-extrabold"><T>About this experience</T></h2>
               <p className="mt-2.5 whitespace-pre-line text-[14px] leading-[1.75] text-ink-soft">{exp.description}</p>
             </div>
 
@@ -316,7 +316,7 @@ export default function ExperienceDetail() {
               <h2 className="text-[15px] font-extrabold"><T>Getting there</T></h2>
               <div className="mt-3 grid gap-3 sm:grid-cols-2">
                 <div className="rounded-xl bg-navy-50/70 p-3">
-                  <p className="text-[10.5px] font-bold uppercase tracking-wider text-ink-faint"><T><T>Nearest ETS station</T></T></p>
+                  <p className="text-[10.5px] font-bold uppercase tracking-wider text-ink-faint"><T>Nearest ETS station</T></p>
                   <p className="mt-1 text-[13.5px] font-bold text-navy">{station?.name}</p>
                   <p className="mt-0.5 text-[11.5px] text-ink-mute">
                     {exp.stationId === 'jb-sentral' ? 'At the terminus' : `~${station?.minutesFromJB} min from JB Sentral`}
@@ -396,7 +396,7 @@ export default function ExperienceDetail() {
                 <div className="flex items-center gap-2">
                   <DemoTag label={tx("Demo reviews")} />
                   <Button variant="ghost" size="sm" icon="pen-line" onClick={() => setReviewOpen(true)}>
-                    <T><T>Write a review</T></T>
+                    <T>Write a review</T>
                   </Button>
                 </div>
               </div>
@@ -456,25 +456,25 @@ export default function ExperienceDetail() {
             <div className="rounded-2xl border border-line bg-raised p-4 shadow-card">
               <div className="flex items-end justify-between">
                 <div>
-                  <p className="text-[10.5px] font-bold uppercase tracking-wider text-ink-faint"><T><T>Indicative price</T></T></p>
+                  <p className="text-[10.5px] font-bold uppercase tracking-wider text-ink-faint"><T>Indicative price</T></p>
                   <p className="mt-0.5 text-[26px] font-extrabold leading-none text-navy num">{money(exp.price)}</p>
                   <p className="mt-1 text-[11px] text-ink-faint">per person · illustrative estimate</p>
                 </div>
                 <span className="rounded-md bg-emerald2-50 px-2 py-1 text-[10px] font-bold uppercase tracking-wide text-emerald2-700">
-                  <T><T>Verified</T></T>
+                  <T>Verified</T>
                 </span>
               </div>
 
               <div className="mt-4 space-y-2">
                 <div className="flex items-center justify-between rounded-lg bg-canvas px-2.5 py-2">
                   <span className="flex items-center gap-1.5 text-[11.5px] text-ink-mute">
-                    <Icon name="clock" size={12} /> <T><T>Duration</T></T>
+                    <Icon name="clock" size={12} /> <T>Duration</T>
                   </span>
                   <span className="text-[12px] font-bold text-navy">{hoursLabel(exp.durationMins)}</span>
                 </div>
                 <div className="flex items-center justify-between rounded-lg bg-canvas px-2.5 py-2">
                   <span className="flex items-center gap-1.5 text-[11.5px] text-ink-mute">
-                    <Icon name="train-front" size={12} /> <T><T>Station</T></T>
+                    <Icon name="train-front" size={12} /> <T>Station</T>
                   </span>
                   <span className="text-[12px] font-bold text-navy">{station?.name}</span>
                 </div>
@@ -488,7 +488,7 @@ export default function ExperienceDetail() {
 
               <div className="mt-4 space-y-2">
                 <Button className="w-full" icon="message-square" onClick={() => setEnquiryOpen(true)}>
-                  <T><T>Send enquiry</T></T>
+                  <T>Send enquiry</T>
                 </Button>
                 <Button variant="navy" className="w-full" icon={inItinerary ? 'check' : 'plus'} onClick={addToItinerary}>
                   {inItinerary ? 'Add another to itinerary' : 'Add to itinerary'}
@@ -502,12 +502,12 @@ export default function ExperienceDetail() {
                     toast(saved ? 'Removed from favourites' : 'Saved to favourites', exp.title, 'info')
                   }}
                 >
-                  {saved ? 'Remove from favourites' : 'Save to favourites'}
+                  {saved ? tx('Remove from favourites') : tx('Save to favourites')}
                 </Button>
               </div>
 
               <p className="mt-3 rounded-lg bg-gold-50 px-2.5 py-2 text-[10.5px] leading-relaxed text-gold-900">
-                <strong><T><T>Mock booking enquiry.</T></T></strong> <T>No payment is taken, no slot is reserved, and no booking is confirmed. The operator receives a message in the SME portal.</T>
+                <strong><T>Mock booking enquiry.</T></strong> <T>No payment is taken, no slot is reserved, and no booking is confirmed. The operator receives a message in the SME portal.</T>
               </p>
 
               <div className="mt-4 border-t border-line pt-3">
@@ -539,7 +539,7 @@ export default function ExperienceDetail() {
             <div className="mb-4 flex items-center justify-between">
               <h2 className="text-[17px] font-extrabold">Also near {station?.name}</h2>
               <Link to={`/explore/stations/${exp.stationId}`} className="text-[12px] font-bold text-royal hover:text-royal-700">
-                <T><T>See all</T></T>
+                <T>See all</T>
               </Link>
             </div>
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -558,8 +558,8 @@ export default function ExperienceDetail() {
         title={tx("Send an enquiry")}
         footer={
           <>
-            <Button variant="quiet" size="sm" onClick={() => setEnquiryOpen(false)}><T><T>Cancel</T></T></Button>
-            <Button size="sm" icon="send" onClick={submitEnquiry}><T><T>Send enquiry</T></T></Button>
+            <Button variant="quiet" size="sm" onClick={() => setEnquiryOpen(false)}><T>Cancel</T></Button>
+            <Button size="sm" icon="send" onClick={submitEnquiry}><T>Send enquiry</T></Button>
           </>
         }
       >
@@ -610,8 +610,8 @@ export default function ExperienceDetail() {
         title={tx("Write a review")}
         footer={
           <>
-            <Button variant="quiet" size="sm" onClick={() => setReviewOpen(false)}><T><T>Cancel</T></T></Button>
-            <Button size="sm" icon="send" onClick={submitReview}><T><T>Submit review</T></T></Button>
+            <Button variant="quiet" size="sm" onClick={() => setReviewOpen(false)}><T>Cancel</T></Button>
+            <Button size="sm" icon="send" onClick={submitReview}><T>Submit review</T></Button>
           </>
         }
       >

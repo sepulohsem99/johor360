@@ -39,7 +39,7 @@ export default function ItineraryBuilder() {
           icon="route"
           title={tx("No itinerary yet")}
           body="Generate one from your matches, or build it manually by adding experiences from the corridor."
-          action={<Button onClick={() => nav('/visitor/recommendations')} icon="sparkles"><T><T>Generate from matches</T></T></Button>}
+          action={<Button onClick={() => nav('/visitor/recommendations')} icon="sparkles"><T>Generate from matches</T></Button>}
         />
       </div>
     )
@@ -135,7 +135,7 @@ export default function ItineraryBuilder() {
           <Button variant="ghost" size="sm" icon="pen-line" onClick={() => { setNewName(active.name); setRenameOpen(true) }}><T>Rename</T></Button>
           <Button variant="ghost" size="sm" icon="copy" onClick={duplicate}><T>Duplicate</T></Button>
           <Button variant="ghost" size="sm" icon="share-2" onClick={() => setShareOpen(true)}><T>Share</T></Button>
-          <Button variant="navy" size="sm" icon="plus" onClick={() => setAddOpen(true)}><T><T>Add stop</T></T></Button>
+          <Button variant="navy" size="sm" icon="plus" onClick={() => setAddOpen(true)}><T>Add stop</T></Button>
         </div>
       </div>
 
@@ -162,12 +162,12 @@ export default function ItineraryBuilder() {
         {/* timeline */}
         <div className="space-y-3">
           {sorted.length === 0 ? (
-            <EmptyState icon="calendar-x" title={tx("This itinerary is empty")} body={tx("Add an experience from the corridor, or generate a plan from your matches.")} action={<Button onClick={() => setAddOpen(true)} icon="plus"><T><T>Add a stop</T></T></Button>} />
+            <EmptyState icon="calendar-x" title={tx("This itinerary is empty")} body={tx("Add an experience from the corridor, or generate a plan from your matches.")} action={<Button onClick={() => setAddOpen(true)} icon="plus"><T>Add a stop</T></Button>} />
           ) : (
             <div className="rounded-2xl border border-line bg-raised p-4">
               <div className="mb-3 flex items-center justify-between">
                 <h2 className="text-[14px] font-extrabold"><T>Timeline</T></h2>
-                <p className="text-[10.5px] text-ink-faint"><T><T>Drag to reorder · times auto-assign</T></T></p>
+                <p className="text-[10.5px] text-ink-faint"><T>Drag to reorder · times auto-assign</T></p>
               </div>
 
               <div className="relative">
@@ -282,11 +282,11 @@ export default function ItineraryBuilder() {
               </div>
               <div className="mt-2.5 flex items-end justify-between border-t border-line pt-2.5">
                 <div>
-                  <p className="text-[10px] font-bold uppercase tracking-wider text-ink-faint"><T><T>Total per person</T></T></p>
+                  <p className="text-[10px] font-bold uppercase tracking-wider text-ink-faint"><T>Total per person</T></p>
                   <p className="text-[22px] font-extrabold leading-none text-navy num">{money(totals.total)}</p>
                 </div>
                 <div className="text-right">
-                  <p className="text-[10px] font-bold uppercase tracking-wider text-ink-faint"><T><T>Budget</T></T></p>
+                  <p className="text-[10px] font-bold uppercase tracking-wider text-ink-faint"><T>Budget</T></p>
                   <p className={clsx('text-[13px] font-bold num', totals.remaining >= 0 ? 'text-emerald2-700' : 'text-johor')}>
                     {totals.remaining >= 0 ? `${money(totals.remaining)} left` : `${money(Math.abs(totals.remaining))} over`}
                   </p>
@@ -365,7 +365,7 @@ export default function ItineraryBuilder() {
             </Button>
             <Button className="w-full" variant="quiet" icon="trash-2"
               onClick={() => { if (confirm(`Delete “${active.name}”?`)) { removeItinerary(active.id); toast('Itinerary deleted', active.name, 'info'); setActiveId(itineraries.find((i) => i.id !== active.id)?.id ?? '') } }}>
-              <T><T>Delete itinerary</T></T>
+              <T>Delete itinerary</T>
             </Button>
           </div>
         </aside>
@@ -373,7 +373,7 @@ export default function ItineraryBuilder() {
 
       {/* rename */}
       <Modal open={renameOpen} onClose={() => setRenameOpen(false)} title="Rename itinerary"
-        footer={<><Button variant="quiet" size="sm" onClick={() => setRenameOpen(false)}><T><T>Cancel</T></T></Button>
+        footer={<><Button variant="quiet" size="sm" onClick={() => setRenameOpen(false)}><T>Cancel</T></Button>
           <Button size="sm" onClick={() => { if (newName.trim()) { persist({ ...active, name: newName.trim() }); setRenameOpen(false); toast('Renamed', newName, 'success') } }}><T>Save</T></Button></>}>
         <Field label={tx("Itinerary name")} required>
           <input className="field" value={newName} onChange={(e) => setNewName(e.target.value)} autoFocus />
@@ -382,7 +382,7 @@ export default function ItineraryBuilder() {
 
       {/* share */}
       <Modal open={shareOpen} onClose={() => setShareOpen(false)} title="Share itinerary"
-        footer={<Button variant="quiet" size="sm" onClick={() => setShareOpen(false)}><T><T>Close</T></T></Button>}>
+        footer={<Button variant="quiet" size="sm" onClick={() => setShareOpen(false)}><T>Close</T></Button>}>
         <div className="space-y-3">
           <div className="rounded-xl bg-canvas p-3">
             <p className="text-[11px] font-bold uppercase tracking-wider text-ink-faint"><T>Demo share link</T></p>
@@ -398,7 +398,7 @@ export default function ItineraryBuilder() {
             ))}
           </div>
           <p className="rounded-lg bg-gold-50 px-2.5 py-2 text-[10.5px] leading-relaxed text-gold-900">
-            <T><T>Share is simulated. No public link is created and no data leaves this browser.</T></T>
+            <T>Share is simulated. No public link is created and no data leaves this browser.</T>
           </p>
         </div>
       </Modal>
@@ -435,13 +435,13 @@ function AddStopModal({ open, onClose, itinerary, onAdd }: { open: boolean; onCl
         <div className="grid gap-2 sm:grid-cols-2">
           <input className="field" placeholder={tx("Search experiences…")} value={q} onChange={(e) => setQ(e.target.value)} />
           <select className="field" value={stationFilter} onChange={(e) => setStationFilter(e.target.value)}>
-            <option value=""><T><T>All stations</T></T></option>
+            <option value=""><T>All stations</T></option>
             {CORRIDOR.map((s) => <option key={s.id} value={s.id}>{s.name}</option>)}
           </select>
         </div>
         <div className="max-h-[46vh] space-y-1.5 overflow-y-auto">
           {list.length === 0 ? (
-            <p className="py-8 text-center text-[12px] text-ink-faint"><T><T>No matching experiences left to add.</T></T></p>
+            <p className="py-8 text-center text-[12px] text-ink-faint"><T>No matching experiences left to add.</T></p>
           ) : (
             list.map((e) => (
               <button key={e.id}
@@ -487,8 +487,8 @@ export function ItinerariesIndex() {
           <p className="mt-1 text-[13px] text-ink-mute">{itineraries.length} plans stored in this browser</p>
         </div>
         <div className="flex gap-2">
-          <Button variant="ghost" size="sm" icon="sparkles" onClick={() => nav('/visitor/recommendations')}><T><T>Generate new</T></T></Button>
-          <Button size="sm" icon="route" onClick={() => nav('/visitor/itinerary')}><T><T>Open builder</T></T></Button>
+          <Button variant="ghost" size="sm" icon="sparkles" onClick={() => nav('/visitor/recommendations')}><T>Generate new</T></Button>
+          <Button size="sm" icon="route" onClick={() => nav('/visitor/itinerary')}><T>Open builder</T></Button>
         </div>
       </div>
 

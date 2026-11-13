@@ -7,6 +7,26 @@
  * when rendering, so the lookup key must be the collapsed form.
  */
 export const UI_MS_EXTRA: Record<string, string> = {
+  Saved: 'Disimpan',
+  'Save to favourites': 'Simpan ke kegemaran',
+  'Remove from favourites': 'Buang dari kegemaran',
+  'Nothing saved yet': 'Belum ada yang disimpan',
+  'Welcome back': 'Selamat kembali',
+  'Allow visitor review submission': 'Benarkan penyerahan ulasan pelawat',
+  'Reviews enter moderation before publishing.': 'Ulasan masuk moderasi sebelum diterbitkan.',
+  'Enable rain simulation in matching': 'Aktifkan simulasi hujan dalam pemadanan',
+  'Lets visitors see adaptive alternatives.': 'Membolehkan pelawat lihat alternatif adaptif.',
+  'Publish impact dashboard publicly': 'Terbitkan papan pemuka impak secara awam',
+  'Currently admin-only during the competition.': 'Buat masa ini admin sahaja sepanjang pertandingan.',
+  'Create a listing': 'Cipta penyenaraian',
+  'Business traveller': 'Pengembara perniagaan',
+  'Short, time-boxed experiences near stations and business districts.': 'Pengalaman singkat dan terhad masa berhampiran stesen dan daerah perniagaan.',
+  'Medical traveller': 'Pengembara perubatan',
+  'Low-intensity, accessible, close to town, generous buffers.': 'Intensiti rendah, mudah diakses, dekat dengan bandar, masa lapang yang banyak.',
+  'Education traveller': 'Pengembara pendidikan',
+  'Workshops, heritage learning, agriculture and cultural visits.': 'Bengkel, pembelajaran warisan, pertanian dan lawatan budaya.',
+  'Leisure traveller': 'Pengembara riadah',
+  'Food, nature, culture and community-run experiences.': 'Makanan, alam semula jadi, budaya dan pengalaman diurus komuniti.',
   'A rail-first discovery platform that matches visitors to verified small operators along the corridor, with the return train already in the plan.':
     'Platform penemuan berasaskan rel yang memadankan pelawat dengan operator kecil yang disahkan di sepanjang koridor, dengan tren balik sudah dimasukkan dalam pelan.',
   'About JOHOR360': 'Tentang JOHOR360',
