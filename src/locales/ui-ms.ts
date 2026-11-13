@@ -14,6 +14,13 @@
  *    because this is product UI, not personal messaging.
  */
 export const UI_MS: Record<string, string> = {
+  'Profile & preferences': 'Profil & keutamaan',
+  'Changes apply to matching immediately after saving.': 'Perubahan digunakan pada pemadanan serta-merta selepas disimpan.',
+  'Interface preferences': 'Keutamaan antara muka',
+  'Display currency': 'Mata wang paparan',
+  'Language': 'Bahasa',
+  'Theme': 'Tema',
+  'MYR remains the stored base currency. Display currency only changes the number you read.': 'MYR kekal sebagai mata wang asas yang disimpan. Mata wang paparan hanya mengubah angka yang anda baca.',
   'About this experience': 'Tentang pengalaman ini',
   'About this verification': 'Tentang pengesahan ini',
   'About you': 'Tentang anda',

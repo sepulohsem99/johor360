@@ -26,12 +26,12 @@ export function StationsIndex() {
       <div className="border-b border-line bg-navy-900">
         <div className="shell py-12">
           <nav className="mb-3 flex items-center gap-1.5 text-[11.5px] text-white/40" aria-label="Breadcrumb">
-            <Link to="/" className="hover:text-white/70">Home</Link>
+            <Link to="/" className="hover:text-white/70"><T>Home</T></Link>
             <Icon name="chevron-right" size={11} />
             <span className="text-white/70">ETS corridor</span>
           </nav>
           <h1 className="max-w-2xl text-[30px] font-extrabold leading-[1.1] text-white sm:text-[42px]">
-            <T>Nine stations. One line. Most of them you have never heard of.</T>
+            <T><T>Nine stations. One line. Most of them you have never heard of.</T></T>
           </h1>
           <p className="mt-3 max-w-xl text-[14px] leading-relaxed text-white/60">
             The ETS now runs from Gemas junction south through Segamat, Labis, Bekok, Paloh and Kluang to JB Sentral.
@@ -40,7 +40,7 @@ export function StationsIndex() {
           <div className="mt-6 flex flex-wrap items-center gap-2">
             <span className="rounded-lg border border-white/15 bg-white/[0.07] px-2.5 py-1.5 text-[11px] font-semibold text-white/70">
               <Icon name="train-front" size={11} className="mr-1 inline" />
-              KL–JB through-service since Dec 2025
+              <T>KL–JB through-service since Dec 2025</T>
             </span>
             <span className="rounded-lg border border-white/15 bg-white/[0.07] px-2.5 py-1.5 text-[11px] font-semibold text-white/70">
               4 services per direction per day
@@ -72,7 +72,7 @@ export function StationsIndex() {
                   </div>
                   {s.id === 'gemas' && (
                     <span className="absolute right-2 top-2 rounded-md bg-gold px-1.5 py-0.5 text-[9.5px] font-bold uppercase text-navy">
-                      Interchange
+                      <T>Interchange</T>
                     </span>
                   )}
                 </div>
@@ -107,7 +107,7 @@ export function StationsIndex() {
           <div className="flex items-start gap-2.5">
             <Icon name="info" size={15} className="mt-0.5 shrink-0 text-royal" />
             <div className="text-[11.5px] leading-relaxed text-ink-mute">
-              <p className="font-bold text-navy"><T>On rail accuracy</T></p>
+              <p className="font-bold text-navy"><T><T>On rail accuracy</T></T></p>
               <p className="mt-1">
                 Station names and order were verified against KTMB ETS route information on {RAIL_SOURCE.lastVerified}.
                 Not every station receives the same number of services, and journey times shown here are illustrative
@@ -134,7 +134,7 @@ export function StationDetail() {
   if (!station) {
     return (
       <div className="shell py-20">
-        <EmptyState icon="map-pin-off" title={tx("Station not found")} body={tx("That station is not part of the JOHOR360 demo corridor.")} action={<Link to="/explore/stations" className="btn btn-primary btn-md"><T>Back to corridor</T></Link>} />
+        <EmptyState icon="map-pin-off" title={tx("Station not found")} body={tx("That station is not part of the JOHOR360 demo corridor.")} action={<Link to="/explore/stations" className="btn btn-primary btn-md"><T><T>Back to corridor</T></T></Link>} />
       </div>
     )
   }
@@ -153,9 +153,9 @@ export function StationDetail() {
         <div className="absolute inset-0 bg-gradient-to-r from-navy-950 via-navy-950/90 to-navy-900/60" />
         <div className="shell relative py-10">
           <nav className="mb-4 flex items-center gap-1.5 text-[11.5px] text-white/40" aria-label="Breadcrumb">
-            <Link to="/" className="hover:text-white/70">Home</Link>
+            <Link to="/" className="hover:text-white/70"><T>Home</T></Link>
             <Icon name="chevron-right" size={11} />
-            <Link to="/explore/stations" className="hover:text-white/70">Corridor</Link>
+            <Link to="/explore/stations" className="hover:text-white/70"><T>Corridor</T></Link>
             <Icon name="chevron-right" size={11} />
             <span className="text-white/70">{station.name}</span>
           </nav>
@@ -167,7 +167,7 @@ export function StationDetail() {
                   Stop {CORRIDOR.length - idx} of {CORRIDOR.length}
                 </span>
                 {station.id === 'gemas' && (
-                  <span className="rounded-md bg-gold px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-navy">Interchange</span>
+                  <span className="rounded-md bg-gold px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-navy"><T>Interchange</T></span>
                 )}
               </div>
               <h1 className="text-[30px] font-extrabold leading-tight text-white sm:text-[40px]">{station.name}</h1>
@@ -204,7 +204,7 @@ export function StationDetail() {
                 icon="circle-slash"
                 title={tx("No listed operator here yet")}
                 body={`${station.name} is on the corridor but no verified operator has been onboarded in this demo dataset. This is exactly the gap JOHOR360 is built to close.`}
-                action={<Link to="/explore" className="btn btn-ghost btn-md">Browse whole corridor</Link>}
+                action={<Link to="/explore" className="btn btn-ghost btn-md"><T>Browse whole corridor</T></Link>}
               />
             ) : (
               <div className="grid gap-4 sm:grid-cols-2">
@@ -217,7 +217,7 @@ export function StationDetail() {
 
           <aside className="space-y-4">
             <div className="rounded-2xl border border-line bg-raised p-4">
-              <p className="mb-3 text-[12px] font-bold uppercase tracking-wider text-ink-faint">Getting here</p>
+              <p className="mb-3 text-[12px] font-bold uppercase tracking-wider text-ink-faint"><T>Getting here</T></p>
               <div className="space-y-2.5">
                 <div className="flex items-start gap-2">
                   <Icon name="train-front" size={14} className="mt-0.5 text-royal" />
@@ -231,9 +231,9 @@ export function StationDetail() {
                 <div className="flex items-start gap-2">
                   <Icon name="clock" size={14} className="mt-0.5 text-royal" />
                   <div>
-                    <p className="text-[12px] font-bold text-navy">Frequency note</p>
+                    <p className="text-[12px] font-bold text-navy"><T>Frequency note</T></p>
                     <p className="text-[11px] leading-snug text-ink-mute">
-                      Four through-services per direction per day. Missing a train can mean a long wait — always check the return leg.
+                      <T>Four through-services per direction per day. Missing a train can mean a long wait — always check the return leg.</T>
                     </p>
                   </div>
                 </div>
@@ -241,7 +241,7 @@ export function StationDetail() {
             </div>
 
             <div className="rounded-2xl border border-line bg-raised p-4">
-              <p className="mb-3 text-[12px] font-bold uppercase tracking-wider text-ink-faint">Last mile</p>
+              <p className="mb-3 text-[12px] font-bold uppercase tracking-wider text-ink-faint"><T>Last mile</T></p>
               <div className="space-y-2.5">
                 {station.lastMile.map((l) => (
                   <div key={l.label} className="flex items-start justify-between gap-2">
@@ -268,7 +268,7 @@ export function StationDetail() {
             </div>
 
             <div className="rounded-2xl border border-line bg-raised p-4">
-              <p className="mb-2.5 text-[12px] font-bold uppercase tracking-wider text-ink-faint">Nearby towns</p>
+              <p className="mb-2.5 text-[12px] font-bold uppercase tracking-wider text-ink-faint"><T>Nearby towns</T></p>
               <div className="flex flex-wrap gap-1.5">
                 {station.towns.map((t) => (
                   <span key={t} className="rounded-md bg-navy-50 px-2 py-1 text-[11px] font-medium text-navy-600">{t}</span>

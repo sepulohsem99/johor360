@@ -29,7 +29,7 @@ export default function Logo({ light = false, compact = false }: { light?: boole
               light ? 'text-white' : 'text-ink'
             )}
           >
-            JOHOR<span className="text-johor">360</span>
+            <T>JOHOR</T><span className="text-johor">360</span>
           </span>
           <span
             className={clsx(
@@ -37,7 +37,7 @@ export default function Logo({ light = false, compact = false }: { light?: boole
               light ? 'text-white/55' : 'text-ink-faint'
             )}
           >
-            <T>Beyond the city</T>
+            <T><T>Beyond the city</T></T>
           </span>
         </span>
       )}
@@ -98,7 +98,7 @@ export function RoleSwitcher({ compact = false }: { compact?: boolean }) {
             className="absolute right-0 top-[calc(100%+8px)] z-50 w-[264px] overflow-hidden rounded-xl border border-line bg-raised p-1.5 shadow-pop animate-fadeUp"
           >
             <p className="px-2.5 py-2 text-[10px] font-bold uppercase tracking-widest text-ink-faint">
-              Demo role switcher
+              <T>Demo role switcher</T>
             </p>
             {(Object.keys(ROLE_META) as Role[]).map((r) => {
               const m = ROLE_META[r]

@@ -54,7 +54,7 @@ export default function ExperienceDetail() {
           icon="package-x"
           title={tx("Experience not found")}
           body={tx("This listing may have been removed, or it is still awaiting admin verification.")}
-          action={<Link to="/explore" className="btn btn-primary btn-md"><T>Browse experiences</T></Link>}
+          action={<Link to="/explore" className="btn btn-primary btn-md"><T><T>Browse experiences</T></T></Link>}
         />
       </div>
     )
@@ -165,9 +165,9 @@ export default function ExperienceDetail() {
       <div className="border-b border-line bg-raised">
         <div className="shell py-5">
           <nav className="mb-4 flex flex-wrap items-center gap-1.5 text-[11.5px] text-ink-faint" aria-label="Breadcrumb">
-            <Link to="/" className="hover:text-navy">Home</Link>
+            <Link to="/" className="hover:text-navy"><T>Home</T></Link>
             <Icon name="chevron-right" size={11} />
-            <Link to="/explore" className="hover:text-navy">Explore</Link>
+            <Link to="/explore" className="hover:text-navy"><T>Explore</T></Link>
             <Icon name="chevron-right" size={11} />
             <Link to={`/explore/stations/${exp.stationId}`} className="hover:text-navy">{station?.name}</Link>
             <Icon name="chevron-right" size={11} />
@@ -188,7 +188,7 @@ export default function ExperienceDetail() {
                   {cat?.label}
                 </span>
                 <span className="rounded-md bg-emerald2/90 px-2 py-1 text-[10px] font-bold uppercase tracking-wider text-white backdrop-blur-sm">
-                  <T>Verified operator</T>
+                  <T><T>Verified operator</T></T>
                 </span>
               </div>
               <div className="absolute bottom-3 left-3 flex gap-1.5">
@@ -214,7 +214,7 @@ export default function ExperienceDetail() {
                   <Scene seed={`${exp.id}-g${i}`} category={exp.category} className="h-full w-full" variant="thumb" motif={['shophouse', 'loom', 'field', 'river', 'wheel', 'table'][i % 6] as never} />
                   {i === 3 && (
                     <span className="absolute inset-0 grid place-items-center bg-navy-950/60 text-[11px] font-bold text-white">
-                      Illustrative scenes
+                      <T>Illustrative scenes</T>
                     </span>
                   )}
                 </button>
@@ -223,7 +223,7 @@ export default function ExperienceDetail() {
           </div>
           <p className="mt-2 flex items-center gap-1.5 text-[10.5px] text-ink-faint">
             <Icon name="info" size={11} />
-            Illustrative generated artwork, not photographs of the actual venue. No third-party imagery is used.
+            <T>Illustrative generated artwork, not photographs of the actual venue. No third-party imagery is used.</T>
           </p>
         </div>
       </div>
@@ -280,7 +280,7 @@ export default function ExperienceDetail() {
 
             {/* about */}
             <div className="mt-7">
-              <h2 className="text-[16px] font-extrabold"><T>About this experience</T></h2>
+              <h2 className="text-[16px] font-extrabold"><T><T>About this experience</T></T></h2>
               <p className="mt-2.5 whitespace-pre-line text-[14px] leading-[1.75] text-ink-soft">{exp.description}</p>
             </div>
 
@@ -291,7 +291,7 @@ export default function ExperienceDetail() {
                   <Icon name="graduation-cap" size={16} />
                 </span>
                 <div>
-                  <p className="text-[13px] font-extrabold text-navy">Educational value</p>
+                  <p className="text-[13px] font-extrabold text-navy"><T>Educational value</T></p>
                   <p className="mt-1 text-[12.5px] leading-relaxed text-navy-700">{exp.learningValue}</p>
                 </div>
               </div>
@@ -313,17 +313,17 @@ export default function ExperienceDetail() {
 
             {/* getting there */}
             <div className="mt-7 rounded-2xl border border-line bg-raised p-4">
-              <h2 className="text-[15px] font-extrabold">Getting there</h2>
+              <h2 className="text-[15px] font-extrabold"><T>Getting there</T></h2>
               <div className="mt-3 grid gap-3 sm:grid-cols-2">
                 <div className="rounded-xl bg-navy-50/70 p-3">
-                  <p className="text-[10.5px] font-bold uppercase tracking-wider text-ink-faint"><T>Nearest ETS station</T></p>
+                  <p className="text-[10.5px] font-bold uppercase tracking-wider text-ink-faint"><T><T>Nearest ETS station</T></T></p>
                   <p className="mt-1 text-[13.5px] font-bold text-navy">{station?.name}</p>
                   <p className="mt-0.5 text-[11.5px] text-ink-mute">
                     {exp.stationId === 'jb-sentral' ? 'At the terminus' : `~${station?.minutesFromJB} min from JB Sentral`}
                   </p>
                 </div>
                 <div className="rounded-xl bg-navy-50/70 p-3">
-                  <p className="text-[10.5px] font-bold uppercase tracking-wider text-ink-faint">Last mile</p>
+                  <p className="text-[10.5px] font-bold uppercase tracking-wider text-ink-faint"><T>Last mile</T></p>
                   <p className="mt-1 text-[12.5px] leading-snug text-ink-soft">{exp.lastMileNote}</p>
                 </div>
               </div>
@@ -342,13 +342,13 @@ export default function ExperienceDetail() {
               </div>
               <p className="mt-2.5 flex items-start gap-1.5 text-[10px] leading-relaxed text-ink-faint">
                 <Icon name="info" size={10} className="mt-0.5 shrink-0" />
-                Estimated travel times are illustrative. Unconfirmed modes are marked rather than assumed.
+                <T>Estimated travel times are illustrative. Unconfirmed modes are marked rather than assumed.</T>
               </p>
             </div>
 
             {/* accessibility */}
             <div className="mt-5 rounded-2xl border border-line bg-raised p-4">
-              <h2 className="text-[15px] font-extrabold">Accessibility</h2>
+              <h2 className="text-[15px] font-extrabold"><T>Accessibility</T></h2>
               <div className="mt-3 grid gap-2 sm:grid-cols-3">
                 {[
                   ['Wheelchair accessible', exp.accessibility.wheelchair],
@@ -367,7 +367,7 @@ export default function ExperienceDetail() {
             {/* availability */}
             <div className="mt-5 rounded-2xl border border-line bg-raised p-4">
               <div className="flex items-center justify-between">
-                <h2 className="text-[15px] font-extrabold">Sample availability</h2>
+                <h2 className="text-[15px] font-extrabold"><T>Sample availability</T></h2>
                 <DemoTag label="Sample schedule" />
               </div>
               <div className="mt-3 grid grid-cols-7 gap-1.5">
@@ -383,7 +383,7 @@ export default function ExperienceDetail() {
                 ))}
               </div>
               <p className="mt-2 text-[10.5px] leading-relaxed text-ink-faint">
-                Sample availability for demonstration. This is not a live booking calendar and no slot is held.
+                <T>Sample availability for demonstration. This is not a live booking calendar and no slot is held.</T>
               </p>
             </div>
 
@@ -391,12 +391,12 @@ export default function ExperienceDetail() {
             <div className="mt-7">
               <div className="flex flex-wrap items-center justify-between gap-2">
                 <h2 className="text-[16px] font-extrabold">
-                  Visitor feedback <span className="text-ink-faint num">({expReviews.length})</span>
+                  <T>Visitor feedback</T> <span className="text-ink-faint num">({expReviews.length})</span>
                 </h2>
                 <div className="flex items-center gap-2">
                   <DemoTag label={tx("Demo reviews")} />
                   <Button variant="ghost" size="sm" icon="pen-line" onClick={() => setReviewOpen(true)}>
-                    <T>Write a review</T>
+                    <T><T>Write a review</T></T>
                   </Button>
                 </div>
               </div>
@@ -456,31 +456,31 @@ export default function ExperienceDetail() {
             <div className="rounded-2xl border border-line bg-raised p-4 shadow-card">
               <div className="flex items-end justify-between">
                 <div>
-                  <p className="text-[10.5px] font-bold uppercase tracking-wider text-ink-faint"><T>Indicative price</T></p>
+                  <p className="text-[10.5px] font-bold uppercase tracking-wider text-ink-faint"><T><T>Indicative price</T></T></p>
                   <p className="mt-0.5 text-[26px] font-extrabold leading-none text-navy num">{money(exp.price)}</p>
                   <p className="mt-1 text-[11px] text-ink-faint">per person · illustrative estimate</p>
                 </div>
                 <span className="rounded-md bg-emerald2-50 px-2 py-1 text-[10px] font-bold uppercase tracking-wide text-emerald2-700">
-                  <T>Verified</T>
+                  <T><T>Verified</T></T>
                 </span>
               </div>
 
               <div className="mt-4 space-y-2">
                 <div className="flex items-center justify-between rounded-lg bg-canvas px-2.5 py-2">
                   <span className="flex items-center gap-1.5 text-[11.5px] text-ink-mute">
-                    <Icon name="clock" size={12} /> <T>Duration</T>
+                    <Icon name="clock" size={12} /> <T><T>Duration</T></T>
                   </span>
                   <span className="text-[12px] font-bold text-navy">{hoursLabel(exp.durationMins)}</span>
                 </div>
                 <div className="flex items-center justify-between rounded-lg bg-canvas px-2.5 py-2">
                   <span className="flex items-center gap-1.5 text-[11.5px] text-ink-mute">
-                    <Icon name="train-front" size={12} /> <T>Station</T>
+                    <Icon name="train-front" size={12} /> <T><T>Station</T></T>
                   </span>
                   <span className="text-[12px] font-bold text-navy">{station?.name}</span>
                 </div>
                 <div className="flex items-center justify-between rounded-lg bg-canvas px-2.5 py-2">
                   <span className="flex items-center gap-1.5 text-[11.5px] text-ink-mute">
-                    <Icon name="users" size={12} /> Group size
+                    <Icon name="users" size={12} /> <T>Group size</T>
                   </span>
                   <span className="text-[12px] font-bold text-navy">Max {exp.capacity}</span>
                 </div>
@@ -488,7 +488,7 @@ export default function ExperienceDetail() {
 
               <div className="mt-4 space-y-2">
                 <Button className="w-full" icon="message-square" onClick={() => setEnquiryOpen(true)}>
-                  <T>Send enquiry</T>
+                  <T><T>Send enquiry</T></T>
                 </Button>
                 <Button variant="navy" className="w-full" icon={inItinerary ? 'check' : 'plus'} onClick={addToItinerary}>
                   {inItinerary ? 'Add another to itinerary' : 'Add to itinerary'}
@@ -507,8 +507,7 @@ export default function ExperienceDetail() {
               </div>
 
               <p className="mt-3 rounded-lg bg-gold-50 px-2.5 py-2 text-[10.5px] leading-relaxed text-gold-900">
-                <strong><T>Mock booking enquiry.</T></strong> No payment is taken, no slot is reserved, and no booking is
-                confirmed. The operator receives a message in the SME portal.
+                <strong><T><T>Mock booking enquiry.</T></T></strong> <T>No payment is taken, no slot is reserved, and no booking is confirmed. The operator receives a message in the SME portal.</T>
               </p>
 
               <div className="mt-4 border-t border-line pt-3">
@@ -528,8 +527,7 @@ export default function ExperienceDetail() {
             <div className="mt-3 rounded-xl border border-line bg-raised px-3.5 py-3">
               <p className="flex items-start gap-1.5 text-[10.5px] leading-relaxed text-ink-faint">
                 <Icon name="shield-check" size={12} className="mt-0.5 shrink-0 text-emerald2-600" />
-                Operator verified by JOHOR360 staff. Verification covers business registration and safety
-                documentation — not a quality guarantee.
+                <T>Operator verified by JOHOR360 staff. Verification covers business registration and safety documentation — not a quality guarantee.</T>
               </p>
             </div>
           </aside>
@@ -541,7 +539,7 @@ export default function ExperienceDetail() {
             <div className="mb-4 flex items-center justify-between">
               <h2 className="text-[17px] font-extrabold">Also near {station?.name}</h2>
               <Link to={`/explore/stations/${exp.stationId}`} className="text-[12px] font-bold text-royal hover:text-royal-700">
-                <T>See all</T>
+                <T><T>See all</T></T>
               </Link>
             </div>
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -560,8 +558,8 @@ export default function ExperienceDetail() {
         title={tx("Send an enquiry")}
         footer={
           <>
-            <Button variant="quiet" size="sm" onClick={() => setEnquiryOpen(false)}><T>Cancel</T></Button>
-            <Button size="sm" icon="send" onClick={submitEnquiry}><T>Send enquiry</T></Button>
+            <Button variant="quiet" size="sm" onClick={() => setEnquiryOpen(false)}><T><T>Cancel</T></T></Button>
+            <Button size="sm" icon="send" onClick={submitEnquiry}><T><T>Send enquiry</T></T></Button>
           </>
         }
       >
@@ -600,7 +598,7 @@ export default function ExperienceDetail() {
             />
           </Field>
           <p className="rounded-lg bg-gold-50 px-2.5 py-2 text-[10.5px] leading-relaxed text-gold-900">
-            This is a mock enquiry. Nothing is sent externally, no payment is taken and no booking is created.
+            <T>This is a mock enquiry. Nothing is sent externally, no payment is taken and no booking is created.</T>
           </p>
         </div>
       </Modal>
@@ -612,8 +610,8 @@ export default function ExperienceDetail() {
         title={tx("Write a review")}
         footer={
           <>
-            <Button variant="quiet" size="sm" onClick={() => setReviewOpen(false)}><T>Cancel</T></Button>
-            <Button size="sm" icon="send" onClick={submitReview}><T>Submit review</T></Button>
+            <Button variant="quiet" size="sm" onClick={() => setReviewOpen(false)}><T><T>Cancel</T></T></Button>
+            <Button size="sm" icon="send" onClick={submitReview}><T><T>Submit review</T></T></Button>
           </>
         }
       >
@@ -647,7 +645,7 @@ export default function ExperienceDetail() {
             />
           </Field>
           <p className="rounded-lg bg-royal-50 px-2.5 py-2 text-[10.5px] leading-relaxed text-royal-800">
-            Reviews are queued for moderation and appear in the admin review queue before publishing.
+            <T>Reviews are queued for moderation and appear in the admin review queue before publishing.</T>
           </p>
         </div>
       </Modal>

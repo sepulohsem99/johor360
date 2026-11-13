@@ -1,5 +1,8 @@
 import { useMemo, useState } from 'react'
 import { usePrefs } from '../../app/prefs'
+import { CurrencyConverter } from '../../components/ui/CurrencyConverter'
+import { LanguageToggle, ThemeToggle } from '../../components/ui/controls'
+import { CURRENCIES } from '../../services/rates'
 import { T } from '../../components/ui/T'
 import { Link, useNavigate } from 'react-router-dom'
 import clsx from 'clsx'
@@ -42,8 +45,8 @@ export function VisitorDashboard() {
             a minute and makes every recommendation better.
           </p>
           <div className="mt-6 flex justify-center gap-2">
-            <Button onClick={() => nav('/visitor/onboarding')} icon="arrow-right">Start setup</Button>
-            <Button variant="ghost" onClick={() => nav('/explore')}>Just browse</Button>
+            <Button onClick={() => nav('/visitor/onboarding')} icon="arrow-right"><T>Start setup</T></Button>
+            <Button variant="ghost" onClick={() => nav('/explore')}><T>Just browse</T></Button>
           </div>
         </div>
       </div>
@@ -58,7 +61,7 @@ export function VisitorDashboard() {
         <div className="absolute inset-0 bg-gradient-to-r from-navy-950 via-navy-950/85 to-navy-900/50" />
         <div className="relative flex flex-wrap items-end justify-between gap-4">
           <div>
-            <p className="text-[10.5px] font-bold uppercase tracking-[0.16em] text-gold"><T>Your trip</T></p>
+            <p className="text-[10.5px] font-bold uppercase tracking-[0.16em] text-gold"><T><T>Your trip</T></T></p>
             <h1 className="mt-1 text-[24px] font-extrabold leading-tight text-white sm:text-[30px]">
               {hoursLabel(profile.availableMins)} around {station?.name}
             </h1>
@@ -67,15 +70,15 @@ export function VisitorDashboard() {
               {profile.accessibility.length > 0 && ` · ${profile.accessibility.length} accessibility need${profile.accessibility.length > 1 ? 's' : ''}`}
             </p>
             <div className="mt-4 flex flex-wrap gap-2">
-              <Button size="sm" onClick={() => nav('/visitor/recommendations')} icon="sparkles">See my matches</Button>
+              <Button size="sm" onClick={() => nav('/visitor/recommendations')} icon="sparkles"><T>See my matches</T></Button>
               <Button size="sm" variant="ghost" onClick={() => nav('/visitor/itinerary')} className="!bg-white/10 !border-white/20 !text-white hover:!bg-white/15" icon="route">
-                Build itinerary
+                <T>Build itinerary</T>
               </Button>
             </div>
           </div>
           <div className="flex gap-2">
             <Link to="/visitor/profile" className="btn btn-sm !bg-white/10 !text-white !border-white/20 hover:!bg-white/15">
-              <Icon name="settings" size={14} /> <T>Edit preferences</T>
+              <Icon name="settings" size={14} /> <T><T>Edit preferences</T></T>
             </Link>
           </div>
         </div>
@@ -93,8 +96,8 @@ export function VisitorDashboard() {
       <div className="rounded-2xl border border-line bg-raised p-4">
         <div className="mb-3 flex items-center justify-between">
           <div>
-            <h2 className="text-[15px] font-extrabold">Suggested windows</h2>
-            <p className="mt-0.5 text-[11.5px] text-ink-mute"><T>Generated deterministically from your preferences — no external AI service.</T></p>
+            <h2 className="text-[15px] font-extrabold"><T>Suggested windows</T></h2>
+            <p className="mt-0.5 text-[11.5px] text-ink-mute"><T><T>Generated deterministically from your preferences — no external AI service.</T></T></p>
           </div>
           <DemoTag label="Auto-generated" />
         </div>
@@ -126,13 +129,13 @@ export function VisitorDashboard() {
       {/* matches */}
       <div>
         <div className="mb-3 flex items-center justify-between">
-          <h2 className="text-[15px] font-extrabold"><T>Top matches for you</T></h2>
+          <h2 className="text-[15px] font-extrabold"><T><T>Top matches for you</T></T></h2>
           <Link to="/visitor/recommendations" className="text-[11.5px] font-bold text-royal hover:text-royal-700">
-            <T>See all</T>
+            <T><T>See all</T></T>
           </Link>
         </div>
         {matches.length === 0 ? (
-          <EmptyState icon="filter-x" title={tx("Nothing passes your constraints")} body="Your accessibility or time requirements exclude everything near this station. Try a different station or widen your window." action={<Button variant="ghost" onClick={() => nav('/visitor/profile')}><T>Edit preferences</T></Button>} />
+          <EmptyState icon="filter-x" title={tx("Nothing passes your constraints")} body="Your accessibility or time requirements exclude everything near this station. Try a different station or widen your window." action={<Button variant="ghost" onClick={() => nav('/visitor/profile')}><T><T>Edit preferences</T></T></Button>} />
         ) : (
           <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
             {matches.map((m) => (
@@ -146,12 +149,12 @@ export function VisitorDashboard() {
       <div className="grid gap-4 lg:grid-cols-2">
         <div className="rounded-2xl border border-line bg-raised p-4">
           <div className="mb-3 flex items-center justify-between">
-            <h2 className="text-[14px] font-extrabold"><T>Your itineraries</T></h2>
-            <Link to="/visitor/itineraries" className="text-[11px] font-bold text-royal"><T>All trips</T></Link>
+            <h2 className="text-[14px] font-extrabold"><T><T>Your itineraries</T></T></h2>
+            <Link to="/visitor/itineraries" className="text-[11px] font-bold text-royal"><T><T>All trips</T></T></Link>
           </div>
           {myTrips.length === 0 ? (
             <p className="rounded-xl bg-canvas px-3 py-6 text-center text-[12px] text-ink-faint">
-              <T>No saved itineraries yet. Build one from your matches.</T>
+              <T><T>No saved itineraries yet. Build one from your matches.</T></T>
             </p>
           ) : (
             <div className="space-y-2">
@@ -173,12 +176,12 @@ export function VisitorDashboard() {
 
         <div className="rounded-2xl border border-line bg-raised p-4">
           <div className="mb-3 flex items-center justify-between">
-            <h2 className="text-[14px] font-extrabold"><T>Saved experiences</T></h2>
-            <Link to="/visitor/favourites" className="text-[11px] font-bold text-royal"><T>All saved</T></Link>
+            <h2 className="text-[14px] font-extrabold"><T><T>Saved experiences</T></T></h2>
+            <Link to="/visitor/favourites" className="text-[11px] font-bold text-royal"><T><T>All saved</T></T></Link>
           </div>
           {savedExps.length === 0 ? (
             <p className="rounded-xl bg-canvas px-3 py-6 text-center text-[12px] text-ink-faint">
-              <T>Nothing saved yet. Tap the heart on any experience.</T>
+              <T><T>Nothing saved yet. Tap the heart on any experience.</T></T>
             </p>
           ) : (
             <div className="space-y-2">
@@ -246,17 +249,17 @@ export function Recommendations() {
     <div className="space-y-5">
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div>
-          <h1 className="text-[24px] font-extrabold sm:text-[28px]"><T>Your matches</T></h1>
+          <h1 className="text-[24px] font-extrabold sm:text-[28px]"><T><T>Your matches</T></T></h1>
           <p className="mt-1 text-[13px] text-ink-mute">
-            Ranked by five weighted factors. Hard constraints applied first.
+            <T>Ranked by five weighted factors. Hard constraints applied first.</T>
           </p>
         </div>
         <div className="flex gap-2">
           <Button variant="ghost" size="sm" icon="help-circle" onClick={() => setShowExplainer((s) => !s)}>
-            Why these?
+            <T>Why these?</T>
           </Button>
           <Button variant="navy" size="sm" icon="route" onClick={() => nav('/visitor/itinerary')}>
-            Build itinerary
+            <T>Build itinerary</T>
           </Button>
         </div>
       </div>
@@ -264,7 +267,7 @@ export function Recommendations() {
       {showExplainer && (
         <div className="rounded-2xl border border-royal-200 bg-royal-50/60 p-4 animate-fadeUp">
           <div className="flex items-start justify-between">
-            <p className="text-[13px] font-extrabold text-navy"><T>How the matching engine works</T></p>
+            <p className="text-[13px] font-extrabold text-navy"><T><T>How the matching engine works</T></T></p>
             <button onClick={() => setShowExplainer(false)} aria-label={tx("Close")} className="text-ink-faint hover:text-navy">
               <Icon name="x" size={15} />
             </button>
@@ -290,13 +293,13 @@ export function Recommendations() {
       {/* scenario controls */}
       <div className="rounded-2xl border border-line bg-raised p-4">
         <div className="mb-3 flex items-center justify-between">
-          <p className="text-[13px] font-extrabold"><T>Adjust the scenario</T></p>
-          <button onClick={reset} className="text-[11px] font-semibold text-royal hover:text-royal-700"><T>Reset to saved</T></button>
+          <p className="text-[13px] font-extrabold"><T><T>Adjust the scenario</T></T></p>
+          <button onClick={reset} className="text-[11px] font-semibold text-royal hover:text-royal-700"><T><T>Reset to saved</T></T></button>
         </div>
 
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
           <div>
-            <p className="mb-1.5 text-[10.5px] font-bold uppercase tracking-wider text-ink-faint"><T>Available time</T></p>
+            <p className="mb-1.5 text-[10.5px] font-bold uppercase tracking-wider text-ink-faint"><T><T>Available time</T></T></p>
             <div className="flex gap-1">
               {[120, 240, 300, 420].map((d) => (
                 <button key={d} onClick={() => setDuration(d)}
@@ -310,20 +313,20 @@ export function Recommendations() {
 
           <div>
             <p className="mb-1.5 flex items-center justify-between text-[10.5px] font-bold uppercase tracking-wider text-ink-faint">
-              <T>Budget</T> <span className="text-[11px] text-navy num">{money(budget)}</span>
+              <T><T>Budget</T></T> <span className="text-[11px] text-navy num">{money(budget)}</span>
             </p>
             <input type="range" min={30} max={600} step={10} value={budget} onChange={(e) => setBudget(Number(e.target.value))} className="w-full accent-royal" aria-label={tx("Budget")} />
           </div>
 
           <div>
-            <p className="mb-1.5 text-[10.5px] font-bold uppercase tracking-wider text-ink-faint"><T>Station</T></p>
+            <p className="mb-1.5 text-[10.5px] font-bold uppercase tracking-wider text-ink-faint"><T><T>Station</T></T></p>
             <select value={station} onChange={(e) => setStation(e.target.value)} className="field !h-8 !py-0 !text-[12px]">
               {CORRIDOR.map((s) => <option key={s.id} value={s.id}>{s.name}</option>)}
             </select>
           </div>
 
           <div>
-            <p className="mb-1.5 text-[10.5px] font-bold uppercase tracking-wider text-ink-faint">Weather scenario</p>
+            <p className="mb-1.5 text-[10.5px] font-bold uppercase tracking-wider text-ink-faint"><T>Weather scenario</T></p>
             <button
               onClick={() => setRain(!rain)}
               className={clsx('flex h-8 w-full items-center justify-center gap-1.5 rounded-lg border text-[11.5px] font-bold transition-all',
@@ -340,13 +343,13 @@ export function Recommendations() {
           <div className="mt-3 flex items-start gap-2 rounded-xl bg-royal-50 px-3 py-2.5 animate-fadeUp">
             <Icon name="moon" size={14} className="mt-0.5 shrink-0 text-royal" />
             <div className="min-w-0 flex-1">
-              <p className="text-[11.5px] font-bold text-navy">Rain scenario active</p>
+              <p className="text-[11.5px] font-bold text-navy"><T>Rain scenario active</T></p>
               <p className="mt-0.5 text-[11px] leading-relaxed text-navy-600">
                 Outdoor experiences are scored down and indoor alternatives are lifted. This demonstrates adaptive
                 matching — the same visitor, the same window, different conditions.
               </p>
             </div>
-            <Button size="sm" variant="quiet" onClick={() => setRain(false)}>Dismiss</Button>
+            <Button size="sm" variant="quiet" onClick={() => setRain(false)}><T>Dismiss</T></Button>
           </div>
         )}
 
@@ -364,14 +367,14 @@ export function Recommendations() {
           <p className="text-[11.5px] text-ink-mute">
             <span className="font-bold text-navy num">{results.length}</span> experiences pass your constraints
           </p>
-          <Button size="sm" onClick={apply} icon="refresh-cw"><T>Save these preferences</T></Button>
+          <Button size="sm" onClick={apply} icon="refresh-cw"><T><T>Save these preferences</T></T></Button>
         </div>
       </div>
 
       {/* plans */}
       <div>
         <div className="mb-3 flex items-center justify-between">
-          <h2 className="text-[15px] font-extrabold"><T>Three itineraries, sized to your window</T></h2>
+          <h2 className="text-[15px] font-extrabold"><T><T>Three itineraries, sized to your window</T></T></h2>
           <DemoTag label="Deterministic logic" />
         </div>
         <div className="grid gap-3 lg:grid-cols-3">
@@ -390,7 +393,7 @@ export function Recommendations() {
 
               {p.items.length === 0 ? (
                 <div className="my-4 flex-1 rounded-xl bg-canvas px-3 py-6 text-center">
-                  <p className="text-[11.5px] text-ink-faint"><T>No verified experience fits this window.</T></p>
+                  <p className="text-[11.5px] text-ink-faint"><T><T>No verified experience fits this window.</T></T></p>
                 </div>
               ) : (
                 <div className="my-3 flex-1 space-y-1.5">
@@ -411,7 +414,7 @@ export function Recommendations() {
 
               <div className="border-t border-line pt-2.5">
                 <div className="flex items-center justify-between text-[11px]">
-                  <span className="text-ink-mute">Estimated</span>
+                  <span className="text-ink-mute"><T>Estimated</T></span>
                   <span className={clsx('font-extrabold num', p.fitsBudget ? 'text-navy' : 'text-johor')}>{money(p.totalCost)}</span>
                 </div>
                 <p className="mt-1 text-[10px] leading-snug text-ink-faint">{p.narrative}</p>
@@ -424,11 +427,11 @@ export function Recommendations() {
       {/* results */}
       <div>
         <div className="mb-3 flex items-center justify-between">
-          <h2 className="text-[15px] font-extrabold">Individual matches</h2>
-          <span className="text-[11px] text-ink-faint">Score shown as percentage</span>
+          <h2 className="text-[15px] font-extrabold"><T>Individual matches</T></h2>
+          <span className="text-[11px] text-ink-faint"><T>Score shown as percentage</T></span>
         </div>
         {results.length === 0 ? (
-          <EmptyState icon="filter-x" title={tx("No experiences pass your constraints")} body="Every listing was excluded by an accessibility requirement or time mismatch. Try a longer window, a different station, or review your accessibility needs." action={<Button variant="ghost" onClick={reset} icon="rotate-ccw">Reset scenario</Button>} />
+          <EmptyState icon="filter-x" title={tx("No experiences pass your constraints")} body="Every listing was excluded by an accessibility requirement or time mismatch. Try a longer window, a different station, or review your accessibility needs." action={<Button variant="ghost" onClick={reset} icon="rotate-ccw"><T>Reset scenario</T></Button>} />
         ) : (
           <div className="space-y-2.5">
             {results.map((r) => (
@@ -438,7 +441,7 @@ export function Recommendations() {
                     <ExperienceCard exp={r.experience} variant="row" matchScore={r.score} reasons={r.reasons} />
                   </div>
                   <div className="shrink-0 border-t border-line pt-2.5 sm:w-[188px] sm:border-l sm:border-t-0 sm:pl-3 sm:pt-0">
-                    <p className="mb-2 text-[10px] font-bold uppercase tracking-wider text-ink-faint">Score breakdown</p>
+                    <p className="mb-2 text-[10px] font-bold uppercase tracking-wider text-ink-faint"><T>Score breakdown</T></p>
                     <div className="space-y-1.5">
                       {[
                         ['Interest', r.breakdown.interest],
@@ -470,7 +473,7 @@ export function Recommendations() {
 }
 
 export function VisitorProfilePage() {
-  const { tx } = usePrefs()
+  const { t, tx, currency, setCurrency } = usePrefs()
   const money = useMoneyText()
   const { profile, setProfile, toast } = useApp()
   const [draft, setDraft] = useState({ ...profile })
@@ -489,12 +492,37 @@ export function VisitorProfilePage() {
   return (
     <div className="mx-auto max-w-3xl space-y-5">
       <div>
-        <h1 className="text-[24px] font-extrabold">Profile & preferences</h1>
-        <p className="mt-1 text-[13px] text-ink-mute">Changes apply to matching immediately after saving.</p>
+        <h1 className="text-[24px] font-extrabold"><T><T>Profile & preferences</T></T></h1>
+        <p className="mt-1 text-[13px] text-ink-mute"><T><T>Changes apply to matching immediately after saving.</T></T></p>
+      </div>
+
+      {/* language / currency / theme — the three persistence controls */}
+      <div className="rounded-2xl border border-line bg-raised p-5">
+        <h2 className="text-[14px] font-extrabold"><T><T>Interface preferences</T></T></h2>
+        <div className="mt-3 grid gap-3 sm:grid-cols-3">
+          <Field label={tx('Language')}>
+            <LanguageToggle />
+          </Field>
+          <Field label={tx('Display currency')}>
+            <select value={currency} onChange={(e) => setCurrency(e.target.value)}
+              className="field !h-8 !text-[11.5px] font-bold" aria-label={tx('Display currency')}>
+              {CURRENCIES.map((c) => <option key={c} value={c}>{c}</option>)}
+            </select>
+          </Field>
+          <Field label={tx('Theme')}>
+            <ThemeToggle />
+          </Field>
+        </div>
+        <p className="mt-2 text-[10.5px] leading-relaxed text-ink-faint">
+          <T><T>MYR remains the stored base currency. Display currency only changes the number you read.</T></T>
+        </p>
+        <div className="mt-3">
+          <CurrencyConverter />
+        </div>
       </div>
 
       <div className="rounded-2xl border border-line bg-raised p-5">
-        <h2 className="text-[14px] font-extrabold"><T>About you</T></h2>
+        <h2 className="text-[14px] font-extrabold"><T><T>About you</T></T></h2>
         <div className="mt-3 grid gap-3 sm:grid-cols-2">
           <Field label={tx("Display name")}>
             <input className="field" value={draft.name} onChange={(e) => set('name', e.target.value)} />
@@ -516,7 +544,7 @@ export function VisitorProfilePage() {
       </div>
 
       <div className="rounded-2xl border border-line bg-raised p-5">
-        <h2 className="text-[14px] font-extrabold">Travel purpose</h2>
+        <h2 className="text-[14px] font-extrabold"><T>Travel purpose</T></h2>
         <div className="mt-3 grid gap-2 sm:grid-cols-4">
           {PURPOSES.map((p) => (
             <button key={p.id} onClick={() => set('purpose', p.id)}
@@ -530,18 +558,18 @@ export function VisitorProfilePage() {
       </div>
 
       <div className="rounded-2xl border border-line bg-raised p-5">
-        <h2 className="text-[14px] font-extrabold">Time, budget & station</h2>
+        <h2 className="text-[14px] font-extrabold"><T>Time, budget & station</T></h2>
         <div className="mt-3 space-y-4">
           <div>
             <div className="mb-1.5 flex justify-between">
-              <p className="text-[12px] font-semibold text-ink-soft"><T>Available time</T></p>
+              <p className="text-[12px] font-semibold text-ink-soft"><T><T>Available time</T></T></p>
               <span className="text-[12px] font-bold text-navy num">{hoursLabel(draft.availableMins)}</span>
             </div>
             <input type="range" min={60} max={480} step={30} value={draft.availableMins} onChange={(e) => set('availableMins', Number(e.target.value))} className="w-full accent-royal" aria-label={tx("Available time")} />
           </div>
           <div>
             <div className="mb-1.5 flex justify-between">
-              <p className="text-[12px] font-semibold text-ink-soft"><T>Budget per person</T></p>
+              <p className="text-[12px] font-semibold text-ink-soft"><T><T>Budget per person</T></T></p>
               <span className="text-[12px] font-bold text-navy num">{money(draft.budget)}</span>
             </div>
             <input type="range" min={30} max={600} step={10} value={draft.budget} onChange={(e) => set('budget', Number(e.target.value))} className="w-full accent-royal" aria-label={tx("Budget")} />
@@ -562,7 +590,7 @@ export function VisitorProfilePage() {
       </div>
 
       <div className="rounded-2xl border border-line bg-raised p-5">
-        <h2 className="text-[14px] font-extrabold">Interests</h2>
+        <h2 className="text-[14px] font-extrabold"><T>Interests</T></h2>
         <div className="mt-3 flex flex-wrap gap-1.5">
           {INTERESTS.map((i) => (
             <button key={i.id} onClick={() => toggle('interests', i.id)}
@@ -575,8 +603,8 @@ export function VisitorProfilePage() {
       </div>
 
       <div className="rounded-2xl border border-line bg-raised p-5">
-        <h2 className="text-[14px] font-extrabold">Accessibility requirements</h2>
-        <p className="mt-1 text-[11.5px] text-ink-mute"><T>Applied as hard constraints, not soft preferences.</T></p>
+        <h2 className="text-[14px] font-extrabold"><T>Accessibility requirements</T></h2>
+        <p className="mt-1 text-[11.5px] text-ink-mute"><T><T>Applied as hard constraints, not soft preferences.</T></T></p>
         <div className="mt-3 grid gap-2 sm:grid-cols-2">
           {ACCESSIBILITY_OPTIONS.map((a) => (
             <label key={a.id} className={clsx('flex cursor-pointer items-center gap-2.5 rounded-xl border px-3 py-2.5 transition-colors',
@@ -591,9 +619,9 @@ export function VisitorProfilePage() {
       <div className="sticky bottom-20 flex items-center justify-between rounded-2xl border border-line bg-raised p-3.5 shadow-lift lg:bottom-4">
         <p className="text-[11.5px] text-ink-mute">{dirty ? 'You have unsaved changes' : 'All changes saved'}</p>
         <div className="flex gap-2">
-          <Button variant="ghost" size="sm" onClick={() => { setDraft({ ...profile }); setDirty(false) }} disabled={!dirty}>Reset</Button>
+          <Button variant="ghost" size="sm" onClick={() => { setDraft({ ...profile }); setDirty(false) }} disabled={!dirty}><T>Reset</T></Button>
           <Button size="sm" icon="save" onClick={() => { setProfile(draft); setDirty(false); toast('Preferences saved', 'Recommendations updated.', 'success') }} disabled={!dirty}>
-            <T>Save changes</T>
+            <T><T>Save changes</T></T>
           </Button>
         </div>
       </div>
@@ -609,11 +637,11 @@ export function Favourites() {
   return (
     <div className="space-y-5">
       <div>
-        <h1 className="text-[24px] font-extrabold"><T>Saved experiences</T></h1>
+        <h1 className="text-[24px] font-extrabold"><T><T>Saved experiences</T></T></h1>
         <p className="mt-1 text-[13px] text-ink-mute">{saved.length} saved · stored in this browser</p>
       </div>
       {saved.length === 0 ? (
-        <EmptyState icon="heart" title="Nothing saved yet" body={tx("Tap the heart on any experience to keep it here for later.")} action={<Link to="/explore" className="btn btn-primary btn-md"><T>Explore experiences</T></Link>} />
+        <EmptyState icon="heart" title="Nothing saved yet" body={tx("Tap the heart on any experience to keep it here for later.")} action={<Link to="/explore" className="btn btn-primary btn-md"><T><T>Explore experiences</T></T></Link>} />
       ) : (
         <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
           {saved.map((e) => <ExperienceCard key={e.id} exp={e} />)}

@@ -1,4 +1,5 @@
 import React from 'react'
+import { T } from '../../components/ui/T'
 import { usePrefs } from '../../app/prefs'
 import clsx from 'clsx'
 import Icon from './Icon'
@@ -123,7 +124,7 @@ export function Section({
 
 // ---------------------------------------------------------------- Stars
 export function Stars({ value, count, size = 13 }: { value: number; count?: number; size?: number }) {
-  if (!value) return <span className="text-[12px] text-ink-faint">No reviews yet</span>
+  if (!value) return <span className="text-[12px] text-ink-faint"><T>No reviews yet</T></span>
   return (
     <span className="inline-flex items-center gap-1.5">
       <span className="inline-flex items-center gap-0.5" aria-label={`${value} out of 5`}>

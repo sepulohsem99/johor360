@@ -1,6 +1,17 @@
 import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from 'react'
 import i18n from '../i18n'
 import { UI_MS } from '../locales/ui-ms'
+import { UI_MS_EXTRA } from '../locales/ui-ms-extra'
+
+/**
+ * Merged English -> BM table.
+ *
+ * React collapses runs of whitespace inside JSX text nodes into single spaces,
+ * so a paragraph written across four source lines arrives here with single
+ * spaces. Keys are normalised the same way on both sides.
+ */
+const TABLE: Record<string, string> = { ...UI_MS, ...UI_MS_EXTRA }
+const norm = (s: string) => s.replace(/\s+/g, ' ').trim()
 
 export type ThemeMode = 'light' | 'dark' | 'system'
 export type Lang = 'ms' | 'en'
@@ -45,7 +56,6 @@ interface PrefsValue {
  *    no call sites have to be renamed or restructured.
  * Keys must match the JSX text exactly, including punctuation and dashes.
  */
-export { UI_MS } from '../locales/ui-ms'
 
 const Ctx = createContext<PrefsValue | null>(null)
 
@@ -136,7 +146,7 @@ export function PreferencesProvider({ children }: { children: ReactNode }) {
       t: (key, vars) =>
         (vars ? i18n.t(key, vars as never) : i18n.t(key)) as string,
       // English is the source language, so en returns the string untouched.
-      tx: (text) => (lang === 'ms' ? (UI_MS[text] ?? text) : text),
+      tx: (text) => (lang === 'ms' ? (TABLE[norm(text)] ?? text) : text),
     }),
     [theme, resolvedTheme, lang, currency, origin]
   )

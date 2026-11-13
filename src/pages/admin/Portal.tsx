@@ -26,8 +26,8 @@ export function AdminDashboard() {
     <div className="space-y-5">
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div>
-          <h1 className="text-[24px] font-extrabold">Platform overview</h1>
-          <p className="mt-1 text-[13px] text-ink-mute"><T>Content operations, verification queue and platform health.</T></p>
+          <h1 className="text-[24px] font-extrabold"><T>Platform overview</T></h1>
+          <p className="mt-1 text-[13px] text-ink-mute"><T><T>Content operations, verification queue and platform health.</T></T></p>
         </div>
         <DemoTag label="Simulated metrics" />
       </div>
@@ -43,11 +43,11 @@ export function AdminDashboard() {
         <div className="space-y-4">
           <div className="rounded-2xl border border-line bg-raised p-4">
             <div className="mb-3 flex items-center justify-between">
-              <h2 className="text-[14px] font-extrabold">Verification queue</h2>
-              <Link to="/admin/verifications" className="text-[11px] font-bold text-royal"><T>Open queue</T></Link>
+              <h2 className="text-[14px] font-extrabold"><T>Verification queue</T></h2>
+              <Link to="/admin/verifications" className="text-[11px] font-bold text-royal"><T><T>Open queue</T></T></Link>
             </div>
             {pending.length === 0 ? (
-              <p className="rounded-xl bg-canvas px-3 py-6 text-center text-[12px] text-ink-faint"><T>Queue is clear.</T></p>
+              <p className="rounded-xl bg-canvas px-3 py-6 text-center text-[12px] text-ink-faint"><T><T>Queue is clear.</T></T></p>
             ) : (
               <div className="space-y-2">
                 {pending.map((e) => (
@@ -61,7 +61,7 @@ export function AdminDashboard() {
                         {operatorById(e.operatorId)?.name} · submitted {e.createdAt ? timeAgo(e.createdAt) : 'recently'}
                       </p>
                     </div>
-                    <Link to="/admin/verifications" className="shrink-0 rounded-lg bg-gold px-2 py-1 text-[10.5px] font-bold text-navy"><T>Review</T></Link>
+                    <Link to="/admin/verifications" className="shrink-0 rounded-lg bg-gold px-2 py-1 text-[10.5px] font-bold text-navy"><T><T>Review</T></T></Link>
                   </div>
                 ))}
               </div>
@@ -70,7 +70,7 @@ export function AdminDashboard() {
 
           <div className="rounded-2xl border border-line bg-raised p-4">
             <div className="mb-3 flex items-center justify-between">
-              <h2 className="text-[14px] font-extrabold">Recent activity</h2>
+              <h2 className="text-[14px] font-extrabold"><T>Recent activity</T></h2>
               <DemoTag label="Audit log" />
             </div>
             <div className="space-y-2">
@@ -93,7 +93,7 @@ export function AdminDashboard() {
 
         <aside className="space-y-3">
           <div className="rounded-2xl border border-line bg-raised p-4">
-            <p className="text-[10px] font-bold uppercase tracking-wider text-ink-faint">Needs attention</p>
+            <p className="text-[10px] font-bold uppercase tracking-wider text-ink-faint"><T>Needs attention</T></p>
             <div className="mt-2.5 space-y-2">
               {[
                 { l: 'Pending verifications', n: pending.length, to: '/admin/verifications', t: 'gold' },
@@ -110,7 +110,7 @@ export function AdminDashboard() {
           </div>
 
           <div className="rounded-2xl border border-line bg-raised p-4">
-            <p className="text-[10px] font-bold uppercase tracking-wider text-ink-faint">Corridor coverage</p>
+            <p className="text-[10px] font-bold uppercase tracking-wider text-ink-faint"><T>Corridor coverage</T></p>
             <div className="mt-2.5 space-y-1.5">
               {CORRIDOR.map((s) => {
                 const n = experiences.filter((e) => e.stationId === s.id && e.verification === 'verified').length
@@ -126,7 +126,7 @@ export function AdminDashboard() {
               })}
             </div>
             <p className="mt-2 text-[9.5px] leading-relaxed text-ink-faint">
-              Red bars are stations with no published operator — the coverage gap the platform exists to close.
+              <T>Red bars are stations with no published operator — the coverage gap the platform exists to close.</T>
             </p>
           </div>
         </aside>
@@ -170,15 +170,15 @@ export function AdminVerifications() {
     <div className="space-y-5">
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
-          <h1 className="text-[24px] font-extrabold">Listing verification</h1>
-          <p className="mt-1 text-[13px] text-ink-mute"><T>Approve listings to make them visible in visitor discovery.</T></p>
+          <h1 className="text-[24px] font-extrabold"><T>Listing verification</T></h1>
+          <p className="mt-1 text-[13px] text-ink-mute"><T><T>Approve listings to make them visible in visitor discovery.</T></T></p>
         </div>
         <div className="flex gap-1.5">
           <button onClick={() => setTab('pending')} className={clsx('chip', tab === 'pending' && 'chip-active')}>
-            <T>Pending</T> <span className="num opacity-60">{experiences.filter((e) => e.verification === 'pending').length}</span>
+            <T><T>Pending</T></T> <span className="num opacity-60">{experiences.filter((e) => e.verification === 'pending').length}</span>
           </button>
           <button onClick={() => setTab('all')} className={clsx('chip', tab === 'all' && 'chip-active')}>
-            <T>All unresolved</T> <span className="num opacity-60">{experiences.filter((e) => e.verification !== 'verified').length}</span>
+            <T><T>All unresolved</T></T> <span className="num opacity-60">{experiences.filter((e) => e.verification !== 'verified').length}</span>
           </button>
         </div>
       </div>
@@ -186,13 +186,12 @@ export function AdminVerifications() {
       <div className="rounded-xl border border-royal-200 bg-royal-50/60 px-3.5 py-2.5">
         <p className="flex items-start gap-2 text-[11.5px] leading-relaxed text-navy-700">
           <Icon name="info" size={13} className="mt-0.5 shrink-0 text-royal" />
-          Approving a listing here updates the shared demo state. Switch to the Visitor role afterwards and search
-          that station — the listing will appear in discovery, matching and the station page.
+          <T>Approving a listing here updates the shared demo state. Switch to the Visitor role afterwards and search that station — the listing will appear in discovery, matching and the station page.</T>
         </p>
       </div>
 
       {queue.length === 0 ? (
-        <EmptyState icon="check-circle-2" title={tx("Queue is clear")} body={tx("No listings are awaiting verification. New SME submissions will appear here.")} action={<Link to="/sme/listings/new" className="btn btn-ghost btn-md">Create a test listing</Link>} />
+        <EmptyState icon="check-circle-2" title={tx("Queue is clear")} body={tx("No listings are awaiting verification. New SME submissions will appear here.")} action={<Link to="/sme/listings/new" className="btn btn-ghost btn-md"><T>Create a test listing</T></Link>} />
       ) : (
         <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
           {queue.map((e) => {
@@ -217,7 +216,7 @@ export function AdminVerifications() {
                     <span className="num">max {e.capacity}</span>
                   </div>
                   <div className="mt-auto flex gap-1.5 pt-3">
-                    <Button size="sm" variant="ghost" className="flex-1" onClick={() => setActive(e.id)}>Inspect</Button>
+                    <Button size="sm" variant="ghost" className="flex-1" onClick={() => setActive(e.id)}><T>Inspect</T></Button>
                   </div>
                 </div>
               </div>
@@ -229,10 +228,10 @@ export function AdminVerifications() {
       <Modal open={!!exp} onClose={() => { setActive(null); setNote('') }} title="Inspect listing" width="max-w-2xl"
         footer={exp && (
           <>
-            <Button variant="quiet" size="sm" onClick={() => { setActive(null); setNote('') }}><T>Cancel</T></Button>
-            <Button variant="danger" size="sm" icon="x" onClick={() => act('rejected')}>Reject</Button>
-            <Button variant="ghost" size="sm" icon="alert-circle" onClick={() => act('changes_requested')}>Request changes</Button>
-            <Button size="sm" icon="check" onClick={() => act('verified')}>Approve</Button>
+            <Button variant="quiet" size="sm" onClick={() => { setActive(null); setNote('') }}><T><T>Cancel</T></T></Button>
+            <Button variant="danger" size="sm" icon="x" onClick={() => act('rejected')}><T>Reject</T></Button>
+            <Button variant="ghost" size="sm" icon="alert-circle" onClick={() => act('changes_requested')}><T>Request changes</T></Button>
+            <Button size="sm" icon="check" onClick={() => act('verified')}><T>Approve</T></Button>
           </>
         )}>
         {exp && (
@@ -262,7 +261,7 @@ export function AdminVerifications() {
             </div>
 
             <div className="rounded-xl border border-line p-3">
-              <p className="text-[10px] font-bold uppercase tracking-wider text-ink-faint"><T>Operator</T></p>
+              <p className="text-[10px] font-bold uppercase tracking-wider text-ink-faint"><T><T>Operator</T></T></p>
               <div className="mt-1.5 flex items-center gap-2">
                 <span className="grid h-8 w-8 place-items-center rounded-lg bg-navy text-[10px] font-bold text-white">{op?.logoAdopt}</span>
                 <div className="min-w-0 flex-1">
@@ -281,7 +280,7 @@ export function AdminVerifications() {
             </div>
 
             <div className="rounded-xl border border-line p-3">
-              <p className="text-[10px] font-bold uppercase tracking-wider text-ink-faint">Accessibility declaration</p>
+              <p className="text-[10px] font-bold uppercase tracking-wider text-ink-faint"><T>Accessibility declaration</T></p>
               <div className="mt-1.5 flex flex-wrap gap-1.5">
                 {[
                   ['Wheelchair', exp.accessibility.wheelchair],
@@ -298,13 +297,13 @@ export function AdminVerifications() {
             </div>
 
             <div className="rounded-xl border border-line p-3">
-              <p className="text-[10px] font-bold uppercase tracking-wider text-ink-faint">Description</p>
+              <p className="text-[10px] font-bold uppercase tracking-wider text-ink-faint"><T>Description</T></p>
               <p className="mt-1 text-[11.5px] leading-relaxed text-ink-soft">{exp.description}</p>
             </div>
 
             {history.length > 0 && (
               <div className="rounded-xl bg-canvas p-3">
-                <p className="text-[10px] font-bold uppercase tracking-wider text-ink-faint">Verification history</p>
+                <p className="text-[10px] font-bold uppercase tracking-wider text-ink-faint"><T>Verification history</T></p>
                 <div className="mt-1.5 space-y-1">
                   {history.map((h) => (
                     <p key={h.id} className="text-[10.5px] text-ink-mute">
@@ -340,7 +339,7 @@ export function AdminOperators() {
     <div className="space-y-5">
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
-          <h1 className="text-[24px] font-extrabold"><T>Operators</T></h1>
+          <h1 className="text-[24px] font-extrabold"><T><T>Operators</T></T></h1>
           <p className="mt-1 text-[13px] text-ink-mute">{operators.length} registered · {operators.filter((o) => o.verification === 'verified').length} verified</p>
         </div>
         <input className="field !h-9 !w-auto !text-[12px]" placeholder={tx("Search operators…")} value={q} onChange={(e) => setQ(e.target.value)} />
@@ -351,12 +350,12 @@ export function AdminOperators() {
           <table className="w-full min-w-[720px] text-left">
             <thead>
               <tr className="border-b border-line bg-canvas text-[10px] uppercase tracking-wider text-ink-faint">
-                <th className="px-4 py-2.5 font-bold"><T>Operator</T></th>
-                <th className="px-4 py-2.5 font-bold">Category</th>
-                <th className="px-4 py-2.5 font-bold"><T>Station</T></th>
-                <th className="px-4 py-2.5 font-bold">Listings</th>
-                <th className="px-4 py-2.5 font-bold">Rating</th>
-                <th className="px-4 py-2.5 font-bold"><T>Status</T></th>
+                <th className="px-4 py-2.5 font-bold"><T><T>Operator</T></T></th>
+                <th className="px-4 py-2.5 font-bold"><T>Category</T></th>
+                <th className="px-4 py-2.5 font-bold"><T><T>Station</T></T></th>
+                <th className="px-4 py-2.5 font-bold"><T>Listings</T></th>
+                <th className="px-4 py-2.5 font-bold"><T>Rating</T></th>
+                <th className="px-4 py-2.5 font-bold"><T><T>Status</T></T></th>
                 <th className="px-4 py-2.5 font-bold"></th>
               </tr>
             </thead>
@@ -380,7 +379,7 @@ export function AdminOperators() {
                     <td className="px-4 py-2.5"><Stars value={o.rating} size={10} /></td>
                     <td className="px-4 py-2.5"><VerificationBadge status={o.verification} size="xs" /></td>
                     <td className="px-4 py-2.5">
-                      <Link to={`/operators/${o.id}`} className="text-[10.5px] font-bold text-royal hover:underline">View</Link>
+                      <Link to={`/operators/${o.id}`} className="text-[10.5px] font-bold text-royal hover:underline"><T>View</T></Link>
                     </td>
                   </tr>
                 )
@@ -412,18 +411,18 @@ export function AdminExperiences() {
     <div className="space-y-5">
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
-          <h1 className="text-[24px] font-extrabold"><T>Experience management</T></h1>
+          <h1 className="text-[24px] font-extrabold"><T><T>Experience management</T></T></h1>
           <p className="mt-1 text-[13px] text-ink-mute">{experiences.length} listings across {STATIONS.length} stations</p>
         </div>
         <div className="flex gap-2">
           <input className="field !h-9 !w-auto !text-[12px]" placeholder={tx("Search listings…")} value={q} onChange={(e) => setQ(e.target.value)} />
           <select className="field !h-9 !w-auto !py-0 !text-[12px]" value={status} onChange={(e) => setStatus(e.target.value)}>
-            <option value="all"><T>All statuses</T></option>
-            <option value="verified"><T>Verified</T></option>
-            <option value="pending"><T>Pending</T></option>
-            <option value="draft">Draft</option>
-            <option value="changes_requested">Changes requested</option>
-            <option value="rejected">Rejected</option>
+            <option value="all"><T><T>All statuses</T></T></option>
+            <option value="verified"><T><T>Verified</T></T></option>
+            <option value="pending"><T><T>Pending</T></T></option>
+            <option value="draft"><T>Draft</T></option>
+            <option value="changes_requested"><T>Changes requested</T></option>
+            <option value="rejected"><T>Rejected</T></option>
           </select>
         </div>
       </div>
@@ -436,13 +435,13 @@ export function AdminExperiences() {
             <table className="w-full min-w-[780px] text-left">
               <thead>
                 <tr className="border-b border-line bg-canvas text-[10px] uppercase tracking-wider text-ink-faint">
-                  <th className="px-4 py-2.5 font-bold">Listing</th>
-                  <th className="px-4 py-2.5 font-bold"><T>Operator</T></th>
-                  <th className="px-4 py-2.5 font-bold"><T>Station</T></th>
-                  <th className="px-4 py-2.5 font-bold"><T>Price</T></th>
-                  <th className="px-4 py-2.5 font-bold">Views</th>
-                  <th className="px-4 py-2.5 font-bold"><T>Status</T></th>
-                  <th className="px-4 py-2.5 font-bold"><T>Action</T></th>
+                  <th className="px-4 py-2.5 font-bold"><T>Listing</T></th>
+                  <th className="px-4 py-2.5 font-bold"><T><T>Operator</T></T></th>
+                  <th className="px-4 py-2.5 font-bold"><T><T>Station</T></T></th>
+                  <th className="px-4 py-2.5 font-bold"><T><T>Price</T></T></th>
+                  <th className="px-4 py-2.5 font-bold"><T>Views</T></th>
+                  <th className="px-4 py-2.5 font-bold"><T><T>Status</T></T></th>
+                  <th className="px-4 py-2.5 font-bold"><T><T>Action</T></T></th>
                 </tr>
               </thead>
               <tbody>
@@ -459,13 +458,13 @@ export function AdminExperiences() {
                     <td className="px-4 py-2.5"><VerificationBadge status={e.verification} size="xs" /></td>
                     <td className="px-4 py-2.5">
                       <div className="flex gap-1.5">
-                        <button onClick={() => nav(`/experiences/${e.id}`)} className="text-[10.5px] font-bold text-royal hover:underline">View</button>
+                        <button onClick={() => nav(`/experiences/${e.id}`)} className="text-[10.5px] font-bold text-royal hover:underline"><T>View</T></button>
                         {e.verification !== 'verified' ? (
                           <button onClick={() => { setExperienceStatus(e.id, 'verified', 'Approved from experience management.'); toast('Approved', e.title, 'success') }}
-                            className="text-[10.5px] font-bold text-emerald2-700 hover:underline">Approve</button>
+                            className="text-[10.5px] font-bold text-emerald2-700 hover:underline"><T>Approve</T></button>
                         ) : (
                           <button onClick={() => { setExperienceStatus(e.id, 'changes_requested', 'Unpublished for review from experience management.'); toast('Unpublished', e.title, 'info') }}
-                            className="text-[10.5px] font-bold text-johor hover:underline">Unpublish</button>
+                            className="text-[10.5px] font-bold text-johor hover:underline"><T>Unpublish</T></button>
                         )}
                       </div>
                     </td>
@@ -492,7 +491,7 @@ export function AdminReviews() {
     <div className="space-y-5">
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
-          <h1 className="text-[24px] font-extrabold"><T>Review moderation</T></h1>
+          <h1 className="text-[24px] font-extrabold"><T><T>Review moderation</T></T></h1>
           <p className="mt-1 text-[13px] text-ink-mute">{reviews.filter((r) => r.status === 'pending').length} awaiting moderation</p>
         </div>
         <div className="flex gap-1.5">
@@ -533,10 +532,10 @@ export function AdminReviews() {
                 <p className="truncate text-[10px] text-ink-faint">{experiences.find((e) => e.id === r.experienceId)?.title}</p>
                 <div className="flex gap-1.5">
                   {r.status !== 'published' && (
-                    <Button size="sm" variant="ghost" onClick={() => { moderateReview(r.id, 'published'); toast('Review published', r.authorName, 'success') }}>Publish</Button>
+                    <Button size="sm" variant="ghost" onClick={() => { moderateReview(r.id, 'published'); toast('Review published', r.authorName, 'success') }}><T>Publish</T></Button>
                   )}
                   {r.status !== 'flagged' && (
-                    <Button size="sm" variant="danger" onClick={() => { moderateReview(r.id, 'flagged'); toast('Review flagged', r.authorName, 'info') }}>Flag</Button>
+                    <Button size="sm" variant="danger" onClick={() => { moderateReview(r.id, 'flagged'); toast('Review flagged', r.authorName, 'info') }}><T>Flag</T></Button>
                   )}
                 </div>
               </div>
@@ -571,8 +570,8 @@ export function AdminAnalytics() {
     <div className="space-y-5">
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
-          <h1 className="text-[24px] font-extrabold">Visitor insights</h1>
-          <p className="mt-1 text-[13px] text-ink-mute"><T>Distribution of visitor intent across purpose, station and category.</T></p>
+          <h1 className="text-[24px] font-extrabold"><T>Visitor insights</T></h1>
+          <p className="mt-1 text-[13px] text-ink-mute"><T><T>Distribution of visitor intent across purpose, station and category.</T></T></p>
         </div>
         <DemoTag label="Simulated analytics" />
       </div>
@@ -586,7 +585,7 @@ export function AdminAnalytics() {
 
       <div className="grid gap-4 lg:grid-cols-2">
         <div className="rounded-2xl border border-line bg-raised p-4">
-          <p className="text-[12px] font-bold text-navy">Visitor purpose distribution</p>
+          <p className="text-[12px] font-bold text-navy"><T>Visitor purpose distribution</T></p>
           <div className="mt-4 space-y-3">
             {purposeDist.map((p) => (
               <div key={p.l}>
@@ -606,7 +605,7 @@ export function AdminAnalytics() {
         </div>
 
         <div className="rounded-2xl border border-line bg-raised p-4">
-          <p className="text-[12px] font-bold text-navy">Most explored stations</p>
+          <p className="text-[12px] font-bold text-navy"><T>Most explored stations</T></p>
           <div className="mt-3 space-y-2">
             {stationInterest.map(({ s, n }) => (
               <div key={s.id} className="flex items-center gap-2">
@@ -625,7 +624,7 @@ export function AdminAnalytics() {
       </div>
 
       <div className="rounded-2xl border border-line bg-raised p-4">
-        <p className="text-[12px] font-bold text-navy">Category interest</p>
+        <p className="text-[12px] font-bold text-navy"><T>Category interest</T></p>
         <div className="mt-3 grid gap-2 sm:grid-cols-2 lg:grid-cols-5">
           {CATEGORIES.slice(0, 10).map((c, i) => {
             const n = experiences.filter((e) => e.category === c.id).length
@@ -676,8 +675,8 @@ export function AdminImpact() {
     <div className="space-y-5">
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
-          <h1 className="text-[24px] font-extrabold">Economic discovery impact</h1>
-          <p className="mt-1 text-[13px] text-ink-mute"><T>The metrics that show whether attention is actually moving outside the city.</T></p>
+          <h1 className="text-[24px] font-extrabold"><T>Economic discovery impact</T></h1>
+          <p className="mt-1 text-[13px] text-ink-mute"><T><T>The metrics that show whether attention is actually moving outside the city.</T></T></p>
         </div>
         <DemoTag label="Simulated data" />
       </div>
@@ -687,7 +686,7 @@ export function AdminImpact() {
         <Scene seed="impact" category="agriculture" className="absolute inset-0 h-full w-full opacity-20" variant="hero" motif="rails" />
         <div className="absolute inset-0 bg-gradient-to-r from-navy-950 via-navy-950/90 to-transparent" />
         <div className="relative">
-          <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-gold">Headline metric</p>
+          <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-gold"><T>Headline metric</T></p>
           <div className="mt-2 flex flex-wrap items-end gap-x-4 gap-y-1">
             <p className="text-[44px] font-extrabold leading-none text-white num">{beyondPct}%</p>
             <p className="pb-1.5 max-w-md text-[13px] leading-relaxed text-white/65">
@@ -716,18 +715,18 @@ export function AdminImpact() {
       <div className="grid gap-4 lg:grid-cols-[1.15fr_0.85fr]">
         <div className="rounded-2xl border border-line bg-raised p-4">
           <div className="mb-3 flex items-center justify-between">
-            <p className="text-[12px] font-bold text-navy">SME discovery & enquiries by station</p>
+            <p className="text-[12px] font-bold text-navy"><T>SME discovery & enquiries by station</T></p>
             <DemoTag label={tx("Per station")} />
           </div>
           <div className="overflow-x-auto">
             <table className="w-full min-w-[440px] text-left">
               <thead>
                 <tr className="border-b border-line text-[9.5px] uppercase tracking-wider text-ink-faint">
-                  <th className="pb-2 font-bold"><T>Station</T></th>
-                  <th className="pb-2 font-bold"><T>Operators</T></th>
-                  <th className="pb-2 font-bold">Listings</th>
-                  <th className="pb-2 font-bold"><T>Enquiries</T></th>
-                  <th className="pb-2 font-bold">Share</th>
+                  <th className="pb-2 font-bold"><T><T>Station</T></T></th>
+                  <th className="pb-2 font-bold"><T><T>Operators</T></T></th>
+                  <th className="pb-2 font-bold"><T>Listings</T></th>
+                  <th className="pb-2 font-bold"><T><T>Enquiries</T></T></th>
+                  <th className="pb-2 font-bold"><T>Share</T></th>
                 </tr>
               </thead>
               <tbody>
@@ -752,7 +751,7 @@ export function AdminImpact() {
 
         <div className="space-y-3">
           <div className="rounded-2xl border border-line bg-raised p-4">
-            <p className="text-[10px] font-bold uppercase tracking-wider text-ink-faint"><T>Enquiry conversion</T></p>
+            <p className="text-[10px] font-bold uppercase tracking-wider text-ink-faint"><T><T>Enquiry conversion</T></T></p>
             <div className="mt-2 space-y-2.5">
               {[
                 ['Sent to operator', totalEnq, 'royal'],
@@ -772,7 +771,7 @@ export function AdminImpact() {
           </div>
 
           <div className="rounded-2xl border border-line bg-raised p-4">
-            <p className="text-[10px] font-bold uppercase tracking-wider text-ink-faint"><T>Distribution of discovery</T></p>
+            <p className="text-[10px] font-bold uppercase tracking-wider text-ink-faint"><T><T>Distribution of discovery</T></T></p>
             <div className="mt-2 flex h-3 overflow-hidden rounded-full">
               <div className="bg-emerald2" style={{ width: `${shareBeyond}%` }} />
               <div className="bg-johor" style={{ width: `${100 - shareBeyond}%` }} />
@@ -782,8 +781,7 @@ export function AdminImpact() {
               <span className="flex items-center gap-1 text-johor"><span className="h-1.5 w-1.5 rounded-full bg-johor" /> JB Sentral ({100 - shareBeyond}%)</span>
             </div>
             <p className="mt-2.5 text-[10.5px] leading-relaxed text-ink-mute">
-              Based on published listings, not sessions. Station-level intent is tracked separately in Visitor
-              insights.
+              <T>Based on published listings, not sessions. Station-level intent is tracked separately in Visitor insights.</T>
             </p>
           </div>
         </div>
@@ -791,7 +789,7 @@ export function AdminImpact() {
 
       {/* what this proves */}
       <div className="rounded-2xl border border-emerald2-200 bg-emerald2-50/50 p-4">
-        <p className="text-[12px] font-bold text-emerald2-900"><T>What this dashboard is designed to prove</T></p>
+        <p className="text-[12px] font-bold text-emerald2-900"><T><T>What this dashboard is designed to prove</T></T></p>
         <div className="mt-2.5 grid gap-2 sm:grid-cols-2">
           {[
             ['Attention moves out of the city', 'Share of enquiries to operators outside JB Sentral — the core distribution claim.'],
@@ -809,8 +807,7 @@ export function AdminImpact() {
           ))}
         </div>
         <p className="mt-2.5 text-[10px] leading-relaxed text-ink-faint">
-          All figures on this page are simulated demonstration data derived from the mockup dataset. They are not
-          measured real-world outcomes.
+          <T>All figures on this page are simulated demonstration data derived from the mockup dataset. They are not measured real-world outcomes.</T>
         </p>
       </div>
     </div>
@@ -828,12 +825,12 @@ export function AdminSettings() {
   return (
     <div className="mx-auto max-w-3xl space-y-5">
       <div>
-        <h1 className="text-[24px] font-extrabold">Platform settings</h1>
-        <p className="mt-1 text-[13px] text-ink-mute"><T>Configuration for the demo environment. Changes are local only.</T></p>
+        <h1 className="text-[24px] font-extrabold"><T>Platform settings</T></h1>
+        <p className="mt-1 text-[13px] text-ink-mute"><T><T>Configuration for the demo environment. Changes are local only.</T></T></p>
       </div>
 
       <div className="rounded-2xl border border-line bg-raised p-5">
-        <p className="text-[13px] font-extrabold">Verification policy</p>
+        <p className="text-[13px] font-extrabold"><T>Verification policy</T></p>
         <div className="mt-3 space-y-2">
           {[
             ['autoVerify', 'Auto-verify operators with complete documents', 'Skips manual review when all required files are present.'],
@@ -889,8 +886,8 @@ export function AdminSettings() {
       </div>
 
       <div className="rounded-2xl border border-line bg-raised p-5">
-        <p className="text-[13px] font-extrabold">Data source register</p>
-        <p className="mt-1 text-[11.5px] text-ink-mute"><T>Every external claim in the product traces to a source here.</T></p>
+        <p className="text-[13px] font-extrabold"><T>Data source register</T></p>
+        <p className="mt-1 text-[11.5px] text-ink-mute"><T><T>Every external claim in the product traces to a source here.</T></T></p>
         <div className="mt-3 space-y-1.5">
           {[
             { n: 'ETS station names & order', s: 'KTMB route information', u: 'https://www.ktmb.com.my/', v: '2026-11-13' },
@@ -902,7 +899,7 @@ export function AdminSettings() {
                 <p className="truncate text-[11.5px] font-semibold text-navy">{r.n}</p>
                 <p className="text-[10px] text-ink-faint">{r.s} · verified {r.v}</p>
               </div>
-              <a href={r.u} target="_blank" rel="noreferrer noopener" className="shrink-0 text-[10.5px] font-bold text-royal hover:underline">Source</a>
+              <a href={r.u} target="_blank" rel="noreferrer noopener" className="shrink-0 text-[10.5px] font-bold text-royal hover:underline"><T>Source</T></a>
             </div>
           ))}
         </div>

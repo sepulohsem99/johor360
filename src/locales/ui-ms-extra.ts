@@ -1,0 +1,221 @@
+/**
+ * Additional BM copy, split out from ui-ms.ts to keep each file readable.
+ *
+ * Keys are the English source string with whitespace normalised to single
+ * spaces (see `normalise()` in app/prefs.tsx). That matters because long
+ * paragraphs sit across multiple JSX lines and React collapses that whitespace
+ * when rendering, so the lookup key must be the collapsed form.
+ */
+export const UI_MS_EXTRA: Record<string, string> = {
+  'A rail-first discovery platform that matches visitors to verified small operators along the corridor, with the return train already in the plan.':
+    'Platform penemuan berasaskan rel yang memadankan pelawat dengan operator kecil yang disahkan di sepanjang koridor, dengan tren balik sudah dimasukkan dalam pelan.',
+  'About JOHOR360': 'Tentang JOHOR360',
+  Accessibility: 'Kebolehaksesan',
+  'Accessibility declaration': 'Perakuan kebolehaksesan',
+  'Accessibility requirements': 'Keperluan kebolehaksesan',
+  'All figures on this page are simulated demonstration data derived from the mockup dataset. They are not measured real-world outcomes.':
+    'Semua angka pada halaman ini ialah data demonstrasi simulasi daripada set data mockup. Ia bukan hasil sebenar yang diukur.',
+  Approve: 'Luluskan',
+  'Approving a listing here updates the shared demo state. Switch to the Visitor role afterwards and search that station — the listing will appear in discovery, matching and the station page.':
+    'Meluluskan penyenaraian di sini mengemas kini keadaan demo dikongsi. Tukar ke peranan Pelawat selepas ini dan cari stesen itu — penyenaraian akan muncul dalam penemuan, pemadanan dan halaman stesen.',
+  Back: 'Kembali',
+  'Based on published listings, not sessions. Station-level intent is tracked separately in Visitor insights.':
+    'Berdasarkan penyenaraian yang diterbitkan, bukan sesi. Niat peringkat stesen dijejak berasingan dalam Wawasan Pelawat.',
+  'Browse whole corridor': 'Layari seluruh koridor',
+  'Build itinerary': 'Bina itinerari',
+  'Built around one constraint every other travel app ignores':
+    'Dibina sekitar satu kekangan yang diabaikan aplikasi perjalanan lain',
+  'Bundle listings or run a seasonal offer.': 'Gabungkan penyenaraian atau jalankan tawaran bermusim.',
+  Category: 'Kategori',
+  'Category interest': 'Minat kategori',
+  'Changes requested': 'Perubahan diminta',
+  Clear: 'Kosongkan',
+  Closed: 'Ditutup',
+  Corridor: 'Koridor',
+  'Corridor coverage': 'Liputan koridor',
+  'Create a test listing': 'Cipta penyenaraian ujian',
+  'Create account': 'Cipta akaun',
+  'Create an account': 'Cipta akaun',
+  'Create listing': 'Cipta penyenaraian',
+  'Create one': 'Cipta satu',
+  'Create package': 'Cipta pakej',
+  'Data source register': 'Daftar sumber data',
+  'Demo role switch': 'Tukar peranan demo',
+  'Demo role switcher': 'Penukar peranan demo',
+  'Demo share link': 'Pautan kongsi demo',
+  Departure: 'Berlepas',
+  Description: 'Penerangan',
+  Dismiss: 'Tutup',
+  Draft: 'Draf',
+  Duplicate: 'Duplikasi',
+  'Economic discovery impact': 'Impak penemuan ekonomi',
+  Edit: 'Sunting',
+  'Educational tags': 'Tag pendidikan',
+  'Educational value': 'Nilai pendidikan',
+  Estimated: 'Anggaran',
+  'Estimated cost': 'Anggaran kos',
+  'Estimated travel times are illustrative. Unconfirmed modes are marked rather than assumed.':
+    'Anggaran masa perjalanan adalah ilustrasi. Mod yang belum disahkan ditanda, bukan diandaikan.',
+  'Experience pin positions are offset from their station so that multiple listings at one stop remain visible. They indicate the town, not the exact venue.':
+    'Kedudukan pin pengalaman dialihkan dari stesennya supaya beberapa penyenaraian di satu perhentian kekal kelihatan. Ia menunjukkan bandar, bukan lokasi tepat.',
+  Explore: 'Terokai',
+  'Export PDF': 'Eksport PDF',
+  Flag: 'Tanda',
+  'Forgot password?': 'Lupa kata laluan?',
+  'Four quick questions about why you are in Johor, how long you have and what you are into. It takes under a minute and nothing is stored on a server.':
+    'Empat soalan pantas tentang sebab anda di Johor, berapa lama anda ada dan apa minat anda. Kurang seminit, dan tiada disimpan di pelayan.',
+  'Four through-services per direction per day. Missing a train can mean a long wait — always check the return leg.':
+    'Empat perkhidmatan terus setiap arah sehari. Terlepas tren boleh bermakna menunggu lama — sentiasa semak perjalanan balik.',
+  'Frequency note': 'Nota kekerapan',
+  'Getting here': 'Cara sampai',
+  'Getting there': 'Cara ke sana',
+  'Group size': 'Saiz kumpulan',
+  'Headline metric': 'Metrik utama',
+  'High — demanding': 'Tinggi — mencabar',
+  Highlighted: 'Dititikberatkan',
+  Home: 'Utama',
+  'How JOHOR360 works': 'Bagaimana JOHOR360 berfungsi',
+  'Illustrative generated artwork, not photographs of the actual venue. No third-party imagery is used.':
+    'Hasil seni janaan ilustrasi, bukan foto lokasi sebenar. Tiada imej pihak ketiga digunakan.',
+  'Illustrative scenes': 'Babak ilustrasi',
+  'Individual matches': 'Padanan individu',
+  Indoor: 'Dalam bangunan',
+  Inspect: 'Periksa',
+  Interchange: 'Pertukaran',
+  Interests: 'Minat',
+  "JB Sentral is deliberately included as the baseline. The platform's value shows up in the bars beneath it.":
+    'JB Sentral sengaja dimasukkan sebagai garis asas. Nilai platform ini kelihatan pada bar di bawahnya.',
+  JOHOR: 'JOHOR',
+  'Johor Innovation Challenge 2026': 'Johor Innovation Challenge 2026',
+  'Johor Innovation Challenge 2026 — Problem statement 4':
+    'Johor Innovation Challenge 2026 — Penyataan masalah 4',
+  'Just browse': 'Sekadar melayari',
+  'KL–JB through-service since Dec 2025': 'Perkhidmatan terus KL–JB sejak Dis 2025',
+  KTMB: 'KTMB',
+  'Last mile': 'Batu terakhir',
+  'Leisure dominates volume, but business and medical travellers convert to enquiries at 2.1× the rate — they have fixed windows and book ahead.':
+    'Riadah mendominasi jumlah, tetapi pengembara perniagaan dan perubatan menukar kepada pertanyaan pada kadar 2.1× — mereka ada tetingkap tetap dan menempah awal.',
+  "Let's set up your trip": 'Mari sediakan perjalanan anda',
+  Listing: 'Penyenaraian',
+  'Listing performance': 'Prestasi penyenaraian',
+  'Listing verification': 'Pengesahan penyenaraian',
+  'Listing views': 'Paparan penyenaraian',
+  Listings: 'Penyenaraian',
+  'Low — seated or gentle': 'Rendah — duduk atau perlahan',
+  'Map data © OpenStreetMap contributors': 'Data peta © penyumbang OpenStreetMap',
+  'Mark responded': 'Tanda dijawab',
+  Mixed: 'Campuran',
+  'Moderate — some walking': 'Sederhana — sedikit berjalan',
+  'Most explored stations': 'Stesen paling diterokai',
+  'Most recommendation engines are a black box. We publish the weights, show the breakdown per result, and explain the order.':
+    'Kebanyakan enjin cadangan ialah kotak hitam. Kami terbitkan pemberat, tunjukkan pecahan setiap hasil, dan jelaskan susunannya.',
+  'Nearby towns': 'Bandar berdekatan',
+  'Needs attention': 'Perlu perhatian',
+  New: 'Baharu',
+  'New and edited listings enter the admin verification queue before appearing publicly.':
+    'Penyenaraian baharu dan yang disunting masuk baris gilir pengesahan admin sebelum dipaparkan secara awam.',
+  'Newly added stops start at 10:00. Use the arrow controls to reorder and the ±15m buttons to shift timing.':
+    'Perhentian yang baru ditambah bermula 10:00. Guna kawalan anak panah untuk susun semula dan butang ±15m untuk ubah masa.',
+  'No payment is taken, no slot is reserved, and no booking is confirmed. The operator receives a message in the SME portal.':
+    'Tiada bayaran diambil, tiada slot ditempah, dan tiada tempahan disahkan. Operator menerima mesej dalam portal PKS.',
+  OpenStreetMap: 'OpenStreetMap',
+  'Operator verified by JOHOR360 staff. Verification covers business registration and safety documentation — not a quality guarantee.':
+    'Operator disahkan oleh staf JOHOR360. Pengesahan meliputi pendaftaran perniagaan dan dokumen keselamatan — bukan jaminan kualiti.',
+  'Our answer': 'Jawapan kami',
+  Outdoor: 'Luar bangunan',
+  'Outdoor experiences are scored down and indoor alternatives are lifted. This demonstrates adaptive matching — the engine responds to conditions, not just preferences.':
+    'Pengalaman luar diturunkan skor dan alternatif dalam bangunan dinaikkan. Ini menunjukkan pemadanan adaptif — enjin bertindak balas kepada keadaan, bukan hanya keutamaan.',
+  'Overall rating': 'Penilaian keseluruhan',
+  Performance: 'Prestasi',
+  'Plan summary': 'Ringkasan pelan',
+  'Platform overview': 'Gambaran platform',
+  'Platform settings': 'Tetapan platform',
+  'Print itinerary': 'Cetak itinerari',
+  Promise: 'Janji',
+  Publish: 'Terbitkan',
+  'Rain scenario active': 'Senario hujan aktif',
+  'Ranked by five weighted factors. Hard constraints applied first.':
+    'Disusun mengikut lima faktor berpemberat. Kekangan keras digunakan dahulu.',
+  Rate: 'Kadar',
+  Rating: 'Penilaian',
+  'Recent activity': 'Aktiviti terkini',
+  'Red bars are stations with no published operator — the coverage gap the platform exists to close.':
+    'Bar merah ialah stesen tanpa operator diterbitkan — jurang liputan yang platform ini wujud untuk tutup.',
+  Reject: 'Tolak',
+  Rejected: 'Ditolak',
+  'Remember me': 'Ingat saya',
+  Rename: 'Namakan semula',
+  'Replies are not actually sent — this is a mock enquiry. Status changes are saved in your browser.':
+    'Balasan tidak benar-benar dihantar — ini pertanyaan mock. Perubahan status disimpan dalam pelayar anda.',
+  'Request changes': 'Minta perubahan',
+  Reset: 'Set semula',
+  'Reset password': 'Set semula kata laluan',
+  'Reset scenario': 'Set semula senario',
+  Responded: 'Dijawab',
+  Return: 'Balik',
+  'Review before submitting. You can edit after submitting, but it returns to the queue.':
+    'Semak sebelum menghantar. Anda boleh sunting selepas hantar, tetapi ia kembali ke baris gilir.',
+  'Reviews are queued for moderation and appear in the admin review queue before publishing.':
+    'Ulasan dibariskan untuk moderasi dan muncul dalam baris gilir ulasan admin sebelum diterbitkan.',
+  'Sample availability': 'Ketersediaan contoh',
+  'Sample availability for demonstration. This is not a live booking calendar and no slot is held.':
+    'Ketersediaan contoh untuk demonstrasi. Ini bukan kalendar tempahan langsung dan tiada slot dipegang.',
+  'Sample schedule. Not live KTMB data — always confirm departure times before travelling.':
+    'Jadual contoh. Bukan data KTMB langsung — sentiasa sahkan masa berlepas sebelum bergerak.',
+  Save: 'Simpan',
+  'Saved itineraries': 'Itinerari disimpan',
+  'Score breakdown': 'Pecahan skor',
+  'Score shown as percentage': 'Skor dipaparkan sebagai peratusan',
+  Seated: 'Duduk',
+  'See matches': 'Lihat padanan',
+  'See my matches': 'Lihat padanan saya',
+  'Send reset link': 'Hantar pautan set semula',
+  Share: 'Kongsi',
+  'Skip setup': 'Langkau persediaan',
+  Source: 'Sumber',
+  'Start setup': 'Mula persediaan',
+  'Station pins show how many verified experiences sit at each stop. Price pins are individual listings, offset slightly so they do not overlap.':
+    'Pin stesen menunjukkan berapa pengalaman disahkan di setiap perhentian. Pin harga ialah penyenaraian individu, dialihkan sedikit supaya tidak bertindih.',
+  'Step-free': 'Tanpa tangga',
+  'Suggested windows': 'Tetingkap dicadangkan',
+  "That page isn't on the ETS line. Head back to discovery and pick a station.":
+    'Halaman itu tiada dalam laluan ETS. Kembali ke penemuan dan pilih stesen.',
+  'The ETS now runs from Gemas junction south through Segamat, Labis, Bekok, Paloh and Kluang to JB Sentral. Each stop is inside Johor except Gemas.':
+    'ETS kini berjalan dari persimpangan Gemas ke selatan melalui Segamat, Labis, Bekok, Paloh dan Kluang ke JB Sentral. Setiap perhentian berada dalam Johor kecuali Gemas.',
+  'The problem is not that Johor has nothing to offer. It is that nobody tells you where it is.':
+    'Masalahnya bukan Johor tiada apa untuk ditawarkan. Masalahnya tiada siapa memberitahu anda di mana ia.',
+  'These are proposed product weights for the mockup, not research-validated coefficients. We state this openly rather than implying statistical rigour we do not have.':
+    'Ini pemberat produk yang dicadangkan untuk mockup, bukan pekali yang disahkan penyelidikan. Kami nyatakan secara terbuka daripada memberi gambaran ketepatan statistik yang kami tiada.',
+  'This drives the matching engine. You can change any of it later — nothing here is a permanent profile.':
+    'Ini memacu enjin pemadanan. Anda boleh ubah kemudian — tiada di sini profil kekal.',
+  'This is a deliberate design choice. A wheelchair user who is shown an inaccessible listing and told it is “92% match” has been failed twice.':
+    'Ini pilihan reka bentuk yang disengajakan. Pengguna kerusi roda yang ditunjukkan penyenaraian tidak boleh diakses dan diberitahu ia “92% padanan” telah dikecewakan dua kali.',
+  'This is a mock enquiry. Nothing is sent externally, no payment is taken and no booking is created.':
+    'Ini pertanyaan mock. Tiada dihantar ke luar, tiada bayaran diambil dan tiada tempahan dicipta.',
+  'Three commitments': 'Tiga komitmen',
+  'Ticked requirements are applied as hard constraints — an experience that fails them is excluded from your results entirely.':
+    'Keperluan yang ditanda digunakan sebagai kekangan keras — pengalaman yang gagal akan dikecualikan sepenuhnya dari hasil anda.',
+  Timeline: 'Garis masa',
+  'Tip: switch role to Administrator to approve this listing and see it appear in visitor discovery.':
+    'Tip: tukar peranan ke Pentadbir untuk meluluskan penyenaraian ini dan lihat ia muncul dalam penemuan pelawat.',
+  'Transparent by default': 'Telus secara lalai',
+  'Travel purpose': 'Tujuan perjalanan',
+  Unpublish: 'Nyahterbit',
+  'Upload document': 'Muat naik dokumen',
+  'Verification documents': 'Dokumen pengesahan',
+  'Verification history': 'Sejarah pengesahan',
+  'Verification policy': 'Polisi pengesahan',
+  'Verification queue': 'Baris gilir pengesahan',
+  View: 'Lihat',
+  Views: 'Paparan',
+  'Views over 7 days': 'Paparan 7 hari',
+  'Visitor feedback': 'Maklum balas pelawat',
+  'Visitor insights': 'Wawasan pelawat',
+  'Visitor purpose distribution': 'Taburan tujuan pelawat',
+  'Visitor setup': 'Persediaan pelawat',
+  'Weather scenario': 'Senario cuaca',
+  Wheelchair: 'Kerusi roda',
+  'Why these?': 'Kenapa ini?',
+  'You are viewing the SME operator portal as a demo account. All metrics are simulated demonstration data and do not represent a real business.':
+    'Anda melihat portal operator PKS sebagai akaun demo. Semua metrik ialah data demonstrasi simulasi dan tidak mewakili perniagaan sebenar.',
+}

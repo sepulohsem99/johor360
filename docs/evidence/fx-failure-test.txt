@@ -1,0 +1,14 @@
+--- 1. live fetch (both providers up) ---
+source: ExchangeRate-API (open access) | cached: false | MYR->SGD: 0.3153613635912296
+
+--- 2. cache hit (no force) ---
+cached: true | ageOk: true
+
+--- 3. primary provider down, fallback works ---
+source: Frankfurter (ECB reference) | SGD: 0.3152874831433125
+
+--- 4. both providers down WITH warm cache ---
+returned: snapshot | cached: true | source: ExchangeRate-API (open access)
+
+--- 5. both providers down, cache cleared -> must be null, never invented ---
+returned: null (honest)

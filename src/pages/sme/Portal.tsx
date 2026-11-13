@@ -48,8 +48,8 @@ export function SmeDashboard() {
           </p>
         </div>
         <div className="flex gap-2">
-          <Button variant="ghost" size="sm" icon="eye" onClick={() => nav(`/operators/${operator.id}`)}><T>View public profile</T></Button>
-          <Button size="sm" icon="plus" onClick={() => nav('/sme/listings/new')}><T>New listing</T></Button>
+          <Button variant="ghost" size="sm" icon="eye" onClick={() => nav(`/operators/${operator.id}`)}><T><T>View public profile</T></T></Button>
+          <Button size="sm" icon="plus" onClick={() => nav('/sme/listings/new')}><T><T>New listing</T></T></Button>
         </div>
       </div>
 
@@ -73,8 +73,8 @@ export function SmeDashboard() {
           {/* listings */}
           <div className="rounded-2xl border border-line bg-raised p-4">
             <div className="mb-3 flex items-center justify-between">
-              <h2 className="text-[14px] font-extrabold"><T>Your listings</T></h2>
-              <Link to="/sme/listings" className="text-[11px] font-bold text-royal"><T>Manage all</T></Link>
+              <h2 className="text-[14px] font-extrabold"><T><T>Your listings</T></T></h2>
+              <Link to="/sme/listings" className="text-[11px] font-bold text-royal"><T><T>Manage all</T></T></Link>
             </div>
             <div className="space-y-2">
               {listings.map((l) => (
@@ -89,15 +89,15 @@ export function SmeDashboard() {
                   <VerificationBadge status={l.verification} size="xs" />
                 </Link>
               ))}
-              {listings.length === 0 && <p className="py-6 text-center text-[12px] text-ink-faint"><T>No listings yet.</T></p>}
+              {listings.length === 0 && <p className="py-6 text-center text-[12px] text-ink-faint"><T><T>No listings yet.</T></T></p>}
             </div>
           </div>
 
           {/* enquiries */}
           <div className="rounded-2xl border border-line bg-raised p-4">
             <div className="mb-3 flex items-center justify-between">
-              <h2 className="text-[14px] font-extrabold"><T>Recent enquiries</T></h2>
-              <Link to="/sme/enquiries" className="text-[11px] font-bold text-royal"><T>View all</T></Link>
+              <h2 className="text-[14px] font-extrabold"><T><T>Recent enquiries</T></T></h2>
+              <Link to="/sme/enquiries" className="text-[11px] font-bold text-royal"><T><T>View all</T></T></Link>
             </div>
             <div className="space-y-2">
               {opsEnquiries.slice(0, 4).map((e) => (
@@ -118,7 +118,7 @@ export function SmeDashboard() {
 
         <aside className="space-y-3">
           <div className="rounded-2xl border border-line bg-raised p-4">
-            <p className="text-[10px] font-bold uppercase tracking-wider text-ink-faint"><T>Enquiry funnel</T></p>
+            <p className="text-[10px] font-bold uppercase tracking-wider text-ink-faint"><T><T>Enquiry funnel</T></T></p>
             <div className="mt-3 space-y-2.5">
               {[
                 ['Received', opsEnquiries.length, 'royal'],
@@ -138,7 +138,7 @@ export function SmeDashboard() {
           </div>
 
           <div className="rounded-2xl border border-line bg-raised p-4">
-            <p className="text-[10px] font-bold uppercase tracking-wider text-ink-faint">Listing views</p>
+            <p className="text-[10px] font-bold uppercase tracking-wider text-ink-faint"><T>Listing views</T></p>
             <div className="mt-3 space-y-2">
               {listings.slice(0, 4).map((l) => (
                 <div key={l.id}>
@@ -155,7 +155,7 @@ export function SmeDashboard() {
           </div>
 
           <div className="rounded-2xl bg-navy p-4">
-            <p className="text-[10px] font-bold uppercase tracking-wider text-white/45"><T>Next step</T></p>
+            <p className="text-[10px] font-bold uppercase tracking-wider text-white/45"><T><T>Next step</T></T></p>
             <p className="mt-1 text-[12.5px] font-bold text-white">
               {listings.some((l) => l.verification === 'pending') ? 'A listing is waiting for verification' : 'Respond to new enquiries'}
             </p>
@@ -165,7 +165,7 @@ export function SmeDashboard() {
                 : 'Fast replies are the single biggest factor in visitor conversion.'}
             </p>
             <Button size="sm" variant="ghost" className="mt-3 w-full !bg-white/10 !border-white/20 !text-white hover:!bg-white/15" onClick={() => nav('/sme/enquiries')}>
-              <T>Open enquiries</T>
+              <T><T>Open enquiries</T></T>
             </Button>
           </div>
         </aside>
@@ -188,10 +188,10 @@ export function SmeListings() {
     <div className="space-y-5">
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div>
-          <h1 className="text-[24px] font-extrabold">Listings</h1>
+          <h1 className="text-[24px] font-extrabold"><T>Listings</T></h1>
           <p className="mt-1 text-[13px] text-ink-mute">{listings.length} experiences · {listings.filter((l) => l.verification === 'verified').length} published</p>
         </div>
-        <Button size="sm" icon="plus" onClick={() => nav('/sme/listings/new')}>Create listing</Button>
+        <Button size="sm" icon="plus" onClick={() => nav('/sme/listings/new')}><T>Create listing</T></Button>
       </div>
 
       <div className="flex flex-wrap gap-1.5">
@@ -210,7 +210,7 @@ export function SmeListings() {
       </div>
 
       {shown.length === 0 ? (
-        <EmptyState icon="package" title={tx("No listings in this state")} body={tx("Try a different filter, or create a new experience listing.")} action={<Button onClick={() => nav('/sme/listings/new')} icon="plus">Create listing</Button>} />
+        <EmptyState icon="package" title={tx("No listings in this state")} body={tx("Try a different filter, or create a new experience listing.")} action={<Button onClick={() => nav('/sme/listings/new')} icon="plus"><T>Create listing</T></Button>} />
       ) : (
         <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
           {shown.map((l) => (
@@ -235,7 +235,7 @@ export function SmeListings() {
                 </div>
 
                 <div className="mt-auto flex gap-1.5 pt-3">
-                  <Button size="sm" variant="ghost" className="flex-1" icon="pen-line" onClick={() => nav(`/sme/listings/${l.id}/edit`)}>Edit</Button>
+                  <Button size="sm" variant="ghost" className="flex-1" icon="pen-line" onClick={() => nav(`/sme/listings/${l.id}/edit`)}><T>Edit</T></Button>
                   <Button size="sm" variant="quiet" icon="eye" onClick={() => nav(`/experiences/${l.id}`)} aria-label="Preview" />
                 </div>
               </div>
@@ -370,9 +370,9 @@ export function SmeListingForm() {
           <span className="mx-auto grid h-14 w-14 place-items-center rounded-2xl bg-gold-100 text-gold-700">
             <Icon name="clipboard-check" size={26} />
           </span>
-          <h1 className="mt-4 text-[21px] font-extrabold"><T>Submitted for verification</T></h1>
+          <h1 className="mt-4 text-[21px] font-extrabold"><T><T>Submitted for verification</T></T></h1>
           <p className="mx-auto mt-2 max-w-sm text-[13px] leading-relaxed text-ink-mute">
-            “{f.title}” is now in the admin verification queue with status <strong><T>Pending verification</T></strong>. It
+            “{f.title}” is now in the admin verification queue with status <strong><T><T>Pending verification</T></T></strong>. It
             will not appear in visitor discovery until an administrator approves it.
           </p>
           <div className="mx-auto mt-4 max-w-xs rounded-xl bg-canvas p-3 text-left">
@@ -389,11 +389,11 @@ export function SmeListingForm() {
             ))}
           </div>
           <div className="mt-5 flex flex-col gap-2 sm:flex-row sm:justify-center">
-            <Button variant="ghost" onClick={() => nav('/sme/listings')} icon="package"><T>Back to listings</T></Button>
-            <Button onClick={() => nav('/admin/verifications')} icon="shield-check"><T>Open admin queue</T></Button>
+            <Button variant="ghost" onClick={() => nav('/sme/listings')} icon="package"><T><T>Back to listings</T></T></Button>
+            <Button onClick={() => nav('/admin/verifications')} icon="shield-check"><T><T>Open admin queue</T></T></Button>
           </div>
           <p className="mt-3 text-[10.5px] text-ink-faint">
-            Tip: switch role to Administrator to approve this listing and see it appear in visitor discovery.
+            <T>Tip: switch role to Administrator to approve this listing and see it appear in visitor discovery.</T>
           </p>
         </div>
       </div>
@@ -414,7 +414,7 @@ export function SmeListingForm() {
         <div>
           <h1 className="text-[24px] font-extrabold">{existing ? 'Edit listing' : 'Create a listing'}</h1>
           <p className="mt-1 text-[13px] text-ink-mute">
-            New and edited listings enter the admin verification queue before appearing publicly.
+            <T>New and edited listings enter the admin verification queue before appearing publicly.</T>
           </p>
         </div>
         {existing && <VerificationBadge status={existing.verification} />}
@@ -460,7 +460,7 @@ export function SmeListingForm() {
               <input className="field" value={f.town} onChange={(e) => set('town', e.target.value)} placeholder="Kluang" />
             </Field>
             <div>
-              <p className="label">Educational tags</p>
+              <p className="label"><T>Educational tags</T></p>
               <div className="flex flex-wrap gap-1.5">
                 {TAGS.map((t) => (
                   <button key={t.id} onClick={() => toggleTag(t.id)}
@@ -492,16 +492,16 @@ export function SmeListingForm() {
             <div className="grid gap-3 sm:grid-cols-2">
               <Field label="Physical intensity">
                 <select className="field" value={f.intensity} onChange={(e) => set('intensity', e.target.value as FormState['intensity'])}>
-                  <option value="low">Low — seated or gentle</option>
-                  <option value="moderate">Moderate — some walking</option>
-                  <option value="high">High — demanding</option>
+                  <option value="low"><T>Low — seated or gentle</T></option>
+                  <option value="moderate"><T>Moderate — some walking</T></option>
+                  <option value="high"><T>High — demanding</T></option>
                 </select>
               </Field>
               <Field label="Setting">
                 <select className="field" value={f.setting} onChange={(e) => set('setting', e.target.value as FormState['setting'])}>
-                  <option value="indoor">Indoor</option>
-                  <option value="outdoor">Outdoor</option>
-                  <option value="mixed">Mixed</option>
+                  <option value="indoor"><T>Indoor</T></option>
+                  <option value="outdoor"><T>Outdoor</T></option>
+                  <option value="mixed"><T>Mixed</T></option>
                 </select>
               </Field>
             </div>
@@ -514,8 +514,8 @@ export function SmeListingForm() {
         {step === 2 && (
           <div className="space-y-3">
             <div>
-              <p className="label">Accessibility</p>
-              <p className="mb-2 text-[11.5px] text-ink-mute"><T>Answer honestly — these become hard constraints in matching.</T></p>
+              <p className="label"><T>Accessibility</T></p>
+              <p className="mb-2 text-[11.5px] text-ink-mute"><T><T>Answer honestly — these become hard constraints in matching.</T></T></p>
               <div className="grid gap-2 sm:grid-cols-3">
                 {([['wheelchair', 'Wheelchair accessible'], ['stepFree', 'Step-free route'], ['seatedOption', 'Seated option']] as const).map(([k, l]) => (
                   <label key={k} className={clsx('flex cursor-pointer items-center gap-2 rounded-xl border px-3 py-2.5 transition-colors',
@@ -537,7 +537,7 @@ export function SmeListingForm() {
 
         {step === 3 && (
           <div className="space-y-3">
-            <p className="text-[12.5px] text-ink-mute">Review before submitting. You can edit after submitting, but it returns to the queue.</p>
+            <p className="text-[12.5px] text-ink-mute"><T>Review before submitting. You can edit after submitting, but it returns to the queue.</T></p>
             <div className="rounded-xl bg-canvas p-3.5">
               <p className="text-[10px] font-bold uppercase tracking-wider text-royal">
                 {CATEGORIES.find((c) => c.id === f.category)?.label} · {stationById(f.stationId)?.name}
@@ -552,15 +552,15 @@ export function SmeListingForm() {
                 <span className="capitalize">{f.setting}</span>
               </div>
               <div className="mt-2 flex gap-1">
-                {f.wheelchair && <span className="rounded bg-emerald2-50 px-1.5 py-0.5 text-[9.5px] font-bold text-emerald2-700">Wheelchair</span>}
-                {f.stepFree && <span className="rounded bg-emerald2-50 px-1.5 py-0.5 text-[9.5px] font-bold text-emerald2-700">Step-free</span>}
-                {f.seatedOption && <span className="rounded bg-emerald2-50 px-1.5 py-0.5 text-[9.5px] font-bold text-emerald2-700">Seated</span>}
+                {f.wheelchair && <span className="rounded bg-emerald2-50 px-1.5 py-0.5 text-[9.5px] font-bold text-emerald2-700"><T>Wheelchair</T></span>}
+                {f.stepFree && <span className="rounded bg-emerald2-50 px-1.5 py-0.5 text-[9.5px] font-bold text-emerald2-700"><T>Step-free</T></span>}
+                {f.seatedOption && <span className="rounded bg-emerald2-50 px-1.5 py-0.5 text-[9.5px] font-bold text-emerald2-700"><T>Seated</T></span>}
               </div>
             </div>
             <div className="rounded-xl border border-gold-200 bg-gold-50/60 p-3">
               <p className="flex items-start gap-2 text-[11px] leading-relaxed text-gold-900">
                 <Icon name="shield-check" size={13} className="mt-0.5 shrink-0" />
-                <T>Submitting sends this listing to the admin queue with status</T> <strong><T>Pending verification</T></strong>. It
+                <T><T>Submitting sends this listing to the admin queue with status</T></T> <strong><T><T>Pending verification</T></T></strong>. It
                 will not be visible to visitors until approved. In this mockup, you can approve it yourself by
                 switching to the Administrator role.
               </p>
@@ -576,13 +576,13 @@ export function SmeListingForm() {
         <div className="flex gap-2">
           {existing && (
             <Button variant="ghost" size="sm" onClick={() => { setExperienceStatus(existing.id, 'draft'); toast('Saved as draft', 'Not submitted for verification.', 'info'); nav('/sme/listings') }}>
-              <T>Save draft</T>
+              <T><T>Save draft</T></T>
             </Button>
           )}
           {step < 3 ? (
-            <Button onClick={() => setStep(step + 1)} disabled={!canNext()} iconRight="arrow-right"><T>Continue</T></Button>
+            <Button onClick={() => setStep(step + 1)} disabled={!canNext()} iconRight="arrow-right"><T><T>Continue</T></T></Button>
           ) : (
-            <Button onClick={submit} icon="send"><T>Submit for verification</T></Button>
+            <Button onClick={submit} icon="send"><T><T>Submit for verification</T></T></Button>
           )}
         </div>
       </div>
@@ -610,8 +610,8 @@ export function SmeEnquiries() {
     <div className="space-y-5">
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
-          <h1 className="text-[24px] font-extrabold"><T>Enquiries</T></h1>
-          <p className="mt-1 text-[13px] text-ink-mute"><T>Visitor enquiries are not bookings. You keep control of the conversation.</T></p>
+          <h1 className="text-[24px] font-extrabold"><T><T>Enquiries</T></T></h1>
+          <p className="mt-1 text-[13px] text-ink-mute"><T><T>Visitor enquiries are not bookings. You keep control of the conversation.</T></T></p>
         </div>
         <DemoTag label={tx("Demo enquiries")} />
       </div>
@@ -658,17 +658,17 @@ export function SmeEnquiries() {
                       className="field !h-7 !w-auto !py-0 !text-[10.5px] font-semibold"
                       aria-label={tx("Update enquiry status")}
                     >
-                      <option value="new">New</option>
-                      <option value="in_review"><T>In review</T></option>
-                      <option value="responded">Responded</option>
-                      <option value="closed">Closed</option>
+                      <option value="new"><T>New</T></option>
+                      <option value="in_review"><T><T>In review</T></T></option>
+                      <option value="responded"><T>Responded</T></option>
+                      <option value="closed"><T>Closed</T></option>
                     </select>
                   </div>
                 </div>
                 <p className="mt-2 rounded-lg bg-canvas px-2.5 py-2 text-[11.5px] leading-relaxed text-ink-soft">{e.message}</p>
                 <div className="mt-2 flex items-center justify-between">
                   <p className="truncate text-[10px] text-ink-faint">re: {exp?.title ?? 'Listing'}</p>
-                  <button onClick={() => setOpen(e.id)} className="text-[10.5px] font-bold text-royal hover:text-royal-700"><T>Open details</T></button>
+                  <button onClick={() => setOpen(e.id)} className="text-[10.5px] font-bold text-royal hover:text-royal-700"><T><T>Open details</T></T></button>
                 </div>
               </div>
             )
@@ -678,8 +678,8 @@ export function SmeEnquiries() {
 
       <Modal open={!!active} onClose={() => setOpen(null)} title={tx("Enquiry details")}
         footer={<>
-          <Button variant="quiet" size="sm" onClick={() => setOpen(null)}><T>Close</T></Button>
-          <Button size="sm" icon="send" onClick={() => { if (active) { setStatus(active.id, 'responded'); setOpen(null) } }}>Mark responded</Button>
+          <Button variant="quiet" size="sm" onClick={() => setOpen(null)}><T><T>Close</T></T></Button>
+          <Button size="sm" icon="send" onClick={() => { if (active) { setStatus(active.id, 'responded'); setOpen(null) } }}><T>Mark responded</T></Button>
         </>}>
         {active && (
           <div className="space-y-3">
@@ -695,11 +695,11 @@ export function SmeEnquiries() {
               ))}
             </div>
             <div className="rounded-lg border border-line px-2.5 py-2">
-              <p className="text-[9.5px] font-bold uppercase tracking-wider text-ink-faint"><T>Message</T></p>
+              <p className="text-[9.5px] font-bold uppercase tracking-wider text-ink-faint"><T><T>Message</T></T></p>
               <p className="mt-1 text-[12px] leading-relaxed text-ink-soft">{active.message}</p>
             </div>
             <div className="rounded-lg bg-gold-50 px-2.5 py-2 text-[10.5px] leading-relaxed text-gold-900">
-              Replies are not actually sent — this is a mock enquiry. Status changes are saved in your browser.
+              <T>Replies are not actually sent — this is a mock enquiry. Status changes are saved in your browser.</T>
             </div>
           </div>
         )}
@@ -720,7 +720,7 @@ export function SmeReviews() {
     <div className="space-y-5">
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
-          <h1 className="text-[24px] font-extrabold">Visitor feedback</h1>
+          <h1 className="text-[24px] font-extrabold"><T>Visitor feedback</T></h1>
           <p className="mt-1 text-[13px] text-ink-mute">{opsReviews.length} reviews · demonstration data only</p>
         </div>
         <DemoTag label={tx("Simulated reviews")} />
@@ -728,7 +728,7 @@ export function SmeReviews() {
 
       <div className="grid gap-3 lg:grid-cols-[280px_1fr]">
         <div className="rounded-2xl border border-line bg-raised p-4">
-          <p className="text-[10px] font-bold uppercase tracking-wider text-ink-faint">Overall rating</p>
+          <p className="text-[10px] font-bold uppercase tracking-wider text-ink-faint"><T>Overall rating</T></p>
           <div className="mt-1 flex items-end gap-2">
             <p className="text-[40px] font-extrabold leading-none text-navy num">{avg ? avg.toFixed(1) : '—'}</p>
             <div className="pb-1.5"><Stars value={avg} size={13} /></div>
@@ -794,8 +794,8 @@ export function SmeAnalytics() {
     <div className="space-y-5">
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
-          <h1 className="text-[24px] font-extrabold">Performance</h1>
-          <p className="mt-1 text-[13px] text-ink-mute"><T>All figures are simulated demonstration data.</T></p>
+          <h1 className="text-[24px] font-extrabold"><T>Performance</T></h1>
+          <p className="mt-1 text-[13px] text-ink-mute"><T><T>All figures are simulated demonstration data.</T></T></p>
         </div>
         <DemoTag label="Simulated metrics" />
       </div>
@@ -809,7 +809,7 @@ export function SmeAnalytics() {
 
       <div className="grid gap-4 lg:grid-cols-2">
         <div className="rounded-2xl border border-line bg-raised p-4">
-          <p className="text-[12px] font-bold text-navy">Views over 7 days</p>
+          <p className="text-[12px] font-bold text-navy"><T>Views over 7 days</T></p>
           <div className="mt-4 flex h-[132px] items-end gap-2">
             {weekly.map((v, i) => (
               <div key={i} className="flex flex-1 flex-col items-center gap-1">
@@ -818,11 +818,11 @@ export function SmeAnalytics() {
               </div>
             ))}
           </div>
-          <p className="mt-2 text-[10px] text-ink-faint"><T>Simulated traffic pattern for the mockup.</T></p>
+          <p className="mt-2 text-[10px] text-ink-faint"><T><T>Simulated traffic pattern for the mockup.</T></T></p>
         </div>
 
         <div className="rounded-2xl border border-line bg-raised p-4">
-          <p className="text-[12px] font-bold text-navy"><T>Enquiry sources</T></p>
+          <p className="text-[12px] font-bold text-navy"><T><T>Enquiry sources</T></T></p>
           <div className="mt-3 space-y-2.5">
             {[
               ['Station page', 42], ['Matching engine', 31], ['Map view', 16], ['Direct link', 11],
@@ -842,16 +842,16 @@ export function SmeAnalytics() {
       </div>
 
       <div className="rounded-2xl border border-line bg-raised p-4">
-        <p className="text-[12px] font-bold text-navy">Listing performance</p>
+        <p className="text-[12px] font-bold text-navy"><T>Listing performance</T></p>
         <div className="mt-3 overflow-x-auto">
           <table className="w-full min-w-[520px] text-left">
             <thead>
               <tr className="border-b border-line text-[10px] uppercase tracking-wider text-ink-faint">
-                <th className="pb-2 font-bold">Listing</th>
-                <th className="pb-2 font-bold">Views</th>
-                <th className="pb-2 font-bold"><T>Enquiries</T></th>
-                <th className="pb-2 font-bold">Rate</th>
-                <th className="pb-2 font-bold">Rating</th>
+                <th className="pb-2 font-bold"><T>Listing</T></th>
+                <th className="pb-2 font-bold"><T>Views</T></th>
+                <th className="pb-2 font-bold"><T><T>Enquiries</T></T></th>
+                <th className="pb-2 font-bold"><T>Rate</T></th>
+                <th className="pb-2 font-bold"><T>Rating</T></th>
               </tr>
             </thead>
             <tbody>
@@ -889,8 +889,8 @@ export function SmeProfilePage() {
     <div className="mx-auto max-w-3xl space-y-5">
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div>
-          <h1 className="text-[24px] font-extrabold"><T>Operator profile</T></h1>
-          <p className="mt-1 text-[13px] text-ink-mute"><T>This is what visitors see when they tap your business name.</T></p>
+          <h1 className="text-[24px] font-extrabold"><T><T>Operator profile</T></T></h1>
+          <p className="mt-1 text-[13px] text-ink-mute"><T><T>This is what visitors see when they tap your business name.</T></T></p>
         </div>
         <VerificationBadge status={operator.verification} />
       </div>
@@ -927,32 +927,32 @@ export function SmeProfilePage() {
         </div>
 
         <div className="mt-4 flex justify-end">
-          <Button onClick={() => toast('Profile saved (mock)', 'Changes stored in this browser only.', 'success')} icon="save"><T>Save changes</T></Button>
+          <Button onClick={() => toast('Profile saved (mock)', 'Changes stored in this browser only.', 'success')} icon="save"><T><T>Save changes</T></T></Button>
         </div>
       </div>
 
       <div className="rounded-2xl border border-line bg-raised p-5">
-        <p className="text-[13px] font-extrabold">Verification documents</p>
-        <p className="mt-1 text-[11.5px] text-ink-mute"><T>Uploads are simulated — no files leave this browser.</T></p>
+        <p className="text-[13px] font-extrabold"><T>Verification documents</T></p>
+        <p className="mt-1 text-[11.5px] text-ink-mute"><T><T>Uploads are simulated — no files leave this browser.</T></T></p>
         <div className="mt-3 space-y-1.5">
           {operator.documents.map((d) => (
             <div key={d} className="flex items-center justify-between rounded-lg border border-line px-2.5 py-2">
               <span className="flex items-center gap-2 text-[11.5px] text-ink-soft">
                 <Icon name="file-text" size={13} className="text-ink-faint" /> {d}
               </span>
-              <span className="rounded bg-emerald2-50 px-1.5 py-0.5 text-[9.5px] font-bold text-emerald2-700"><T>On file</T></span>
+              <span className="rounded bg-emerald2-50 px-1.5 py-0.5 text-[9.5px] font-bold text-emerald2-700"><T><T>On file</T></T></span>
             </div>
           ))}
         </div>
         <Button variant="ghost" size="sm" className="mt-3" icon="upload"
           onClick={() => toast('Upload simulated', 'File uploads are not functional in this mockup.', 'info')}>
-          Upload document
+          <T>Upload document</T>
         </Button>
       </div>
 
       <div className="rounded-2xl border border-line bg-raised p-5">
         <p className="text-[13px] font-extrabold">Promotions & packages</p>
-        <p className="mt-1 text-[11.5px] text-ink-mute">Bundle listings or run a seasonal offer.</p>
+        <p className="mt-1 text-[11.5px] text-ink-mute"><T>Bundle listings or run a seasonal offer.</T></p>
         <div className="mt-3 space-y-1.5">
           {[
             { t: 'Weekend pair: batik + coffee cupping', d: '15% off when booked together', p: 'RM119', on: true },
@@ -975,7 +975,7 @@ export function SmeProfilePage() {
         </div>
         <Button variant="ghost" size="sm" className="mt-3" icon="plus"
           onClick={() => toast('Promotion builder (mock)', 'Package creation would open here.', 'info')}>
-          Create package
+          <T>Create package</T>
         </Button>
       </div>
 

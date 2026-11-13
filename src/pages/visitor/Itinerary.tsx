@@ -39,7 +39,7 @@ export default function ItineraryBuilder() {
           icon="route"
           title={tx("No itinerary yet")}
           body="Generate one from your matches, or build it manually by adding experiences from the corridor."
-          action={<Button onClick={() => nav('/visitor/recommendations')} icon="sparkles"><T>Generate from matches</T></Button>}
+          action={<Button onClick={() => nav('/visitor/recommendations')} icon="sparkles"><T><T>Generate from matches</T></T></Button>}
         />
       </div>
     )
@@ -132,10 +132,10 @@ export default function ItineraryBuilder() {
           </p>
         </div>
         <div className="flex flex-wrap gap-2">
-          <Button variant="ghost" size="sm" icon="pen-line" onClick={() => { setNewName(active.name); setRenameOpen(true) }}>Rename</Button>
-          <Button variant="ghost" size="sm" icon="copy" onClick={duplicate}>Duplicate</Button>
-          <Button variant="ghost" size="sm" icon="share-2" onClick={() => setShareOpen(true)}>Share</Button>
-          <Button variant="navy" size="sm" icon="plus" onClick={() => setAddOpen(true)}><T>Add stop</T></Button>
+          <Button variant="ghost" size="sm" icon="pen-line" onClick={() => { setNewName(active.name); setRenameOpen(true) }}><T>Rename</T></Button>
+          <Button variant="ghost" size="sm" icon="copy" onClick={duplicate}><T>Duplicate</T></Button>
+          <Button variant="ghost" size="sm" icon="share-2" onClick={() => setShareOpen(true)}><T>Share</T></Button>
+          <Button variant="navy" size="sm" icon="plus" onClick={() => setAddOpen(true)}><T><T>Add stop</T></T></Button>
         </div>
       </div>
 
@@ -162,12 +162,12 @@ export default function ItineraryBuilder() {
         {/* timeline */}
         <div className="space-y-3">
           {sorted.length === 0 ? (
-            <EmptyState icon="calendar-x" title={tx("This itinerary is empty")} body={tx("Add an experience from the corridor, or generate a plan from your matches.")} action={<Button onClick={() => setAddOpen(true)} icon="plus"><T>Add a stop</T></Button>} />
+            <EmptyState icon="calendar-x" title={tx("This itinerary is empty")} body={tx("Add an experience from the corridor, or generate a plan from your matches.")} action={<Button onClick={() => setAddOpen(true)} icon="plus"><T><T>Add a stop</T></T></Button>} />
           ) : (
             <div className="rounded-2xl border border-line bg-raised p-4">
               <div className="mb-3 flex items-center justify-between">
-                <h2 className="text-[14px] font-extrabold">Timeline</h2>
-                <p className="text-[10.5px] text-ink-faint"><T>Drag to reorder · times auto-assign</T></p>
+                <h2 className="text-[14px] font-extrabold"><T>Timeline</T></h2>
+                <p className="text-[10.5px] text-ink-faint"><T><T>Drag to reorder · times auto-assign</T></T></p>
               </div>
 
               <div className="relative">
@@ -262,7 +262,7 @@ export default function ItineraryBuilder() {
           {totals && (
             <div className="rounded-2xl border border-line bg-raised p-4">
               <div className="mb-3 flex items-center justify-between">
-                <h2 className="text-[14px] font-extrabold">Estimated cost</h2>
+                <h2 className="text-[14px] font-extrabold"><T>Estimated cost</T></h2>
                 <DemoTag label="Illustrative" />
               </div>
               <div className="space-y-1.5">
@@ -282,11 +282,11 @@ export default function ItineraryBuilder() {
               </div>
               <div className="mt-2.5 flex items-end justify-between border-t border-line pt-2.5">
                 <div>
-                  <p className="text-[10px] font-bold uppercase tracking-wider text-ink-faint"><T>Total per person</T></p>
+                  <p className="text-[10px] font-bold uppercase tracking-wider text-ink-faint"><T><T>Total per person</T></T></p>
                   <p className="text-[22px] font-extrabold leading-none text-navy num">{money(totals.total)}</p>
                 </div>
                 <div className="text-right">
-                  <p className="text-[10px] font-bold uppercase tracking-wider text-ink-faint"><T>Budget</T></p>
+                  <p className="text-[10px] font-bold uppercase tracking-wider text-ink-faint"><T><T>Budget</T></T></p>
                   <p className={clsx('text-[13px] font-bold num', totals.remaining >= 0 ? 'text-emerald2-700' : 'text-johor')}>
                     {totals.remaining >= 0 ? `${money(totals.remaining)} left` : `${money(Math.abs(totals.remaining))} over`}
                   </p>
@@ -302,7 +302,7 @@ export default function ItineraryBuilder() {
         {/* sidebar */}
         <aside className="space-y-3 lg:sticky lg:top-24 lg:self-start">
           <div className="rounded-2xl border border-line bg-raised p-4">
-            <p className="text-[10px] font-bold uppercase tracking-wider text-ink-faint">Plan summary</p>
+            <p className="text-[10px] font-bold uppercase tracking-wider text-ink-faint"><T>Plan summary</T></p>
             <div className="mt-2.5 space-y-2">
               {[
                 ['Stops', `${sorted.length}`],
@@ -323,28 +323,28 @@ export default function ItineraryBuilder() {
             <div className="flex items-center justify-between">
               <p className="text-[10px] font-bold uppercase tracking-wider text-ink-faint">ETS reference</p>
               <a href={RAIL_SOURCE.url} target="_blank" rel="noreferrer noopener" className="text-[10px] font-bold text-royal underline">
-                KTMB
+                <T>KTMB</T>
               </a>
             </div>
             <div className="mt-2 space-y-1.5">
               <div className="rounded-lg bg-canvas px-2.5 py-2">
-                <p className="text-[10px] text-ink-faint">Departure</p>
+                <p className="text-[10px] text-ink-faint"><T>Departure</T></p>
                 <p className="text-[11.5px] font-bold text-navy">JB Sentral → {station?.name}</p>
                 <p className="text-[10px] text-ink-mute num">~{station?.minutesFromJB} min · 4 services/day</p>
               </div>
               <div className="rounded-lg bg-canvas px-2.5 py-2">
-                <p className="text-[10px] text-ink-faint">Return</p>
+                <p className="text-[10px] text-ink-faint"><T>Return</T></p>
                 <p className="text-[11.5px] font-bold text-navy">{station?.name} → JB Sentral</p>
                 <p className="text-[10px] text-ink-mute num">~{station?.minutesFromJB} min</p>
               </div>
             </div>
             <p className="mt-2 text-[9.5px] leading-relaxed text-ink-faint">
-              Sample schedule. Not live KTMB data — always confirm departure times before travelling.
+              <T>Sample schedule. Not live KTMB data — always confirm departure times before travelling.</T>
             </p>
           </div>
 
           <div className="rounded-2xl border border-line bg-raised p-4">
-            <p className="text-[10px] font-bold uppercase tracking-wider text-ink-faint">Last mile</p>
+            <p className="text-[10px] font-bold uppercase tracking-wider text-ink-faint"><T>Last mile</T></p>
             <div className="mt-2 space-y-1.5">
               {station?.lastMile.slice(0, 3).map((l) => (
                 <div key={l.label} className="flex items-center justify-between">
@@ -359,13 +359,13 @@ export default function ItineraryBuilder() {
           </div>
 
           <div className="space-y-2">
-            <Button className="w-full" variant="ghost" icon="printer" onClick={() => window.print()}>Print itinerary</Button>
+            <Button className="w-full" variant="ghost" icon="printer" onClick={() => window.print()}><T>Print itinerary</T></Button>
             <Button className="w-full" variant="ghost" icon="download" onClick={() => toast('Export queued (mock)', 'A PDF export would be generated here. This is a UI demonstration.', 'info')}>
-              Export PDF
+              <T>Export PDF</T>
             </Button>
             <Button className="w-full" variant="quiet" icon="trash-2"
               onClick={() => { if (confirm(`Delete “${active.name}”?`)) { removeItinerary(active.id); toast('Itinerary deleted', active.name, 'info'); setActiveId(itineraries.find((i) => i.id !== active.id)?.id ?? '') } }}>
-              <T>Delete itinerary</T>
+              <T><T>Delete itinerary</T></T>
             </Button>
           </div>
         </aside>
@@ -373,8 +373,8 @@ export default function ItineraryBuilder() {
 
       {/* rename */}
       <Modal open={renameOpen} onClose={() => setRenameOpen(false)} title="Rename itinerary"
-        footer={<><Button variant="quiet" size="sm" onClick={() => setRenameOpen(false)}><T>Cancel</T></Button>
-          <Button size="sm" onClick={() => { if (newName.trim()) { persist({ ...active, name: newName.trim() }); setRenameOpen(false); toast('Renamed', newName, 'success') } }}>Save</Button></>}>
+        footer={<><Button variant="quiet" size="sm" onClick={() => setRenameOpen(false)}><T><T>Cancel</T></T></Button>
+          <Button size="sm" onClick={() => { if (newName.trim()) { persist({ ...active, name: newName.trim() }); setRenameOpen(false); toast('Renamed', newName, 'success') } }}><T>Save</T></Button></>}>
         <Field label={tx("Itinerary name")} required>
           <input className="field" value={newName} onChange={(e) => setNewName(e.target.value)} autoFocus />
         </Field>
@@ -382,10 +382,10 @@ export default function ItineraryBuilder() {
 
       {/* share */}
       <Modal open={shareOpen} onClose={() => setShareOpen(false)} title="Share itinerary"
-        footer={<Button variant="quiet" size="sm" onClick={() => setShareOpen(false)}><T>Close</T></Button>}>
+        footer={<Button variant="quiet" size="sm" onClick={() => setShareOpen(false)}><T><T>Close</T></T></Button>}>
         <div className="space-y-3">
           <div className="rounded-xl bg-canvas p-3">
-            <p className="text-[11px] font-bold uppercase tracking-wider text-ink-faint">Demo share link</p>
+            <p className="text-[11px] font-bold uppercase tracking-wider text-ink-faint"><T>Demo share link</T></p>
             <p className="mt-1 break-all font-mono text-[11.5px] text-navy">https://johor360.pages.dev/share/{active.id}</p>
           </div>
           <div className="grid grid-cols-3 gap-2">
@@ -398,7 +398,7 @@ export default function ItineraryBuilder() {
             ))}
           </div>
           <p className="rounded-lg bg-gold-50 px-2.5 py-2 text-[10.5px] leading-relaxed text-gold-900">
-            <T>Share is simulated. No public link is created and no data leaves this browser.</T>
+            <T><T>Share is simulated. No public link is created and no data leaves this browser.</T></T>
           </p>
         </div>
       </Modal>
@@ -435,13 +435,13 @@ function AddStopModal({ open, onClose, itinerary, onAdd }: { open: boolean; onCl
         <div className="grid gap-2 sm:grid-cols-2">
           <input className="field" placeholder={tx("Search experiences…")} value={q} onChange={(e) => setQ(e.target.value)} />
           <select className="field" value={stationFilter} onChange={(e) => setStationFilter(e.target.value)}>
-            <option value=""><T>All stations</T></option>
+            <option value=""><T><T>All stations</T></T></option>
             {CORRIDOR.map((s) => <option key={s.id} value={s.id}>{s.name}</option>)}
           </select>
         </div>
         <div className="max-h-[46vh] space-y-1.5 overflow-y-auto">
           {list.length === 0 ? (
-            <p className="py-8 text-center text-[12px] text-ink-faint"><T>No matching experiences left to add.</T></p>
+            <p className="py-8 text-center text-[12px] text-ink-faint"><T><T>No matching experiences left to add.</T></T></p>
           ) : (
             list.map((e) => (
               <button key={e.id}
@@ -460,7 +460,7 @@ function AddStopModal({ open, onClose, itinerary, onAdd }: { open: boolean; onCl
           )}
         </div>
         <p className="rounded-lg bg-gold-50 px-2.5 py-2 text-[10.5px] leading-relaxed text-gold-900">
-          Newly added stops start at 10:00. Use the arrow controls to reorder and the ±15m buttons to shift timing.
+          <T>Newly added stops start at 10:00. Use the arrow controls to reorder and the ±15m buttons to shift timing.</T>
         </p>
       </div>
     </Modal>
@@ -483,17 +483,17 @@ export function ItinerariesIndex() {
     <div className="space-y-5">
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
-          <h1 className="text-[24px] font-extrabold">Saved itineraries</h1>
+          <h1 className="text-[24px] font-extrabold"><T>Saved itineraries</T></h1>
           <p className="mt-1 text-[13px] text-ink-mute">{itineraries.length} plans stored in this browser</p>
         </div>
         <div className="flex gap-2">
-          <Button variant="ghost" size="sm" icon="sparkles" onClick={() => nav('/visitor/recommendations')}><T>Generate new</T></Button>
-          <Button size="sm" icon="route" onClick={() => nav('/visitor/itinerary')}><T>Open builder</T></Button>
+          <Button variant="ghost" size="sm" icon="sparkles" onClick={() => nav('/visitor/recommendations')}><T><T>Generate new</T></T></Button>
+          <Button size="sm" icon="route" onClick={() => nav('/visitor/itinerary')}><T><T>Open builder</T></T></Button>
         </div>
       </div>
 
       {itineraries.length === 0 ? (
-        <EmptyState icon="route" title={tx("No itineraries saved")} body={tx("Generate one from your matches or build it manually.")} action={<Button onClick={() => nav('/visitor/recommendations')}>See matches</Button>} />
+        <EmptyState icon="route" title={tx("No itineraries saved")} body={tx("Generate one from your matches or build it manually.")} action={<Button onClick={() => nav('/visitor/recommendations')}><T>See matches</T></Button>} />
       ) : (
         <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
           {itineraries.map((it) => {

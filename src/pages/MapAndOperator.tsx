@@ -44,7 +44,7 @@ export default function ExploreMap() {
     })
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 18,
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noreferrer">OpenStreetMap</a> contributors',
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noreferrer"><T>OpenStreetMap</T></a> contributors',
     }).addTo(map)
     markersRef.current = L.layerGroup().addTo(map)
     mapObj.current = map
@@ -82,7 +82,7 @@ export default function ExploreMap() {
             <p style="margin:2px 0 0;font-size:14px;font-weight:800;color:#0B1F3A">${s.name}</p>
             <p style="margin:4px 0 0;font-size:11px;color:#3D4E66">${s.district} · ~${s.minutesFromJB} min from JB</p>
             <p style="margin:6px 0 0;font-size:11px;font-weight:700;color:#15856A">${count} experience${count === 1 ? '' : 's'}</p>
-            <a href="/explore/stations/${s.id}" style="display:inline-block;margin-top:8px;font-size:11px;font-weight:700;color:#1769AA;text-decoration:none"><T>View station →</T></a>
+            <a href="/explore/stations/${s.id}" style="display:inline-block;margin-top:8px;font-size:11px;font-weight:700;color:#1769AA;text-decoration:none"><T><T>View station →</T></T></a>
           </div>`
         )
         .on('click', () => setStation(s.id))
@@ -132,8 +132,8 @@ export default function ExploreMap() {
         <div className="shell py-6">
           <div className="flex flex-wrap items-end justify-between gap-3">
             <div>
-              <p className="eyebrow mb-1.5"><T>Experience map</T></p>
-              <h1 className="text-[24px] font-extrabold sm:text-[30px]"><T>The corridor, geographically</T></h1>
+              <p className="eyebrow mb-1.5"><T><T>Experience map</T></T></p>
+              <h1 className="text-[24px] font-extrabold sm:text-[30px]"><T><T>The corridor, geographically</T></T></h1>
               <p className="mt-1.5 max-w-xl text-[13px] leading-relaxed text-ink-mute">
                 Station pins show how many verified experiences sit at each stop. Price pins are individual listings,
                 offset slightly so they stay readable.
@@ -150,7 +150,7 @@ export default function ExploreMap() {
             {/* filters */}
             <div className="flex flex-wrap items-center gap-1.5">
               <button onClick={() => setStation(null)} className={clsx('chip', !station && 'chip-active')}>
-                <T>All stations</T>
+                <T><T>All stations</T></T>
               </button>
               {CORRIDOR.map((s) => (
                 <button key={s.id} onClick={() => flyTo(s.id)} className={clsx('chip', station === s.id && 'chip-active')}>
@@ -162,7 +162,7 @@ export default function ExploreMap() {
             <div className="relative overflow-hidden rounded-2xl border border-line bg-raised">
               <div ref={mapRef} className="h-[420px] w-full sm:h-[520px]" aria-label={tx("Map of Johor ETS corridor experiences")} />
               <div className="pointer-events-none absolute bottom-2 left-2 rounded-lg bg-white/90 px-2 py-1 text-[9.5px] text-ink-mute backdrop-blur-sm">
-                Map data © OpenStreetMap contributors
+                <T>Map data © OpenStreetMap contributors</T>
               </div>
             </div>
 
@@ -176,9 +176,9 @@ export default function ExploreMap() {
           <aside className="space-y-3">
             <div className="rounded-2xl border border-line bg-raised p-4">
               <div className="mb-2.5 flex items-center justify-between">
-                <p className="text-[11px] font-bold uppercase tracking-wider text-ink-faint"><T>Category filter</T></p>
+                <p className="text-[11px] font-bold uppercase tracking-wider text-ink-faint"><T><T>Category filter</T></T></p>
                 {category && (
-                  <button onClick={() => setCategory(null)} className="text-[10px] font-bold text-royal">Clear</button>
+                  <button onClick={() => setCategory(null)} className="text-[10px] font-bold text-royal"><T>Clear</T></button>
                 )}
               </div>
               <div className="flex flex-wrap gap-1.5">
@@ -197,7 +197,7 @@ export default function ExploreMap() {
               </p>
               <div className="max-h-[380px] space-y-1.5 overflow-y-auto">
                 {filtered.length === 0 ? (
-                  <p className="py-6 text-center text-[11.5px] text-ink-faint"><T>No listings match these filters.</T></p>
+                  <p className="py-6 text-center text-[11.5px] text-ink-faint"><T><T>No listings match these filters.</T></T></p>
                 ) : (
                   filtered.map((e) => (
                     <Link key={e.id} to={`/experiences/${e.id}`}
@@ -218,10 +218,10 @@ export default function ExploreMap() {
 
             {selectedExp && (
               <div className="rounded-2xl border border-royal-200 bg-royal-50/50 p-3">
-                <p className="text-[10px] font-bold uppercase tracking-wider text-royal">Highlighted</p>
+                <p className="text-[10px] font-bold uppercase tracking-wider text-royal"><T>Highlighted</T></p>
                 <p className="mt-1 text-[12px] font-bold text-navy">{selectedExp.title}</p>
                 <Link to={`/experiences/${selectedExp.id}`} className="mt-2 inline-flex items-center gap-1 text-[11px] font-bold text-royal">
-                  <T>Open listing</T> <Icon name="arrow-right" size={11} />
+                  <T><T>Open listing</T></T> <Icon name="arrow-right" size={11} />
                 </Link>
               </div>
             )}
@@ -246,7 +246,7 @@ export function OperatorProfile() {
   if (!operator) {
     return (
       <div className="shell py-20">
-        <EmptyState icon="store" title={tx("Operator not found")} body={tx("This demo operator does not exist in the dataset.")} action={<Link to="/explore" className="btn btn-primary btn-md"><T>Browse experiences</T></Link>} />
+        <EmptyState icon="store" title={tx("Operator not found")} body={tx("This demo operator does not exist in the dataset.")} action={<Link to="/explore" className="btn btn-primary btn-md"><T><T>Browse experiences</T></T></Link>} />
       </div>
     )
   }
@@ -258,9 +258,9 @@ export function OperatorProfile() {
         <div className="absolute inset-0 bg-gradient-to-r from-navy-950 via-navy-950/85 to-navy-900/50" />
         <div className="shell relative py-10">
           <nav className="mb-4 flex items-center gap-1.5 text-[11.5px] text-white/40" aria-label="Breadcrumb">
-            <Link to="/" className="hover:text-white/70">Home</Link>
+            <Link to="/" className="hover:text-white/70"><T>Home</T></Link>
             <Icon name="chevron-right" size={11} />
-            <Link to="/explore" className="hover:text-white/70">Explore</Link>
+            <Link to="/explore" className="hover:text-white/70"><T>Explore</T></Link>
             <Icon name="chevron-right" size={11} />
             <span className="text-white/70">{operator.name}</span>
           </nav>
@@ -273,7 +273,7 @@ export function OperatorProfile() {
               <div className="flex flex-wrap items-center gap-2">
                 <h1 className="text-[24px] font-extrabold text-white sm:text-[32px]">{operator.name}</h1>
                 <span className="rounded-md bg-emerald2 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-white">
-                  <T>Verified</T>
+                  <T><T>Verified</T></T>
                 </span>
               </div>
               <p className="mt-1 text-[12.5px] text-white/55">
@@ -333,7 +333,7 @@ export function OperatorProfile() {
           <div className="flex items-start gap-2.5">
             <Icon name="shield-check" size={15} className="mt-0.5 shrink-0 text-emerald2-600" />
             <div>
-              <p className="text-[12px] font-bold text-navy"><T>About this verification</T></p>
+              <p className="text-[12px] font-bold text-navy"><T><T>About this verification</T></T></p>
               <p className="mt-1 text-[11.5px] leading-relaxed text-ink-mute">
                 This operator profile is a demonstration record created for the JOHOR360 mockup. In production,
                 verification would confirm business registration (SSM), public liability cover and an accessibility

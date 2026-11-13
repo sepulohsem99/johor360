@@ -50,6 +50,19 @@ export default function Explore() {
 
   useEffect(() => setQ(urlQ), [urlQ])
 
+  // Debounced URL sync so a search is shareable/copyable, while typing stays
+  // instant — the list filters on `q` directly, not on the URL round-trip.
+  useEffect(() => {
+    const id = window.setTimeout(() => {
+      const next = new URLSearchParams(params)
+      if (q) next.set('q', q)
+      else next.delete('q')
+      if (next.toString() !== params.toString()) setParams(next, { replace: true })
+    }, 350)
+    return () => window.clearTimeout(id)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [q])
+
   const setParam = (key: string, value: string) => {
     const next = new URLSearchParams(params)
     if (value) next.set(key, value)
@@ -91,8 +104,8 @@ export default function Explore() {
       list = list.filter((e) => e.price <= maxMyr)
     }
 
-    if (urlQ.trim()) {
-      const needle = urlQ.toLowerCase()
+    if (q.trim()) {
+      const needle = q.toLowerCase()
       list = list.filter(
         (e) =>
           e.title.toLowerCase().includes(needle) ||
@@ -118,7 +131,7 @@ export default function Explore() {
     else if (sort === 'rating') sorted.sort((a, b) => b.rating - a.rating)
 
     return sorted.map((exp) => ({ exp, score: undefined as number | undefined, reasons: undefined as string[] | undefined }))
-  }, [exps, station, category, duration, budget, urlQ, purpose, sort, profile, currency, toMyr])
+  }, [exps, station, category, duration, budget, q, purpose, sort, profile, currency, toMyr])
 
   const applyPurpose = (id: string) => {
     const next = purpose === id ? '' : id

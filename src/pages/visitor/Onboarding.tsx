@@ -49,7 +49,7 @@ export default function Onboarding() {
         <div className="mb-8">
           <div className="mb-3 flex items-center justify-between">
             <div>
-              <p className="text-[10.5px] font-bold uppercase tracking-[0.16em] text-royal">Visitor setup</p>
+              <p className="text-[10.5px] font-bold uppercase tracking-[0.16em] text-royal"><T>Visitor setup</T></p>
               <h1 className="mt-1 text-[24px] font-extrabold sm:text-[30px]">
                 {['What brings you to Johor?', 'What are you into?', 'How much time and money?', 'Anything we should know?'][step]}
               </h1>
@@ -62,7 +62,7 @@ export default function Onboarding() {
             ))}
           </div>
           <p className="mt-3 text-[12.5px] leading-relaxed text-ink-mute">
-            This drives the matching engine. You can change any of it later — nothing here is a permanent profile.
+            <T>This drives the matching engine. You can change any of it later — nothing here is a permanent profile.</T>
           </p>
         </div>
 
@@ -102,7 +102,7 @@ export default function Onboarding() {
           {/* STEP 1 — interests */}
           {step === 1 && (
             <div>
-              <p className="mb-3 text-[12.5px] text-ink-mute"><T>Pick as many as you like. At least one.</T></p>
+              <p className="mb-3 text-[12.5px] text-ink-mute"><T><T>Pick as many as you like. At least one.</T></T></p>
               <div className="flex flex-wrap gap-2">
                 {INTERESTS.map((i) => (
                   <button
@@ -140,7 +140,7 @@ export default function Onboarding() {
           {step === 2 && (
             <div className="space-y-5">
               <div>
-                <p className="label"><T>How much time do you have?</T></p>
+                <p className="label"><T><T>How much time do you have?</T></T></p>
                 <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
                   {DURATION_PRESETS.map((d) => (
                     <button
@@ -158,7 +158,7 @@ export default function Onboarding() {
                     className={clsx('rounded-xl border-2 px-3 py-3 text-center transition-all',
                       draft.availableMins === 420 ? 'border-royal bg-royal-50/60' : 'border-line hover:border-navy-200')}
                   >
-                    <p className="text-[14px] font-extrabold text-navy"><T>Full day</T></p>
+                    <p className="text-[14px] font-extrabold text-navy"><T><T>Full day</T></T></p>
                     <p className="mt-0.5 text-[10.5px] text-ink-faint">7 hours</p>
                   </button>
                 </div>
@@ -166,7 +166,7 @@ export default function Onboarding() {
 
               <div>
                 <div className="mb-1.5 flex items-center justify-between">
-                  <p className="label !mb-0"><T>Budget per person</T></p>
+                  <p className="label !mb-0"><T><T>Budget per person</T></T></p>
                   <span className="text-[14px] font-extrabold text-navy num">{money(draft.budget)}</span>
                 </div>
                 <input type="range" min={30} max={600} step={10} value={draft.budget}
@@ -197,7 +197,7 @@ export default function Onboarding() {
           {step === 3 && (
             <div className="space-y-5">
               <div>
-                <p className="label">Accessibility requirements</p>
+                <p className="label"><T>Accessibility requirements</T></p>
                 <p className="mb-2.5 text-[11.5px] leading-relaxed text-ink-mute">
                   Ticked requirements are applied as hard constraints — an experience that fails them is excluded
                   from your results entirely, not just ranked lower.
@@ -214,7 +214,7 @@ export default function Onboarding() {
               </div>
 
               <div>
-                <p className="label"><T>Transport you will use for the last mile</T></p>
+                <p className="label"><T><T>Transport you will use for the last mile</T></T></p>
                 <div className="flex flex-wrap gap-2">
                   {TRANSPORT_OPTIONS.map((t) => (
                     <button key={t.id} onClick={() => toggle('transport', t.id)}
@@ -227,7 +227,7 @@ export default function Onboarding() {
               </div>
 
               <div className="rounded-xl bg-navy-50 p-3.5">
-                <p className="text-[11.5px] font-bold text-navy"><T>Your setup so far</T></p>
+                <p className="text-[11.5px] font-bold text-navy"><T><T>Your setup so far</T></T></p>
                 <div className="mt-2 grid grid-cols-2 gap-2 text-[11.5px] sm:grid-cols-4">
                   {[
                     ['Purpose', draft.purpose ? PURPOSES.find((p) => p.id === draft.purpose)?.label.replace(' traveller', '') : '—'],
@@ -252,22 +252,22 @@ export default function Onboarding() {
           </Button>
           <div className="flex items-center gap-2">
             <Button variant="ghost" size="sm" onClick={() => { setProfile({ ...draft, onboarded: true }); nav('/visitor/dashboard') }}>
-              Skip setup
+              <T>Skip setup</T>
             </Button>
             {step < STEP_COUNT - 1 ? (
               <Button onClick={() => setStep(step + 1)} disabled={!canNext()} iconRight="arrow-right">
-                <T>Continue</T>
+                <T><T>Continue</T></T>
               </Button>
             ) : (
               <Button onClick={finish} icon="sparkles">
-                See my matches
+                <T>See my matches</T>
               </Button>
             )}
           </div>
         </div>
 
         <p className="mt-6 text-center text-[11px] text-ink-faint">
-          <DemoTag label={tx("No account needed")} /> <T>Preferences are stored in this browser only.</T>
+          <DemoTag label={tx("No account needed")} /> <T><T>Preferences are stored in this browser only.</T></T>
         </p>
       </div>
     </div>

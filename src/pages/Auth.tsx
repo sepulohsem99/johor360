@@ -61,20 +61,20 @@ export function Login() {
             “For many visitors, Johor still ends where the city does.”
           </p>
           <p className="mt-3 text-[12px] text-white/45">
-            Johor Innovation Challenge 2026 — Problem statement 4
+            <T>Johor Innovation Challenge 2026 — Problem statement 4</T>
           </p>
         </>
       }
     >
       <div className="mb-6 flex items-center justify-between">
         <Link to="/" className="inline-flex items-center gap-1.5 text-[12px] font-semibold text-ink-mute hover:text-navy">
-          <Icon name="arrow-left" size={13} /> Back
+          <Icon name="arrow-left" size={13} /> <T>Back</T>
         </Link>
         <DemoTag label={tx("No real auth")} />
       </div>
 
-      <h1 className="text-[24px] font-extrabold"><T>Sign in</T></h1>
-      <p className="mt-1 text-[13px] text-ink-mute"><T>Welcome back. Pick up where you left off.</T></p>
+      <h1 className="text-[24px] font-extrabold"><T><T>Sign in</T></T></h1>
+      <p className="mt-1 text-[13px] text-ink-mute"><T><T>Welcome back. Pick up where you left off.</T></T></p>
 
       <form onSubmit={submit} className="mt-6 space-y-3">
         <Field label={tx("Email")} required error={err && !/^\S+@\S+\.\S+$/.test(email) ? err : ''}>
@@ -91,13 +91,13 @@ export function Login() {
         </Field>
         <div className="flex items-center justify-between">
           <label className="flex cursor-pointer items-center gap-1.5 text-[11.5px] text-ink-mute">
-            <input type="checkbox" className="accent-royal" /> Remember me
+            <input type="checkbox" className="accent-royal" /> <T>Remember me</T>
           </label>
           <Link to="/login" onClick={() => toast('Reset link (mock)', 'No email would actually be sent.', 'info')} className="text-[11.5px] font-semibold text-royal hover:underline">
-            Forgot password?
+            <T>Forgot password?</T>
           </Link>
         </div>
-        <Button type="submit" className="w-full" size="lg"><T>Sign in</T></Button>
+        <Button type="submit" className="w-full" size="lg"><T><T>Sign in</T></T></Button>
       </form>
 
       <div className="my-5 flex items-center gap-3">
@@ -117,19 +117,19 @@ export function Login() {
             <span className="grid h-8 w-8 place-items-center rounded-lg bg-navy-50 text-navy"><Icon name={i} size={15} /></span>
             <div className="min-w-0 flex-1">
               <p className="text-[12.5px] font-bold text-navy">Explore as {l}</p>
-              <p className="text-[10.5px] text-ink-faint">Demo role switch</p>
+              <p className="text-[10.5px] text-ink-faint"><T>Demo role switch</T></p>
             </div>
             <Icon name="arrow-right" size={14} className="text-ink-faint" />
           </button>
         ))}
         <button onClick={() => nav('/explore')}
           className="w-full rounded-xl px-3 py-2.5 text-center text-[12px] font-semibold text-ink-mute hover:bg-navy-50 hover:text-navy">
-          <T>Continue as guest</T>
+          <T><T>Continue as guest</T></T>
         </button>
       </div>
 
       <p className="mt-5 text-center text-[11.5px] text-ink-mute">
-        <T>No account?</T> <Link to="/register" className="font-bold text-royal hover:underline">Create one</Link>
+        <T><T>No account?</T></T> <Link to="/register" className="font-bold text-royal hover:underline"><T>Create one</T></Link>
       </p>
     </AuthShell>
   )
@@ -177,7 +177,7 @@ export function Register() {
       side={
         <>
           <p className="max-w-sm text-[26px] font-extrabold leading-[1.2] text-white">
-            <T>If you run it, visitors should be able to find it.</T>
+            <T><T>If you run it, visitors should be able to find it.</T></T>
           </p>
           <p className="mt-3 max-w-xs text-[12.5px] leading-relaxed text-white/50">
             Free listing for operators with ten employees or fewer. Manual verification, no booking commission.
@@ -187,13 +187,13 @@ export function Register() {
     >
       <div className="mb-6 flex items-center justify-between">
         <Link to="/" className="inline-flex items-center gap-1.5 text-[12px] font-semibold text-ink-mute hover:text-navy">
-          <Icon name="arrow-left" size={13} /> Back
+          <Icon name="arrow-left" size={13} /> <T>Back</T>
         </Link>
         <DemoTag label={tx("No real signup")} />
       </div>
 
-      <h1 className="text-[24px] font-extrabold">Create an account</h1>
-      <p className="mt-1 text-[13px] text-ink-mute"><T>Choose what kind of account you need.</T></p>
+      <h1 className="text-[24px] font-extrabold"><T>Create an account</T></h1>
+      <p className="mt-1 text-[13px] text-ink-mute"><T><T>Choose what kind of account you need.</T></T></p>
 
       <div className="mt-4 grid grid-cols-2 gap-2">
         {([['visitor', 'I am a visitor', 'compass'], ['sme', 'I run a business', 'store']] as const).map(([k, l, i]) => (
@@ -263,15 +263,15 @@ export function Register() {
               <textarea className="field field-area" rows={3} value={f.description} onChange={(e) => setF({ ...f, description: e.target.value })} />
             </Field>
             <div className="flex gap-2">
-              <Button variant="ghost" className="flex-1" onClick={() => setStep(0)}>Back</Button>
-              <Button className="flex-1" onClick={submit}>Create account</Button>
+              <Button variant="ghost" className="flex-1" onClick={() => setStep(0)}><T>Back</T></Button>
+              <Button className="flex-1" onClick={submit}><T>Create account</T></Button>
             </div>
           </>
         )}
       </div>
 
       <p className="mt-5 text-center text-[11.5px] text-ink-mute">
-        <T>Already have one?</T> <Link to="/login" className="font-bold text-royal hover:underline"><T>Sign in</T></Link>
+        <T><T>Already have one?</T></T> <Link to="/login" className="font-bold text-royal hover:underline"><T><T>Sign in</T></T></Link>
       </p>
     </AuthShell>
   )
@@ -284,30 +284,30 @@ export function ForgotPassword() {
   return (
     <div className="mx-auto flex min-h-[calc(100vh-4rem)] max-w-sm flex-col justify-center px-5">
       <Link to="/login" className="mb-6 inline-flex items-center gap-1.5 text-[12px] font-semibold text-ink-mute hover:text-navy">
-        <Icon name="arrow-left" size={13} /> <T>Back to sign in</T>
+        <Icon name="arrow-left" size={13} /> <T><T>Back to sign in</T></T>
       </Link>
       {sent ? (
         <div className="rounded-2xl border border-line bg-raised p-6 text-center">
           <span className="mx-auto grid h-12 w-12 place-items-center rounded-2xl bg-emerald2-50 text-emerald2-700">
             <Icon name="mail" size={22} />
           </span>
-          <h1 className="mt-4 text-[19px] font-extrabold"><T>Check your inbox</T></h1>
+          <h1 className="mt-4 text-[19px] font-extrabold"><T><T>Check your inbox</T></T></h1>
           <p className="mt-2 text-[12.5px] leading-relaxed text-ink-mute">
             If an account exists for {email}, a reset link would be sent. This is a mockup — no email is sent.
           </p>
-          <Button variant="ghost" className="mt-5 w-full" onClick={() => setSent(false)}><T>Try another email</T></Button>
+          <Button variant="ghost" className="mt-5 w-full" onClick={() => setSent(false)}><T><T>Try another email</T></T></Button>
         </div>
       ) : (
         <>
-          <h1 className="text-[24px] font-extrabold">Reset password</h1>
-          <p className="mt-1 text-[13px] text-ink-mute"><T>Enter your email and we will send a reset link.</T></p>
+          <h1 className="text-[24px] font-extrabold"><T>Reset password</T></h1>
+          <p className="mt-1 text-[13px] text-ink-mute"><T><T>Enter your email and we will send a reset link.</T></T></p>
           <div className="mt-5 space-y-3">
             <Field label={tx("Email")} required>
               <input className="field" type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="you@example.com" />
             </Field>
-            <Button className="w-full" size="lg" onClick={() => setSent(true)} disabled={!/^\S+@\S+\.\S+$/.test(email)}>Send reset link</Button>
+            <Button className="w-full" size="lg" onClick={() => setSent(true)} disabled={!/^\S+@\S+\.\S+$/.test(email)}><T>Send reset link</T></Button>
           </div>
-          <p className="mt-4 text-center text-[11.5px] text-ink-faint"><T>Demo only — no email is dispatched.</T></p>
+          <p className="mt-4 text-center text-[11.5px] text-ink-faint"><T><T>Demo only — no email is dispatched.</T></T></p>
         </>
       )}
     </div>
