@@ -492,12 +492,13 @@ export function AdminReviews() {
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
           <h1 className="text-[24px] font-extrabold"><T>Review moderation</T></h1>
-          <p className="mt-1 text-[13px] text-ink-mute">{reviews.filter((r) => r.status === 'pending').length} awaiting moderation</p>
+          <p className="mt-1 text-[13px] text-ink-mute">{reviews.filter((r) => r.status === 'pending').length} {tx('awaiting moderation')}</p>
         </div>
         <div className="flex gap-1.5">
           {(['pending', 'published', 'all'] as const).map((f) => (
             <button key={f} onClick={() => setFilter(f)} className={clsx('chip capitalize', filter === f && 'chip-active')}>
-              {f} <span className="num opacity-60">{f === 'all' ? reviews.length : reviews.filter((r) => r.status === f).length}</span>
+              {tx(f === 'all' ? 'All' : f === 'pending' ? 'Pending' : 'Published')}{' '}
+              <span className="num opacity-60">{f === 'all' ? reviews.length : reviews.filter((r) => r.status === f).length}</span>
             </button>
           ))}
         </div>
