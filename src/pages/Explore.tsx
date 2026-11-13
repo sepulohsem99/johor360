@@ -285,7 +285,7 @@ export default function Explore() {
           <JohorSkyline />
         </div>
         <div className="absolute inset-0 bg-gradient-to-r from-[#071D49] via-[#071D49]/94 to-[#071D49]/35" />
-        <div className="shell relative py-7 lg:py-8">
+        <div className="shell relative py-5 lg:py-6">
           <nav className="mb-2.5 flex items-center gap-1.5 text-[11px] text-white/50" aria-label="Breadcrumb">
             <Link to="/" className="hover:text-white">
               {t('explore.breadcrumbHome')}
@@ -304,13 +304,13 @@ export default function Explore() {
             <h1 className="text-[25px] font-extrabold leading-[1.12] tracking-[-0.03em] text-white sm:text-[32px] lg:text-[36px]">
               {t('explore.title')}
             </h1>
-            <p className="mt-2 max-w-xl text-[13px] leading-relaxed text-white/65 sm:text-[14px]">
+            <p className="mt-1.5 max-w-xl text-[13px] leading-relaxed text-white/65 sm:text-[14px]">
               {t('explore.sub')}
             </p>
           </div>
 
           {/* search + quick selects */}
-          <div className="mt-4 rounded-xl border border-white/12 bg-white/[0.07] p-2 backdrop-blur-md">
+          <div className="mt-3 rounded-xl border border-white/12 bg-white/[0.07] p-2 backdrop-blur-md">
             <div className="flex flex-col gap-2 lg:flex-row lg:items-center">
               <div className="relative flex-1">
                 <Icon
@@ -401,20 +401,39 @@ export default function Explore() {
         </div>
       </section>
 
-      {/* ================================================================ RAIL BAND */}
-      <section className="border-b border-line bg-raised">
-        <div className="shell py-2.5">
-          <RailCorridor
-            activeStationId={station || undefined}
-            onSelect={(id) => setParam('station', station === id ? '' : id)}
-            counts={counts}
-            compact
-          />
+      {/* ================================================================ RAIL BAND
+          The corridor strip is the primary station switcher, so it is mounted as
+          the header of the results area rather than a decorative band between
+          sections: shared card, no dead air above the result set. */}
+      <section className="shell pt-4">
+        <div className="overflow-hidden rounded-t-xl border border-b-0 border-line bg-raised">
+          <div className="flex items-center justify-between border-b border-line bg-inset px-3 py-1.5">
+            <p className="text-[10px] font-bold uppercase tracking-[0.12em] text-ink-faint">
+              {t('explore.stationLabel')}
+            </p>
+            {station && (
+              <button
+                onClick={() => setParam('station', '')}
+                className="text-[10px] font-bold text-accent hover:underline"
+              >
+                {t('common.allStations')}
+              </button>
+            )}
+          </div>
+          <div className="px-3 py-2">
+            <RailCorridor
+              activeStationId={station || undefined}
+              onSelect={(id) => setParam('station', station === id ? '' : id)}
+              counts={counts}
+              compact
+            />
+          </div>
         </div>
       </section>
 
       {/* =================================================================== RESULTS */}
-      <section className="shell py-5">
+      <section className="shell pb-5">
+        <div className="rounded-b-xl border border-t-0 border-line bg-raised px-4 pb-4 pt-3">
         <div className="flex gap-5">
           <aside className="hidden w-[208px] shrink-0 lg:block">
             <div className="sticky top-[74px] max-h-[calc(100vh-90px)] overflow-y-auto pr-1">
@@ -434,6 +453,14 @@ export default function Explore() {
                 <h2 className="text-[14.5px] font-extrabold text-ink num">
                   {t('common.resultsCount', { count: results.length })}
                 </h2>
+                {/* State the unfiltered total so the three counts on this page
+                    (hero catalogue, results, sidebar sum) can never look like
+                    they disagree — they measure different things. */}
+                {results.length !== exps.length && (
+                  <span className="text-[11px] text-ink-faint num">
+                    · {t('explore.showing', { shown: results.length, total: exps.length })}
+                  </span>
+                )}
                 {sort === 'bestMatch' && (
                   <span className="text-[11px] text-ink-faint">· {t('explore.rankedBy')}</span>
                 )}
@@ -570,6 +597,7 @@ export default function Explore() {
               )}
             </div>
           </aside>
+        </div>
         </div>
       </section>
 
