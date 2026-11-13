@@ -9,6 +9,7 @@ import { operatorById } from '../../data/operators'
 import { stationById, STATIONS } from '../../data/stations'
 import { CATEGORIES, TAGS } from '../../data/taxonomy'
 import { hoursLabel, money, dateLabel, timeAgo } from '../../services/storage'
+import { useMoneyText } from '../../app/currency'
 import type { Experience, VerificationStatus } from '../../types'
 
 /** Demo SME identity for the mockup — always the same operator so state is coherent. */
@@ -25,6 +26,7 @@ export function useDemoOperator() {
 
 // ------------------------------------------------------------------ Dashboard
 export function SmeDashboard() {
+  const money = useMoneyText()
   const nav = useNavigate()
   const { operator, listings, opsEnquiries, opsReviews } = useDemoOperator()
   const published = listings.filter((l) => l.verification === 'verified')
@@ -171,6 +173,7 @@ export function SmeDashboard() {
 
 // ------------------------------------------------------------------ Listings
 export function SmeListings() {
+  const money = useMoneyText()
   const nav = useNavigate()
   const { listings } = useDemoOperator()
   const [filter, setFilter] = useState<VerificationStatus | 'all'>('all')
@@ -269,6 +272,7 @@ const empty: FormState = {
 }
 
 export function SmeListingForm() {
+  const money = useMoneyText()
   const { id } = useParams()
   const nav = useNavigate()
   const { experiences, upsertExperience, toast, setExperienceStatus } = useApp()

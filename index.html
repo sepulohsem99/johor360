@@ -1,27 +1,52 @@
 <!doctype html>
-<html lang="en">
+<html lang="ms-MY">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="manifest" href="/manifest.webmanifest" />
-    <meta name="theme-color" content="#0B1F3A" />
+    <meta name="theme-color" content="#071D49" />
 
-    <title>JOHOR360 — Explore Johor Beyond the City</title>
+    <title>JOHOR360 — Terokai Johor Melangkaui Bandar</title>
     <meta
       name="description"
-      content="JOHOR360 is a rail-connected discovery platform helping visitors find authentic local experiences run by small and medium operators along Johor's ETS corridor."
+      content="JOHOR360 — platform penemuan pengalaman tempatan bersambung rel di sepanjang Koridor ETS Johor. A rail-connected discovery platform for local experiences along Johor's ETS corridor."
     />
-    <meta property="og:title" content="JOHOR360 — Explore Johor Beyond the City" />
+    <meta property="og:title" content="JOHOR360 — Terokai Johor Melangkaui Bandar" />
     <meta
       property="og:description"
-      content="Discover authentic local experiences, educational activities and hidden gems along Johor's ETS corridor."
+      content="Terokai pengalaman tempatan autentik di sepanjang Koridor ETS Johor. Discover authentic local experiences along Johor's ETS corridor."
     />
     <meta property="og:type" content="website" />
-    <meta name="color-scheme" content="light" />
+    <meta name="color-scheme" content="light dark" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!--
+      Theme is applied BEFORE first paint so the page never flashes the wrong
+      palette. Mirrors the logic in src/app/prefs.tsx: stored value wins,
+      'system' defers to the OS, anything unreadable falls back to system.
+    -->
+    <script>
+      ;(function () {
+        try {
+          var mode = localStorage.getItem('johor360.v2.theme') || 'system'
+          var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+          var dark = mode === 'dark' || (mode === 'system' && prefersDark)
+          document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light')
+          document.documentElement.style.colorScheme = dark ? 'dark' : 'light'
+        } catch (e) {
+          document.documentElement.setAttribute('data-theme', 'light')
+        }
+      })()
+    </script>
+
+    <style>
+      /* first-paint background matches the resolved theme, no white flash */
+      html { background: #ffffff; }
+      html[data-theme='dark'] { background: #0b1425; }
+    </style>
   </head>
   <body>
     <div id="root"></div>

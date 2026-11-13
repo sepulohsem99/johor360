@@ -11,10 +11,12 @@ import { operatorById } from '../data/operators'
 import { stationById, CORRIDOR } from '../data/stations'
 import { CATEGORIES, TAGS } from '../data/taxonomy'
 import { hoursLabel, money, dateLabel } from '../services/storage'
+import { useMoneyText } from '../app/currency'
 import { toMin, toTime } from '../services/itinerary'
 import { matchExperiences } from '../services/matching'
 
 export default function ExperienceDetail() {
+  const money = useMoneyText()
   const { slug } = useParams()
   const nav = useNavigate()
   const { favourites, toggleFavourite, toast, profile, addEnquiry, itineraries, addItinerary, updateItinerary, reviews, addReview } = useApp()

@@ -200,7 +200,7 @@ export function Segmented<T extends string>({
             'rounded-lg font-semibold transition-all',
             size === 'sm' ? 'px-3 py-1.5 text-[12.5px]' : 'px-3.5 py-2 text-[13px]',
             value === o.id
-              ? 'bg-white text-navy shadow-[0_1px_2px_rgba(11,31,58,.12)]'
+              ? 'bg-raised text-navy shadow-[0_1px_2px_rgba(11,31,58,.12)]'
               : 'text-ink-mute hover:text-navy'
           )}
         >
@@ -250,7 +250,7 @@ export function Modal({
         aria-modal="true"
         aria-label={title}
         className={clsx(
-          'relative w-full overflow-hidden rounded-t-3xl bg-white shadow-pop animate-fadeUp sm:rounded-2xl',
+          'relative w-full overflow-hidden rounded-t-3xl bg-raised shadow-pop animate-fadeUp sm:rounded-2xl',
           width
         )}
       >

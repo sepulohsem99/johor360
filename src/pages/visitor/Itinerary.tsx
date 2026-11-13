@@ -8,9 +8,11 @@ import { experienceById } from '../../data/experiencesIndex'
 import { stationById, CORRIDOR, RAIL_SOURCE } from '../../data/stations'
 import { itineraryDuration, itineraryTotals, toMin, toTime } from '../../services/itinerary'
 import { hoursLabel, money, dateLabel } from '../../services/storage'
+import { useMoneyText } from '../../app/currency'
 import type { Itinerary, ItineraryItem } from '../../types'
 
 export default function ItineraryBuilder() {
+  const money = useMoneyText()
   const nav = useNavigate()
   const { itineraries, updateItinerary, removeItinerary, toast, profile, addItinerary } = useApp()
   const exps = usePublishedExperiences()
@@ -468,6 +470,7 @@ function SceneMini({ id }: { id: string }) {
 }
 
 export function ItinerariesIndex() {
+  const money = useMoneyText()
   const { itineraries, removeItinerary, toast } = useApp()
   const nav = useNavigate()
 

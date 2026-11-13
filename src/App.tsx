@@ -1,6 +1,8 @@
 import { lazy, Suspense } from 'react'
 import { BrowserRouter, Routes, Route, Navigate, Outlet } from 'react-router-dom'
 import { AppProvider } from './app/store'
+import { PreferencesProvider } from './app/prefs'
+import { CurrencyProvider } from './app/currency'
 import { PublicHeader, PublicFooter } from './layouts/PublicLayout'
 import PortalLayout, { ToastStack } from './layouts/PortalLayout'
 import { Skeleton } from './components/ui'
@@ -143,10 +145,12 @@ const AdminSettings = lazy(() => import('./pages/admin/Portal').then((m) => ({ d
 
 export default function App() {
   return (
-    <AppProvider>
-      <BrowserRouter>
-        <Suspense fallback={<PageFallback />}>
-          <Routes>
+    <PreferencesProvider>
+      <CurrencyProvider>
+        <AppProvider>
+          <BrowserRouter>
+            <Suspense fallback={<PageFallback />}>
+              <Routes>
             {/* public */}
             <Route element={<PublicShell />}>
               <Route path="/" element={<Home />} />
@@ -202,10 +206,12 @@ export default function App() {
             </Route>
 
             <Route path="*" element={<NotFound />} />
-          </Routes>
-        </Suspense>
-        <ToastStack />
-      </BrowserRouter>
-    </AppProvider>
+              </Routes>
+            </Suspense>
+            <ToastStack />
+          </BrowserRouter>
+        </AppProvider>
+      </CurrencyProvider>
+    </PreferencesProvider>
   )
 }

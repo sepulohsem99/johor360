@@ -11,8 +11,10 @@ import { matchExperiences } from '../../services/matching'
 import { stationById, CORRIDOR } from '../../data/stations'
 import { PURPOSES, INTERESTS, ACCESSIBILITY_OPTIONS } from '../../data/taxonomy'
 import { hoursLabel, money, dateLabel } from '../../services/storage'
+import { useMoneyText } from '../../app/currency'
 
 export function VisitorDashboard() {
+  const money = useMoneyText()
   const nav = useNavigate()
   const { profile, itineraries, favourites, experiences } = useApp()
   const exps = usePublishedExperiences()
@@ -198,6 +200,7 @@ export function VisitorDashboard() {
 }
 
 export function Recommendations() {
+  const money = useMoneyText()
   const { profile, setProfile, toast } = useApp()
   const exps = usePublishedExperiences()
   const nav = useNavigate()
@@ -463,6 +466,7 @@ export function Recommendations() {
 }
 
 export function VisitorProfilePage() {
+  const money = useMoneyText()
   const { profile, setProfile, toast } = useApp()
   const [draft, setDraft] = useState({ ...profile })
   const [dirty, setDirty] = useState(false)

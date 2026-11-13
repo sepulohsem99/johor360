@@ -191,18 +191,19 @@ export function matchExperiences(
     }
 
     const reasons: string[] = []
-    if (travelMins === 0) reasons.push('Right where you are — no rail transfer needed')
-    else if (travelMins <= 30) reasons.push(`About ${travelMins} min by ETS from ${stationById(base)?.name}`)
-    if (exp.price <= profile.budget) reasons.push(`Fits your RM${profile.budget} budget at RM${exp.price}`)
+    if (travelMins === 0) reasons.push('reason.atStation')
+    else if (travelMins <= 30) reasons.push(`reason.nearStation|${travelMins}|${stationById(base)?.name ?? ''}`)
+    if (exp.price <= profile.budget) reasons.push(`reason.fitsBudget|${profile.budget}|${exp.price}`)
     if (profile.purpose && exp.bestFor.includes(profile.purpose)) {
-      reasons.push(`Well suited to ${profile.purpose} travellers`)
+      reasons.push(`reason.purposeFit|${profile.purpose}`)
     }
-    if (exp.accessibility.stepFree && profile.accessibility.length) reasons.push('Step-free route confirmed')
-    if (rain && exp.setting === 'indoor') reasons.push('Indoor — unaffected by the rain scenario')
+    if (exp.accessibility.stepFree && profile.accessibility.length) reasons.push('reason.stepFree')
+    if (rain && exp.setting === 'indoor') reasons.push('reason.indoor')
     if (exp.durationMins <= profile.availableMins) {
-      reasons.push(`Takes about ${Math.round(exp.durationMins / 60) >= 1 ? `${(exp.durationMins / 60).toFixed(exp.durationMins % 60 === 0 ? 0 : 1)} hours` : `${exp.durationMins} min`}`)
+      const hrs = (exp.durationMins / 60).toFixed(exp.durationMins % 60 === 0 ? 0 : 1)
+      reasons.push(`reason.duration|${hrs}`)
     }
-    if (!reasons.length) reasons.push('Strong overall fit with your preferences')
+    if (!reasons.length) reasons.push('reason.overallFit')
 
     results.push({
       experience: exp,

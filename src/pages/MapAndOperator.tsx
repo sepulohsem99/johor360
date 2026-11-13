@@ -10,8 +10,10 @@ import { STATIONS, CORRIDOR, stationById } from '../data/stations'
 import { operatorById } from '../data/operators'
 import { CATEGORIES } from '../data/taxonomy'
 import { hoursLabel, money } from '../services/storage'
+import { useMoneyText } from '../app/currency'
 
 export default function ExploreMap() {
+  const money = useMoneyText()
   const exps = usePublishedExperiences()
   const mapRef = useRef<HTMLDivElement>(null)
   const mapObj = useRef<L.Map | null>(null)
@@ -228,6 +230,7 @@ export default function ExploreMap() {
 }
 
 export function OperatorProfile() {
+  const money = useMoneyText()
   const params = useParams()
   const exps = usePublishedExperiences()
   const opId = params.slug ?? params.id

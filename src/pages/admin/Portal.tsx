@@ -9,6 +9,7 @@ import { operatorById } from '../../data/operators'
 import { stationById, CORRIDOR, STATIONS } from '../../data/stations'
 import { CATEGORIES } from '../../data/taxonomy'
 import { hoursLabel, money, dateLabel, timeAgo } from '../../services/storage'
+import { useMoneyText } from '../../app/currency'
 
 // ------------------------------------------------------------------ Dashboard
 export function AdminDashboard() {
@@ -133,6 +134,7 @@ export function AdminDashboard() {
 
 // ------------------------------------------------------------------ Verifications
 export function AdminVerifications() {
+  const money = useMoneyText()
   const { experiences, setExperienceStatus, toast, events } = useApp()
   const [active, setActive] = useState<string | null>(null)
   const [note, setNote] = useState('')
@@ -388,6 +390,7 @@ export function AdminOperators() {
 
 // ------------------------------------------------------------------ Experiences
 export function AdminExperiences() {
+  const money = useMoneyText()
   const { experiences, setExperienceStatus, toast } = useApp()
   const [q, setQ] = useState('')
   const [status, setStatus] = useState<string>('all')

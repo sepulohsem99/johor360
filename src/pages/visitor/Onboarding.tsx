@@ -7,10 +7,12 @@ import { useApp } from '../../app/store'
 import { PURPOSES, INTERESTS, ACCESSIBILITY_OPTIONS, TRANSPORT_OPTIONS, COUNTRIES, LANGUAGES, DURATION_PRESETS } from '../../data/taxonomy'
 import { STATIONS } from '../../data/stations'
 import { money, hoursLabel } from '../../services/storage'
+import { useMoneyText } from '../../app/currency'
 
 const STEP_COUNT = 4
 
 export default function Onboarding() {
+  const money = useMoneyText()
   const nav = useNavigate()
   const { profile, setProfile, toast } = useApp()
   const [step, setStep] = useState(0)
