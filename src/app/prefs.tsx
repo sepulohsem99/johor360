@@ -143,8 +143,19 @@ export function PreferencesProvider({ children }: { children: ReactNode }) {
       setCurrency: setCurrencyState,
       origin,
       setOrigin: setOriginState,
-      t: (key, vars) =>
-        (vars ? i18n.t(key, vars as never) : i18n.t(key)) as string,
+      // Resolve against the `lang` state, not `i18n.language`.
+      //
+      // `i18n.changeLanguage()` is called from a useEffect, so on the render that
+      // follows setLang() the i18next instance is still on the old language while
+      // React has already re-rendered with the new value. Reading i18n.language
+      // there produced one frame of the *old* language and no re-render after the
+      // effect landed — headlines visibly stayed in the previous language until a
+      // full page reload. getFixedT(lang) is derived from state, so the render is
+      // correct immediately and stays correct.
+      t: (key, vars) => {
+        const fixed = i18n.getFixedT(lang)
+        return (vars ? fixed(key, vars as never) : fixed(key)) as string
+      },
       // English is the source language, so en returns the string untouched.
       tx: (text) => (lang === 'ms' ? (TABLE[norm(text)] ?? text) : text),
     }),
