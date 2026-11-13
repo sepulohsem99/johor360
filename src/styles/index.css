@@ -1,0 +1,157 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+@import 'leaflet/dist/leaflet.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --topbar: 64px;
+  }
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-canvas text-ink antialiased font-sans;
+    font-feature-settings: 'ss01' on, 'cv11' on;
+  }
+  ::selection {
+    @apply bg-royal/15;
+  }
+  h1, h2, h3, h4 {
+    @apply font-display tracking-[-0.022em] text-ink;
+    text-wrap: balance;
+  }
+  p { text-wrap: pretty; }
+  :focus-visible {
+    @apply outline-none ring-2 ring-royal ring-offset-2 ring-offset-white rounded-md;
+  }
+  input, select, textarea {
+    font-family: inherit;
+  }
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb {
+    background: #C9D5E5; border-radius: 99px; border: 3px solid transparent; background-clip: content-box;
+  }
+  ::-webkit-scrollbar-thumb:hover { background: #A7B7CC; background-clip: content-box; }
+}
+
+@layer components {
+  .shell {
+    @apply mx-auto w-full max-w-shell px-5 sm:px-6 lg:px-8;
+  }
+  .card {
+    @apply bg-white border border-line rounded-2xl shadow-card;
+  }
+  .card-hover {
+    @apply transition-all duration-300 hover:shadow-lift hover:-translate-y-0.5 hover:border-navy-200;
+  }
+  .eyebrow {
+    @apply text-[11px] font-bold uppercase tracking-[0.16em] text-royal;
+  }
+  .hairline {
+    @apply border-t border-line;
+  }
+  .glass {
+    background: rgba(255, 255, 255, 0.72);
+    backdrop-filter: blur(16px) saturate(160%);
+    -webkit-backdrop-filter: blur(16px) saturate(160%);
+  }
+  .glass-dark {
+    background: rgba(7, 21, 41, 0.58);
+    backdrop-filter: blur(18px) saturate(140%);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+  }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl text-sm font-semibold
+      transition-all duration-200 select-none whitespace-nowrap;
+  }
+  .btn-md { @apply h-11 px-5; }
+  .btn-sm { @apply h-9 px-3.5 text-[13px]; }
+  .btn-lg { @apply h-12 px-6 text-[15px] rounded-[14px]; }
+  .btn-primary {
+    @apply bg-johor text-white shadow-[0_8px_20px_-8px_rgba(215,25,32,0.65)]
+      hover:bg-johor-700 active:scale-[.985] disabled:opacity-45 disabled:pointer-events-none;
+  }
+  .btn-navy {
+    @apply bg-navy text-white hover:bg-navy-700 active:scale-[.985] disabled:opacity-45 disabled:pointer-events-none;
+  }
+  .btn-ghost {
+    @apply bg-white text-navy border border-line hover:border-navy-300 hover:bg-navy-50 active:scale-[.985];
+  }
+  .btn-quiet {
+    @apply text-ink-soft hover:text-navy hover:bg-navy-50;
+  }
+  .btn-danger {
+    @apply bg-white text-johor border border-johor-200 hover:bg-johor-50;
+  }
+  .field {
+    @apply w-full h-11 rounded-xl border border-line bg-white px-3.5 text-sm text-ink
+      placeholder:text-ink-faint transition-colors
+      focus:border-royal focus:ring-4 focus:ring-royal/10 focus:outline-none;
+  }
+  .field-area { @apply h-auto py-2.5 leading-relaxed; }
+  .label {
+    @apply block text-[13px] font-semibold text-ink-soft mb-1.5;
+  }
+  .chip {
+    @apply inline-flex items-center gap-1.5 h-8 px-3 rounded-full border border-line bg-white
+      text-[12.5px] font-semibold text-ink-soft transition-all hover:border-navy-300 hover:text-navy;
+  }
+  .chip-active {
+    @apply bg-navy text-white border-navy hover:text-white hover:border-navy;
+  }
+  .tag {
+    @apply inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[11px] font-bold uppercase tracking-wide;
+  }
+  .link-underline {
+    @apply relative after:absolute after:-bottom-0.5 after:left-0 after:h-px after:w-0 after:bg-current
+      after:transition-all hover:after:w-full;
+  }
+  .num {
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.02em;
+  }
+  .rail-line {
+    background-image: repeating-linear-gradient(90deg, currentColor 0 10px, transparent 10px 18px);
+  }
+}
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  .mask-fade-r {
+    mask-image: linear-gradient(90deg, #000 85%, transparent);
+  }
+  .text-balance { text-wrap: balance; }
+  .safe-b { padding-bottom: env(safe-area-inset-bottom); }
+}
+
+.leaflet-container {
+  font-family: inherit;
+  background: #EAF0F8;
+}
+.leaflet-control-attribution {
+  font-size: 9px !important;
+  background: rgba(255,255,255,.82) !important;
+}
+.leaflet-popup-content-wrapper {
+  border-radius: 14px !important;
+  box-shadow: 0 18px 40px -18px rgba(11,31,58,.4) !important;
+  padding: 2px !important;
+}
+.leaflet-popup-content { margin: 10px 12px !important; font-family: inherit; }
+.j360-pin {
+  display: grid; place-items: center;
+  width: 32px; height: 32px; border-radius: 999px;
+  background: #0B1F3A; color: #fff; font-size: 11px; font-weight: 800;
+  box-shadow: 0 0 0 3px #fff, 0 6px 14px -4px rgba(11,31,58,.6);
+  border: 1.5px solid #E5AE45;
+}
+.j360-pin.station { background: #1769AA; border-color: #fff; }
