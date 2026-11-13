@@ -39,9 +39,9 @@ export function AdminDashboard() {
         <Stat label={tx("New enquiries")} value={newEnq.length} icon="message-square" tone="johor" hint="across all operators" />
       </div>
 
-      <div className="grid gap-4 lg:grid-cols-[1fr_330px]">
-        <div className="space-y-4">
-          <div className="rounded-2xl border border-line bg-raised p-4">
+      <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_330px]">
+        <div className="min-w-0 space-y-4">
+          <div className="min-w-0 rounded-2xl border border-line bg-raised p-4">
             <div className="mb-3 flex items-center justify-between">
               <h2 className="text-[14px] font-extrabold"><T>Verification queue</T></h2>
               <Link to="/admin/verifications" className="text-[11px] font-bold text-royal"><T>Open queue</T></Link>
@@ -68,7 +68,7 @@ export function AdminDashboard() {
             )}
           </div>
 
-          <div className="rounded-2xl border border-line bg-raised p-4">
+          <div className="min-w-0 rounded-2xl border border-line bg-raised p-4">
             <div className="mb-3 flex items-center justify-between">
               <h2 className="text-[14px] font-extrabold"><T>Recent activity</T></h2>
               <DemoTag label="Audit log" />
@@ -92,7 +92,7 @@ export function AdminDashboard() {
         </div>
 
         <aside className="space-y-3">
-          <div className="rounded-2xl border border-line bg-raised p-4">
+          <div className="min-w-0 rounded-2xl border border-line bg-raised p-4">
             <p className="text-[10px] font-bold uppercase tracking-wider text-ink-faint"><T>Needs attention</T></p>
             <div className="mt-2.5 space-y-2">
               {[
@@ -109,7 +109,7 @@ export function AdminDashboard() {
             </div>
           </div>
 
-          <div className="rounded-2xl border border-line bg-raised p-4">
+          <div className="min-w-0 rounded-2xl border border-line bg-raised p-4">
             <p className="text-[10px] font-bold uppercase tracking-wider text-ink-faint"><T>Corridor coverage</T></p>
             <div className="mt-2.5 space-y-1.5">
               {CORRIDOR.map((s) => {
@@ -431,7 +431,7 @@ export function AdminExperiences() {
         <EmptyState icon="search-x" title={tx("No listings match")} body={tx("Try clearing the search or status filter.")} />
       ) : (
         <div className="overflow-hidden rounded-2xl border border-line bg-raised">
-          <div className="overflow-x-auto">
+          <div className="-mx-1 overflow-x-auto px-1">
             <table className="w-full min-w-[780px] text-left">
               <thead>
                 <tr className="border-b border-line bg-canvas text-[10px] uppercase tracking-wider text-ink-faint">
@@ -585,7 +585,7 @@ export function AdminAnalytics() {
       </div>
 
       <div className="grid gap-4 lg:grid-cols-2">
-        <div className="rounded-2xl border border-line bg-raised p-4">
+        <div className="min-w-0 rounded-2xl border border-line bg-raised p-4">
           <p className="text-[12px] font-bold text-navy"><T>Visitor purpose distribution</T></p>
           <div className="mt-4 space-y-3">
             {purposeDist.map((p) => (
@@ -605,7 +605,7 @@ export function AdminAnalytics() {
           </p>
         </div>
 
-        <div className="rounded-2xl border border-line bg-raised p-4">
+        <div className="min-w-0 rounded-2xl border border-line bg-raised p-4">
           <p className="text-[12px] font-bold text-navy"><T>Most explored stations</T></p>
           <div className="mt-3 space-y-2">
             {stationInterest.map(({ s, n }) => (
@@ -624,7 +624,7 @@ export function AdminAnalytics() {
         </div>
       </div>
 
-      <div className="rounded-2xl border border-line bg-raised p-4">
+      <div className="min-w-0 rounded-2xl border border-line bg-raised p-4">
         <p className="text-[12px] font-bold text-navy"><T>Category interest</T></p>
         <div className="mt-3 grid gap-2 sm:grid-cols-2 lg:grid-cols-5">
           {CATEGORIES.slice(0, 10).map((c, i) => {
@@ -714,12 +714,12 @@ export function AdminImpact() {
 
       {/* station distribution */}
       <div className="grid gap-4 lg:grid-cols-[1.15fr_0.85fr]">
-        <div className="rounded-2xl border border-line bg-raised p-4">
+        <div className="min-w-0 rounded-2xl border border-line bg-raised p-4">
           <div className="mb-3 flex items-center justify-between">
             <p className="text-[12px] font-bold text-navy"><T>SME discovery & enquiries by station</T></p>
             <DemoTag label={tx("Per station")} />
           </div>
-          <div className="overflow-x-auto">
+          <div className="-mx-1 overflow-x-auto px-1">
             <table className="w-full min-w-[440px] text-left">
               <thead>
                 <tr className="border-b border-line text-[9.5px] uppercase tracking-wider text-ink-faint">
@@ -751,7 +751,7 @@ export function AdminImpact() {
         </div>
 
         <div className="space-y-3">
-          <div className="rounded-2xl border border-line bg-raised p-4">
+          <div className="min-w-0 rounded-2xl border border-line bg-raised p-4">
             <p className="text-[10px] font-bold uppercase tracking-wider text-ink-faint"><T>Enquiry conversion</T></p>
             <div className="mt-2 space-y-2.5">
               {[
@@ -771,7 +771,7 @@ export function AdminImpact() {
             </div>
           </div>
 
-          <div className="rounded-2xl border border-line bg-raised p-4">
+          <div className="min-w-0 rounded-2xl border border-line bg-raised p-4">
             <p className="text-[10px] font-bold uppercase tracking-wider text-ink-faint"><T>Distribution of discovery</T></p>
             <div className="mt-2 flex h-3 overflow-hidden rounded-full">
               <div className="bg-emerald2" style={{ width: `${shareBeyond}%` }} />

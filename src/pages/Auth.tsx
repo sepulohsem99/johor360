@@ -12,7 +12,7 @@ import Logo from '../layouts/PublicLayout'
 
 function AuthShell({ children, side }: { children: React.ReactNode; side: React.ReactNode }) {
   return (
-    <div className="grid min-h-[calc(100vh-4rem)] lg:grid-cols-[1fr_460px]">
+    <div className="grid min-h-[calc(100vh-4rem)] lg:grid-cols-[minmax(0,1fr)_460px]">
       <div className="relative hidden overflow-hidden bg-navy-900 lg:block">
         <Scene seed="auth-side" category="heritage" className="absolute inset-0 h-full w-full" variant="hero" motif="rails" />
         <div className="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/75 to-navy-900/40" />

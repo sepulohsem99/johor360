@@ -229,7 +229,7 @@ export default function ExperienceDetail() {
       </div>
 
       <div className="shell py-7">
-        <div className="grid gap-7 lg:grid-cols-[1fr_356px]">
+        <div className="grid gap-7 lg:grid-cols-[minmax(0,1fr)_356px]">
           {/* main */}
           <div className="min-w-0">
             <div className="flex flex-wrap items-start justify-between gap-3">

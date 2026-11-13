@@ -119,7 +119,7 @@ export default function ItineraryBuilder() {
   }
 
   return (
-    <div className="space-y-5">
+    <div className="min-w-0 space-y-5">
       {/* header */}
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div className="min-w-0">
@@ -141,7 +141,8 @@ export default function ItineraryBuilder() {
 
       {/* itinerary picker */}
       {itineraries.length > 1 && (
-        <div className="no-scrollbar flex gap-2 overflow-x-auto pb-1">
+        <div className="w-full min-w-0 overflow-hidden">
+        <div className="no-scrollbar flex max-w-full gap-2 overflow-x-auto pb-1">
           {itineraries.map((i) => (
             <button
               key={i.id}
@@ -156,11 +157,12 @@ export default function ItineraryBuilder() {
             </button>
           ))}
         </div>
+        </div>
       )}
 
-      <div className="grid gap-4 lg:grid-cols-[1fr_312px]">
+      <div className="grid min-w-0 gap-4 lg:grid-cols-[minmax(0,1fr)_312px]">
         {/* timeline */}
-        <div className="space-y-3">
+        <div className="min-w-0 space-y-3">
           {sorted.length === 0 ? (
             <EmptyState icon="calendar-x" title={tx("This itinerary is empty")} body={tx("Add an experience from the corridor, or generate a plan from your matches.")} action={<Button onClick={() => setAddOpen(true)} icon="plus"><T>Add a stop</T></Button>} />
           ) : (
@@ -300,7 +302,7 @@ export default function ItineraryBuilder() {
         </div>
 
         {/* sidebar */}
-        <aside className="space-y-3 lg:sticky lg:top-24 lg:self-start">
+        <aside className="min-w-0 space-y-3 lg:sticky lg:top-24 lg:self-start">
           <div className="rounded-2xl border border-line bg-raised p-4">
             <p className="text-[10px] font-bold uppercase tracking-wider text-ink-faint"><T>Plan summary</T></p>
             <div className="mt-2.5 space-y-2">

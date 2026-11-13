@@ -68,8 +68,8 @@ export function SmeDashboard() {
         <Stat label="Average rating" value={avgRating ? avgRating.toFixed(1) : '—'} icon="star" tone="gold" hint={`${opsReviews.length} demo reviews`} />
       </div>
 
-      <div className="grid gap-4 lg:grid-cols-[1fr_320px]">
-        <div className="space-y-4">
+      <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_320px]">
+        <div className="min-w-0 space-y-4">
           {/* listings */}
           <div className="rounded-2xl border border-line bg-raised p-4">
             <div className="mb-3 flex items-center justify-between">
@@ -421,10 +421,10 @@ export function SmeListingForm() {
       </div>
 
       {/* steps */}
-      <div className="flex gap-1.5">
+      <div className="no-scrollbar flex gap-1.5 overflow-x-auto pb-1">
         {Steps.map((s, i) => (
           <button key={s} onClick={() => i < step && setStep(i)}
-            className={clsx('flex flex-1 items-center gap-2 rounded-lg border px-2.5 py-2 text-left transition-all',
+            className={clsx('flex min-w-0 flex-1 shrink-0 items-center gap-2 rounded-lg border px-2.5 py-2 text-left transition-all sm:shrink',
               i === step ? 'border-royal bg-royal-50/60' : i < step ? 'border-emerald2-200 bg-emerald2-50/40' : 'border-line bg-raised')}>
             <span className={clsx('grid h-5 w-5 shrink-0 place-items-center rounded-full text-[10px] font-bold',
               i === step ? 'bg-royal text-white' : i < step ? 'bg-emerald2 text-white' : 'bg-navy-100 text-ink-faint')}>

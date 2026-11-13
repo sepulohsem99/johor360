@@ -193,7 +193,7 @@ export function StationDetail() {
       </div>
 
       <div className="shell py-8">
-        <div className="grid gap-6 lg:grid-cols-[1fr_300px]">
+        <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_300px]">
           <div>
             <div className="mb-4 flex items-center justify-between">
               <h2 className="text-[17px] font-extrabold">Experiences at {station.name}</h2>
