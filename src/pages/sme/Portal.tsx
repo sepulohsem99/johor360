@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react'
+import { usePrefs } from '../../app/prefs'
 import { T } from '../../components/ui/T'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import clsx from 'clsx'
@@ -27,6 +28,7 @@ export function useDemoOperator() {
 
 // ------------------------------------------------------------------ Dashboard
 export function SmeDashboard() {
+  const { tx } = usePrefs()
   const money = useMoneyText()
   const nav = useNavigate()
   const { operator, listings, opsEnquiries, opsReviews } = useDemoOperator()
@@ -61,7 +63,7 @@ export function SmeDashboard() {
 
       <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
         <Stat label="Listings" value={listings.length} icon="package" tone="navy" hint={`${published.length} published · ${listings.length - published.length} in review`} />
-        <Stat label="New enquiries" value={pending} icon="message-square" tone="johor" hint={`${totalEnq} total received`} />
+        <Stat label={tx("New enquiries")} value={pending} icon="message-square" tone="johor" hint={`${totalEnq} total received`} />
         <Stat label="Profile views" value={operator.profileViews.toLocaleString()} icon="eye" tone="royal" hint="last 30 days (simulated)" />
         <Stat label="Average rating" value={avgRating ? avgRating.toFixed(1) : '—'} icon="star" tone="gold" hint={`${opsReviews.length} demo reviews`} />
       </div>
@@ -174,6 +176,7 @@ export function SmeDashboard() {
 
 // ------------------------------------------------------------------ Listings
 export function SmeListings() {
+  const { tx } = usePrefs()
   const money = useMoneyText()
   const nav = useNavigate()
   const { listings } = useDemoOperator()
@@ -207,7 +210,7 @@ export function SmeListings() {
       </div>
 
       {shown.length === 0 ? (
-        <EmptyState icon="package" title="No listings in this state" body="Try a different filter, or create a new experience listing." action={<Button onClick={() => nav('/sme/listings/new')} icon="plus">Create listing</Button>} />
+        <EmptyState icon="package" title={tx("No listings in this state")} body={tx("Try a different filter, or create a new experience listing.")} action={<Button onClick={() => nav('/sme/listings/new')} icon="plus">Create listing</Button>} />
       ) : (
         <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
           {shown.map((l) => (
@@ -273,6 +276,7 @@ const empty: FormState = {
 }
 
 export function SmeListingForm() {
+  const { tx } = usePrefs()
   const money = useMoneyText()
   const { id } = useParams()
   const nav = useNavigate()
@@ -434,11 +438,11 @@ export function SmeListingForm() {
       <div className="rounded-2xl border border-line bg-white p-5">
         {step === 0 && (
           <div className="space-y-3">
-            <Field label="Experience title" required error={errors.title} hint="Specific beats clever. What will they actually do?">
+            <Field label={tx("Experience title")} required error={errors.title} hint="Specific beats clever. What will they actually do?">
               <input className="field" value={f.title} onChange={(e) => set('title', e.target.value)} placeholder="Canting Batik Workshop — Johor Palette" />
             </Field>
-            <Field label="One-line summary" required error={errors.summary} hint="Appears on cards. 20–140 characters.">
-              <textarea className="field field-area" rows={2} value={f.summary} onChange={(e) => set('summary', e.target.value)} placeholder="Draw wax lines by hand with a canting pen, then dye a 40cm cotton square." />
+            <Field label="One-line summary" required error={errors.summary} hint={tx("Appears on cards. 20–140 characters.")}>
+              <textarea className="field field-area" rows={2} value={f.summary} onChange={(e) => set('summary', e.target.value)} placeholder={tx("Draw wax lines by hand with a canting pen, then dye a 40cm cotton square.")} />
             </Field>
             <div className="grid gap-3 sm:grid-cols-2">
               <Field label="Category" required>
@@ -446,7 +450,7 @@ export function SmeListingForm() {
                   {CATEGORIES.map((c) => <option key={c.id} value={c.id}>{c.label}</option>)}
                 </select>
               </Field>
-              <Field label="Nearest ETS station" required>
+              <Field label={tx("Nearest ETS station")} required>
                 <select className="field" value={f.stationId} onChange={(e) => set('stationId', e.target.value)}>
                   {STATIONS.map((s) => <option key={s.id} value={s.id}>{s.name}</option>)}
                 </select>
@@ -471,14 +475,14 @@ export function SmeListingForm() {
 
         {step === 1 && (
           <div className="space-y-3">
-            <Field label="Full description" required error={errors.description} hint="At least 60 characters. Be honest about what is included and what is not.">
+            <Field label="Full description" required error={errors.description} hint={tx("At least 60 characters. Be honest about what is included and what is not.")}>
               <textarea className="field field-area" rows={6} value={f.description} onChange={(e) => set('description', e.target.value)} />
             </Field>
             <div className="grid gap-3 sm:grid-cols-3">
-              <Field label="Price per person (MYR)" required error={errors.price}>
+              <Field label={tx("Price per person (MYR)")} required error={errors.price}>
                 <input className="field" type="number" value={f.price} onChange={(e) => set('price', e.target.value)} />
               </Field>
-              <Field label="Duration (minutes)" required error={errors.durationMins}>
+              <Field label={tx("Duration (minutes)")} required error={errors.durationMins}>
                 <input className="field" type="number" value={f.durationMins} onChange={(e) => set('durationMins', e.target.value)} />
               </Field>
               <Field label="Max participants" required error={errors.capacity}>
@@ -501,7 +505,7 @@ export function SmeListingForm() {
                 </select>
               </Field>
             </div>
-            <Field label="Last-mile note" hint="How does a visitor get from the station to you?">
+            <Field label="Last-mile note" hint={tx("How does a visitor get from the station to you?")}>
               <input className="field" value={f.lastMileNote} onChange={(e) => set('lastMileNote', e.target.value)} placeholder="10 min walk from Kluang station, flat pavement." />
             </Field>
           </div>
@@ -522,7 +526,7 @@ export function SmeListingForm() {
                 ))}
               </div>
             </div>
-            <Field label="Accessibility notes" required error={errors.accessNotes} hint="Mention steps, thresholds, gradients, seating, toilets.">
+            <Field label={tx("Accessibility notes")} required error={errors.accessNotes} hint="Mention steps, thresholds, gradients, seating, toilets.">
               <textarea className="field field-area" rows={3} value={f.accessNotes} onChange={(e) => set('accessNotes', e.target.value)} placeholder="All work happens at seated height. Step-free entrance, 6cm threshold at the rear door." />
             </Field>
             <Field label="Educational value" required error={errors.learningValue} hint="What will a visitor actually learn?">
@@ -588,6 +592,7 @@ export function SmeListingForm() {
 
 // ------------------------------------------------------------------ Enquiries
 export function SmeEnquiries() {
+  const { tx } = usePrefs()
   const { opsEnquiries } = useDemoOperator()
   const { updateEnquiry, toast, experiences } = useApp()
   const [filter, setFilter] = useState<string>('all')
@@ -608,7 +613,7 @@ export function SmeEnquiries() {
           <h1 className="text-[24px] font-extrabold"><T>Enquiries</T></h1>
           <p className="mt-1 text-[13px] text-ink-mute"><T>Visitor enquiries are not bookings. You keep control of the conversation.</T></p>
         </div>
-        <DemoTag label="Demo enquiries" />
+        <DemoTag label={tx("Demo enquiries")} />
       </div>
 
       <div className="flex flex-wrap gap-1.5">
@@ -626,7 +631,7 @@ export function SmeEnquiries() {
       </div>
 
       {shown.length === 0 ? (
-        <EmptyState icon="message-square" title="No enquiries here" body="Enquiries from visitors will appear in this queue." />
+        <EmptyState icon="message-square" title={tx("No enquiries here")} body={tx("Enquiries from visitors will appear in this queue.")} />
       ) : (
         <div className="space-y-2">
           {shown.map((e) => {
@@ -651,7 +656,7 @@ export function SmeEnquiries() {
                       value={e.status}
                       onChange={(ev) => setStatus(e.id, ev.target.value as never)}
                       className="field !h-7 !w-auto !py-0 !text-[10.5px] font-semibold"
-                      aria-label="Update enquiry status"
+                      aria-label={tx("Update enquiry status")}
                     >
                       <option value="new">New</option>
                       <option value="in_review"><T>In review</T></option>
@@ -671,7 +676,7 @@ export function SmeEnquiries() {
         </div>
       )}
 
-      <Modal open={!!active} onClose={() => setOpen(null)} title="Enquiry details"
+      <Modal open={!!active} onClose={() => setOpen(null)} title={tx("Enquiry details")}
         footer={<>
           <Button variant="quiet" size="sm" onClick={() => setOpen(null)}><T>Close</T></Button>
           <Button size="sm" icon="send" onClick={() => { if (active) { setStatus(active.id, 'responded'); setOpen(null) } }}>Mark responded</Button>
@@ -705,6 +710,7 @@ export function SmeEnquiries() {
 
 // ------------------------------------------------------------------ Reviews
 export function SmeReviews() {
+  const { tx } = usePrefs()
   const { opsReviews } = useDemoOperator()
   const { experiences } = useApp()
   const avg = opsReviews.length ? opsReviews.reduce((s, r) => s + r.rating, 0) / opsReviews.length : 0
@@ -717,7 +723,7 @@ export function SmeReviews() {
           <h1 className="text-[24px] font-extrabold">Visitor feedback</h1>
           <p className="mt-1 text-[13px] text-ink-mute">{opsReviews.length} reviews · demonstration data only</p>
         </div>
-        <DemoTag label="Simulated reviews" />
+        <DemoTag label={tx("Simulated reviews")} />
       </div>
 
       <div className="grid gap-3 lg:grid-cols-[280px_1fr]">
@@ -776,6 +782,7 @@ export function SmeReviews() {
 
 // ------------------------------------------------------------------ Analytics
 export function SmeAnalytics() {
+  const { tx } = usePrefs()
   const { listings, opsEnquiries } = useDemoOperator()
   const totalViews = listings.reduce((s, l) => s + l.views, 0)
   const totalEnq = opsEnquiries.length
@@ -794,9 +801,9 @@ export function SmeAnalytics() {
       </div>
 
       <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-        <Stat label="Total views" value={totalViews.toLocaleString()} icon="eye" tone="royal" delta="+18% vs last month" />
-        <Stat label="Enquiries" value={totalEnq} icon="message-square" tone="johor" delta="+4 this week" />
-        <Stat label="View → enquiry" value={`${conv}%`} icon="target" tone="emerald2" hint="Simulated conversion rate" />
+        <Stat label={tx("Total views")} value={totalViews.toLocaleString()} icon="eye" tone="royal" delta="+18% vs last month" />
+        <Stat label={tx("Enquiries")} value={totalEnq} icon="message-square" tone="johor" delta="+4 this week" />
+        <Stat label={tx("View → enquiry")} value={`${conv}%`} icon="target" tone="emerald2" hint="Simulated conversion rate" />
         <Stat label="Published" value={listings.filter((l) => l.verification === 'verified').length} icon="package" tone="gold" hint={`of ${listings.length} listings`} />
       </div>
 
@@ -869,6 +876,7 @@ export function SmeAnalytics() {
 
 // ------------------------------------------------------------------ Profile
 export function SmeProfilePage() {
+  const { tx } = usePrefs()
   const { operator, listings } = useDemoOperator()
   const { toast } = useApp()
   const [f, setF] = useState({
@@ -901,11 +909,11 @@ export function SmeProfilePage() {
 
         <div className="mt-5 grid gap-3 sm:grid-cols-2">
           <Field label="Business name"><input className="field" value={f.name} onChange={(e) => setF({ ...f, name: e.target.value })} /></Field>
-          <Field label="Operator name"><input className="field" value={f.operatorName} onChange={(e) => setF({ ...f, operatorName: e.target.value })} /></Field>
-          <Field label="Email (mock)"><input className="field" value={f.email} onChange={(e) => setF({ ...f, email: e.target.value })} /></Field>
-          <Field label="Phone (mock)"><input className="field" value={f.phone} onChange={(e) => setF({ ...f, phone: e.target.value })} /></Field>
+          <Field label={tx("Operator name")}><input className="field" value={f.operatorName} onChange={(e) => setF({ ...f, operatorName: e.target.value })} /></Field>
+          <Field label={tx("Email (mock)")}><input className="field" value={f.email} onChange={(e) => setF({ ...f, email: e.target.value })} /></Field>
+          <Field label={tx("Phone (mock)")}><input className="field" value={f.phone} onChange={(e) => setF({ ...f, phone: e.target.value })} /></Field>
           <Field label="Town / area"><input className="field" value={f.town} onChange={(e) => setF({ ...f, town: e.target.value })} /></Field>
-          <Field label="Nearest ETS station">
+          <Field label={tx("Nearest ETS station")}>
             <select className="field" value={f.stationId} onChange={(e) => setF({ ...f, stationId: e.target.value })}>
               {STATIONS.map((s) => <option key={s.id} value={s.id}>{s.name}</option>)}
             </select>
@@ -913,7 +921,7 @@ export function SmeProfilePage() {
         </div>
 
         <div className="mt-3">
-          <Field label="Business description" hint="Visible to visitors on your operator page.">
+          <Field label="Business description" hint={tx("Visible to visitors on your operator page.")}>
             <textarea className="field field-area" rows={4} value={f.description} onChange={(e) => setF({ ...f, description: e.target.value })} />
           </Field>
         </div>

@@ -1,7 +1,7 @@
 import { lazy, Suspense } from 'react'
 import { BrowserRouter, Routes, Route, Navigate, Outlet } from 'react-router-dom'
 import { AppProvider } from './app/store'
-import { PreferencesProvider } from './app/prefs'
+import { PreferencesProvider, usePrefs } from './app/prefs'
 import { CurrencyProvider } from './app/currency'
 import { PublicHeader, PublicFooter } from './layouts/PublicLayout'
 import PortalLayout, { ToastStack } from './layouts/PortalLayout'
@@ -79,11 +79,12 @@ const ItineraryBuilder = lazy(() => import('./pages/visitor/Itinerary').then((m)
 const ItinerariesIndex = lazy(() => import('./pages/visitor/Itinerary').then((m) => ({ default: m.ItinerariesIndex })))
 
 function SmeLayout() {
+  const { tx } = usePrefs()
   const { experiences } = useApp()
   const pending = experiences.filter((e) => e.verification === 'pending').length
   return (
     <PortalLayout
-      title="SME operator portal"
+      title={tx("SME operator portal")}
       subtitle="JOHOR360"
       accent="sme"
       items={[

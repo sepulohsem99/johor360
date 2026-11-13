@@ -7,12 +7,10 @@ import { usePrefs } from '../../app/prefs'
  * Wraps a plain English sentence and renders it in the active language:
  *     <T>Top matches for you</T>
  *
- * Why a component and not a `t()` call at every site: this interface was
- * written English-first with the copy sitting directly in JSX. `<T>` lets the
- * copy stay where a designer expects to find it, re-renders correctly when the
- * language changes (it consumes the preference context), and falls back to the
- * English original if a row is missing — a missing translation can never blank
- * out the interface.
+ * A component rather than a `t()` call at every site: this interface was
+ * written English-first with copy sitting directly in JSX, and <T> re-renders
+ * correctly on language change. Missing rows fall back to English rather than
+ * blanking the interface.
  */
 export function T({ children }: { children: ReactNode }) {
   const { tx } = usePrefs()

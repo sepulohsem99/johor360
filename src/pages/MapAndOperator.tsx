@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
+import { usePrefs } from '../app/prefs'
 import { T } from '../components/ui/T'
 import { Link, useParams } from 'react-router-dom'
 import clsx from 'clsx'
@@ -14,6 +15,7 @@ import { hoursLabel, money } from '../services/storage'
 import { useMoneyText } from '../app/currency'
 
 export default function ExploreMap() {
+  const { tx } = usePrefs()
   const money = useMoneyText()
   const exps = usePublishedExperiences()
   const mapRef = useRef<HTMLDivElement>(null)
@@ -158,7 +160,7 @@ export default function ExploreMap() {
             </div>
 
             <div className="relative overflow-hidden rounded-2xl border border-line bg-white">
-              <div ref={mapRef} className="h-[420px] w-full sm:h-[520px]" aria-label="Map of Johor ETS corridor experiences" />
+              <div ref={mapRef} className="h-[420px] w-full sm:h-[520px]" aria-label={tx("Map of Johor ETS corridor experiences")} />
               <div className="pointer-events-none absolute bottom-2 left-2 rounded-lg bg-white/90 px-2 py-1 text-[9.5px] text-ink-mute backdrop-blur-sm">
                 Map data © OpenStreetMap contributors
               </div>
@@ -231,6 +233,7 @@ export default function ExploreMap() {
 }
 
 export function OperatorProfile() {
+  const { tx } = usePrefs()
   const money = useMoneyText()
   const params = useParams()
   const exps = usePublishedExperiences()
@@ -243,7 +246,7 @@ export function OperatorProfile() {
   if (!operator) {
     return (
       <div className="shell py-20">
-        <EmptyState icon="store" title="Operator not found" body="This demo operator does not exist in the dataset." action={<Link to="/explore" className="btn btn-primary btn-md"><T>Browse experiences</T></Link>} />
+        <EmptyState icon="store" title={tx("Operator not found")} body={tx("This demo operator does not exist in the dataset.")} action={<Link to="/explore" className="btn btn-primary btn-md"><T>Browse experiences</T></Link>} />
       </div>
     )
   }
@@ -299,11 +302,11 @@ export function OperatorProfile() {
       <div className="shell py-7">
         <div className="mb-4 flex items-center justify-between">
           <h2 className="text-[17px] font-extrabold">Experiences by {operator.name}</h2>
-          <DemoTag label="Demo operator" />
+          <DemoTag label={tx("Demo operator")} />
         </div>
 
         {listings.length === 0 ? (
-          <EmptyState icon="package-x" title="No published listings" body="This operator has no verified public listings right now." />
+          <EmptyState icon="package-x" title={tx("No published listings")} body={tx("This operator has no verified public listings right now.")} />
         ) : (
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {listings.map((e) => (

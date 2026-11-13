@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react'
+import { usePrefs } from '../../app/prefs'
 import { T } from '../../components/ui/T'
 import { Link, useNavigate } from 'react-router-dom'
 import clsx from 'clsx'
@@ -13,6 +14,7 @@ import { useMoneyText } from '../../app/currency'
 import type { Itinerary, ItineraryItem } from '../../types'
 
 export default function ItineraryBuilder() {
+  const { tx } = usePrefs()
   const money = useMoneyText()
   const nav = useNavigate()
   const { itineraries, updateItinerary, removeItinerary, toast, profile, addItinerary } = useApp()
@@ -35,7 +37,7 @@ export default function ItineraryBuilder() {
       <div className="mx-auto max-w-2xl py-16">
         <EmptyState
           icon="route"
-          title="No itinerary yet"
+          title={tx("No itinerary yet")}
           body="Generate one from your matches, or build it manually by adding experiences from the corridor."
           action={<Button onClick={() => nav('/visitor/recommendations')} icon="sparkles"><T>Generate from matches</T></Button>}
         />
@@ -160,7 +162,7 @@ export default function ItineraryBuilder() {
         {/* timeline */}
         <div className="space-y-3">
           {sorted.length === 0 ? (
-            <EmptyState icon="calendar-x" title="This itinerary is empty" body="Add an experience from the corridor, or generate a plan from your matches." action={<Button onClick={() => setAddOpen(true)} icon="plus"><T>Add a stop</T></Button>} />
+            <EmptyState icon="calendar-x" title={tx("This itinerary is empty")} body={tx("Add an experience from the corridor, or generate a plan from your matches.")} action={<Button onClick={() => setAddOpen(true)} icon="plus"><T>Add a stop</T></Button>} />
           ) : (
             <div className="rounded-2xl border border-line bg-white p-4">
               <div className="mb-3 flex items-center justify-between">
@@ -373,7 +375,7 @@ export default function ItineraryBuilder() {
       <Modal open={renameOpen} onClose={() => setRenameOpen(false)} title="Rename itinerary"
         footer={<><Button variant="quiet" size="sm" onClick={() => setRenameOpen(false)}><T>Cancel</T></Button>
           <Button size="sm" onClick={() => { if (newName.trim()) { persist({ ...active, name: newName.trim() }); setRenameOpen(false); toast('Renamed', newName, 'success') } }}>Save</Button></>}>
-        <Field label="Itinerary name" required>
+        <Field label={tx("Itinerary name")} required>
           <input className="field" value={newName} onChange={(e) => setNewName(e.target.value)} autoFocus />
         </Field>
       </Modal>
@@ -412,6 +414,7 @@ export default function ItineraryBuilder() {
 }
 
 function AddStopModal({ open, onClose, itinerary, onAdd }: { open: boolean; onClose: () => void; itinerary: Itinerary; onAdd: (i: ItineraryItem) => void }) {
+  const { tx } = usePrefs()
   const exps = usePublishedExperiences()
   const [q, setQ] = useState('')
   const [stationFilter, setStationFilter] = useState<string>('')
@@ -427,10 +430,10 @@ function AddStopModal({ open, onClose, itinerary, onAdd }: { open: boolean; onCl
   }, [exps, q, stationFilter, itinerary.items])
 
   return (
-    <Modal open={open} onClose={onClose} title="Add a stop" width="max-w-xl">
+    <Modal open={open} onClose={onClose} title={tx("Add a stop")} width="max-w-xl">
       <div className="space-y-3">
         <div className="grid gap-2 sm:grid-cols-2">
-          <input className="field" placeholder="Search experiences…" value={q} onChange={(e) => setQ(e.target.value)} />
+          <input className="field" placeholder={tx("Search experiences…")} value={q} onChange={(e) => setQ(e.target.value)} />
           <select className="field" value={stationFilter} onChange={(e) => setStationFilter(e.target.value)}>
             <option value=""><T>All stations</T></option>
             {CORRIDOR.map((s) => <option key={s.id} value={s.id}>{s.name}</option>)}
@@ -471,6 +474,7 @@ function SceneMini({ id }: { id: string }) {
 }
 
 export function ItinerariesIndex() {
+  const { tx } = usePrefs()
   const money = useMoneyText()
   const { itineraries, removeItinerary, toast } = useApp()
   const nav = useNavigate()
@@ -489,7 +493,7 @@ export function ItinerariesIndex() {
       </div>
 
       {itineraries.length === 0 ? (
-        <EmptyState icon="route" title="No itineraries saved" body="Generate one from your matches or build it manually." action={<Button onClick={() => nav('/visitor/recommendations')}>See matches</Button>} />
+        <EmptyState icon="route" title={tx("No itineraries saved")} body={tx("Generate one from your matches or build it manually.")} action={<Button onClick={() => nav('/visitor/recommendations')}>See matches</Button>} />
       ) : (
         <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
           {itineraries.map((it) => {
@@ -533,7 +537,7 @@ export function ItinerariesIndex() {
                     <button onClick={() => nav('/visitor/itinerary')} className="grid h-6 w-6 place-items-center rounded text-ink-faint hover:bg-navy-50 hover:text-navy" aria-label="Open">
                       <Icon name="arrow-right" size={13} />
                     </button>
-                    <button onClick={() => { removeItinerary(it.id); toast('Deleted', it.name, 'info') }} className="grid h-6 w-6 place-items-center rounded text-ink-faint hover:bg-johor-50 hover:text-johor" aria-label="Delete">
+                    <button onClick={() => { removeItinerary(it.id); toast('Deleted', it.name, 'info') }} className="grid h-6 w-6 place-items-center rounded text-ink-faint hover:bg-johor-50 hover:text-johor" aria-label={tx("Delete")}>
                       <Icon name="trash-2" size={13} />
                     </button>
                   </div>

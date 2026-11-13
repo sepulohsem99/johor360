@@ -1,4 +1,5 @@
 import React from 'react'
+import { usePrefs } from '../../app/prefs'
 import clsx from 'clsx'
 import Icon from './Icon'
 import { VERIFICATION_META, ENQUIRY_META } from '../../services/storage'
@@ -258,7 +259,7 @@ export function Modal({
           <h3 className="text-[16px] font-bold">{title}</h3>
           <button
             onClick={onClose}
-            aria-label="Close dialog"
+            aria-label={title ?? 'Close dialog'}
             className="grid h-8 w-8 place-items-center rounded-lg text-ink-mute hover:bg-navy-50 hover:text-navy"
           >
             <Icon name="x" size={17} />

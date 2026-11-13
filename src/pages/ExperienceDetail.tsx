@@ -1,4 +1,5 @@
 import React, { useMemo, useState } from 'react'
+import { usePrefs } from '../app/prefs'
 import { T } from '../components/ui/T'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import clsx from 'clsx'
@@ -17,6 +18,7 @@ import { toMin, toTime } from '../services/itinerary'
 import { matchExperiences } from '../services/matching'
 
 export default function ExperienceDetail() {
+  const { tx } = usePrefs()
   const money = useMoneyText()
   const { slug } = useParams()
   const nav = useNavigate()
@@ -50,8 +52,8 @@ export default function ExperienceDetail() {
       <div className="shell py-20">
         <EmptyState
           icon="package-x"
-          title="Experience not found"
-          body="This listing may have been removed, or it is still awaiting admin verification."
+          title={tx("Experience not found")}
+          body={tx("This listing may have been removed, or it is still awaiting admin verification.")}
           action={<Link to="/explore" className="btn btn-primary btn-md"><T>Browse experiences</T></Link>}
         />
       </div>
@@ -392,7 +394,7 @@ export default function ExperienceDetail() {
                   Visitor feedback <span className="text-ink-faint num">({expReviews.length})</span>
                 </h2>
                 <div className="flex items-center gap-2">
-                  <DemoTag label="Demo reviews" />
+                  <DemoTag label={tx("Demo reviews")} />
                   <Button variant="ghost" size="sm" icon="pen-line" onClick={() => setReviewOpen(true)}>
                     <T>Write a review</T>
                   </Button>
@@ -422,7 +424,7 @@ export default function ExperienceDetail() {
 
                 <div className="space-y-2.5">
                   {expReviews.length === 0 ? (
-                    <EmptyState icon="message-square" title="No reviews yet" body="Be the first to leave demonstration feedback for this listing." />
+                    <EmptyState icon="message-square" title={tx("No reviews yet")} body={tx("Be the first to leave demonstration feedback for this listing.")} />
                   ) : (
                     expReviews.slice(0, 4).map((r) => (
                       <div key={r.id} className="rounded-xl border border-line bg-white p-3.5">
@@ -555,7 +557,7 @@ export default function ExperienceDetail() {
       <Modal
         open={enquiryOpen}
         onClose={() => setEnquiryOpen(false)}
-        title="Send an enquiry"
+        title={tx("Send an enquiry")}
         footer={
           <>
             <Button variant="quiet" size="sm" onClick={() => setEnquiryOpen(false)}><T>Cancel</T></Button>
@@ -569,26 +571,26 @@ export default function ExperienceDetail() {
         </div>
         <div className="space-y-3">
           <div className="grid gap-3 sm:grid-cols-2">
-            <Field label="Your name" required error={errors.name}>
+            <Field label={tx("Your name")} required error={errors.name}>
               <input className="field" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} placeholder="Anna Wijaya" />
             </Field>
-            <Field label="Email" required error={errors.email}>
+            <Field label={tx("Email")} required error={errors.email}>
               <input className="field" type="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} placeholder="you@example.com" />
             </Field>
           </div>
           <div className="grid gap-3 sm:grid-cols-2">
-            <Field label="Number of people">
+            <Field label={tx("Number of people")}>
               <select className="field" value={form.party} onChange={(e) => setForm({ ...form, party: e.target.value })}>
                 {Array.from({ length: exp.capacity }, (_, i) => i + 1).map((n) => (
                   <option key={n} value={n}>{n} {n === 1 ? 'person' : 'people'}</option>
                 ))}
               </select>
             </Field>
-            <Field label="Preferred date" required error={errors.date}>
+            <Field label={tx("Preferred date")} required error={errors.date}>
               <input className="field" type="date" value={form.date} onChange={(e) => setForm({ ...form, date: e.target.value })} />
             </Field>
           </div>
-          <Field label="Message" required error={errors.message} hint="Mention your train time, mobility needs or anything else relevant.">
+          <Field label={tx("Message")} required error={errors.message} hint={tx("Mention your train time, mobility needs or anything else relevant.")}>
             <textarea
               className="field field-area"
               rows={4}
@@ -607,7 +609,7 @@ export default function ExperienceDetail() {
       <Modal
         open={reviewOpen}
         onClose={() => setReviewOpen(false)}
-        title="Write a review"
+        title={tx("Write a review")}
         footer={
           <>
             <Button variant="quiet" size="sm" onClick={() => setReviewOpen(false)}><T>Cancel</T></Button>
@@ -616,7 +618,7 @@ export default function ExperienceDetail() {
         }
       >
         <div className="space-y-3">
-          <Field label="Your name" required>
+          <Field label={tx("Your name")} required>
             <input className="field" value={revForm.name} onChange={(e) => setRevForm({ ...revForm, name: e.target.value })} placeholder="Hana S." />
           </Field>
           <Field label="Rating">
@@ -635,7 +637,7 @@ export default function ExperienceDetail() {
               ))}
             </div>
           </Field>
-          <Field label="Your feedback" required hint="At least 15 characters. Be specific — what worked, what to know before booking.">
+          <Field label={tx("Your feedback")} required hint={tx("At least 15 characters. Be specific — what worked, what to know before booking.")}>
             <textarea
               className="field field-area"
               rows={4}

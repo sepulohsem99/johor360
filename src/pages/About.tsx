@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { usePrefs } from '../app/prefs'
 import { T } from '../components/ui/T'
 import Icon from '../components/ui/Icon'
 import { Button, DemoTag, Section } from '../components/ui'
@@ -6,6 +7,7 @@ import Scene from '../components/art/Scene'
 import { RAIL_SOURCE, CORRIDOR } from '../data/stations'
 
 export function About() {
+  const { tx } = usePrefs()
   return (
     <div>
       <div className="relative overflow-hidden bg-navy-900">
@@ -24,7 +26,7 @@ export function About() {
         </div>
       </div>
 
-      <Section eyebrow="The challenge" title="Category 4: Connecting visitors in Johor">
+      <Section eyebrow="The challenge" title={tx("Category 4: Connecting visitors in Johor")}>
         <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
           <div className="space-y-4">
             {[
@@ -99,7 +101,7 @@ export function About() {
         </div>
       </section>
 
-      <Section eyebrow="The corridor" title="What we cover, and what we verified">
+      <Section eyebrow="The corridor" title={tx("What we cover, and what we verified")}>
         <div className="grid gap-5 lg:grid-cols-[1.2fr_0.8fr]">
           <div className="rounded-2xl border border-line bg-white p-4">
             <p className="mb-3 text-[12px] font-bold text-navy"><T>Station sequence (north → south)</T></p>
@@ -175,6 +177,7 @@ export function About() {
 }
 
 export function HowItWorks() {
+  const { tx } = usePrefs()
   const steps = [
     { n: '01', t: 'Set your purpose', d: 'Business, medical, education or leisure. This single choice changes what you see, because a two-hour window near a station is a different trip from a relaxed accessible afternoon.', icon: 'compass' },
     { n: '02', t: 'Tell us your constraints', d: 'Available time, budget in ringgit, preferred station, and any accessibility requirements. Accessibility is treated as a hard constraint — not a preference to be traded off.', icon: 'sliders-horizontal' },
@@ -200,7 +203,7 @@ export function HowItWorks() {
         </div>
       </div>
 
-      <Section eyebrow="The visitor flow" title="Six steps, in order">
+      <Section eyebrow="The visitor flow" title={tx("Six steps, in order")}>
         <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
           {steps.map((s) => (
             <div key={s.n} className="relative overflow-hidden rounded-2xl border border-line bg-white p-5">

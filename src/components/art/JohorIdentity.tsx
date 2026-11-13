@@ -12,14 +12,16 @@
  */
 
 import clsx from 'clsx'
+import { usePrefs } from '../../app/prefs'
 
 export function JohorSkyline({ className }: { className?: string }) {
+  const { tx } = usePrefs()
   return (
     <svg
       viewBox="0 0 640 300"
       className={clsx('h-full w-full', className)}
       role="img"
-      aria-label="Illustration of Johor heritage rooftops and the ETS rail corridor"
+      aria-label={tx("Illustration of Johor heritage rooftops and the ETS rail corridor")}
       preserveAspectRatio="xMidYMax slice"
     >
       <defs>

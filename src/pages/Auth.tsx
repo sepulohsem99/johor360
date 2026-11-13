@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { usePrefs } from '../app/prefs'
 import { T } from '../components/ui/T'
 import { Link, useNavigate } from 'react-router-dom'
 import clsx from 'clsx'
@@ -28,6 +29,7 @@ function AuthShell({ children, side }: { children: React.ReactNode; side: React.
 }
 
 export function Login() {
+  const { tx } = usePrefs()
   const nav = useNavigate()
   const { setRole, toast, setProfile, profile } = useApp()
   const [email, setEmail] = useState('')
@@ -68,14 +70,14 @@ export function Login() {
         <Link to="/" className="inline-flex items-center gap-1.5 text-[12px] font-semibold text-ink-mute hover:text-navy">
           <Icon name="arrow-left" size={13} /> Back
         </Link>
-        <DemoTag label="No real auth" />
+        <DemoTag label={tx("No real auth")} />
       </div>
 
       <h1 className="text-[24px] font-extrabold"><T>Sign in</T></h1>
       <p className="mt-1 text-[13px] text-ink-mute"><T>Welcome back. Pick up where you left off.</T></p>
 
       <form onSubmit={submit} className="mt-6 space-y-3">
-        <Field label="Email" required error={err && !/^\S+@\S+\.\S+$/.test(email) ? err : ''}>
+        <Field label={tx("Email")} required error={err && !/^\S+@\S+\.\S+$/.test(email) ? err : ''}>
           <input className="field" type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="you@example.com" autoComplete="email" />
         </Field>
         <Field label="Password" required error={err && /^\S+@\S+\.\S+$/.test(email) ? err : ''}>
@@ -134,6 +136,7 @@ export function Login() {
 }
 
 export function Register() {
+  const { tx } = usePrefs()
   const nav = useNavigate()
   const { setRole, toast, profile, setProfile } = useApp()
   const [kind, setKind] = useState<'visitor' | 'sme'>('visitor')
@@ -186,7 +189,7 @@ export function Register() {
         <Link to="/" className="inline-flex items-center gap-1.5 text-[12px] font-semibold text-ink-mute hover:text-navy">
           <Icon name="arrow-left" size={13} /> Back
         </Link>
-        <DemoTag label="No real signup" />
+        <DemoTag label={tx("No real signup")} />
       </div>
 
       <h1 className="text-[24px] font-extrabold">Create an account</h1>
@@ -209,10 +212,10 @@ export function Register() {
             <Field label={kind === 'sme' ? 'Your name' : 'Full name'} required error={err.name}>
               <input className="field" value={f.name} onChange={(e) => setF({ ...f, name: e.target.value })} placeholder="Anna Wijaya" />
             </Field>
-            <Field label="Email" required error={err.email}>
+            <Field label={tx("Email")} required error={err.email}>
               <input className="field" type="email" value={f.email} onChange={(e) => setF({ ...f, email: e.target.value })} placeholder="you@example.com" />
             </Field>
-            <Field label="Password" required error={err.pw} hint="Minimum 6 characters. Not stored anywhere.">
+            <Field label="Password" required error={err.pw} hint={tx("Minimum 6 characters. Not stored anywhere.")}>
               <input className="field" type="password" value={f.pw} onChange={(e) => setF({ ...f, pw: e.target.value })} placeholder="••••••••" />
             </Field>
             {kind === 'visitor' && (
@@ -247,16 +250,16 @@ export function Register() {
                   {['Food & Coffee', 'Craft & Textile', 'Agriculture', 'Heritage', 'Nature & Guiding', 'Education', 'Wellness', 'Community Craft'].map((c) => <option key={c}>{c}</option>)}
                 </select>
               </Field>
-              <Field label="Nearest ETS station">
+              <Field label={tx("Nearest ETS station")}>
                 <select className="field" value={f.station} onChange={(e) => setF({ ...f, station: e.target.value })}>
                   {['jb-sentral', 'kulai', 'rengam', 'kluang', 'paloh', 'bekok', 'labis', 'segamat', 'gemas'].map((c) => <option key={c} value={c}>{c.replace('-', ' ')}</option>)}
                 </select>
               </Field>
             </div>
-            <Field label="Phone" required error={err.phone}>
+            <Field label={tx("Phone")} required error={err.phone}>
               <input className="field" value={f.phone} onChange={(e) => setF({ ...f, phone: e.target.value })} placeholder="+60 7-000 0000" />
             </Field>
-            <Field label="Business description" required error={err.description} hint="What do you do, and who for? 30+ characters.">
+            <Field label="Business description" required error={err.description} hint={tx("What do you do, and who for? 30+ characters.")}>
               <textarea className="field field-area" rows={3} value={f.description} onChange={(e) => setF({ ...f, description: e.target.value })} />
             </Field>
             <div className="flex gap-2">
@@ -275,6 +278,7 @@ export function Register() {
 }
 
 export function ForgotPassword() {
+  const { tx } = usePrefs()
   const [sent, setSent] = useState(false)
   const [email, setEmail] = useState('')
   return (
@@ -298,7 +302,7 @@ export function ForgotPassword() {
           <h1 className="text-[24px] font-extrabold">Reset password</h1>
           <p className="mt-1 text-[13px] text-ink-mute"><T>Enter your email and we will send a reset link.</T></p>
           <div className="mt-5 space-y-3">
-            <Field label="Email" required>
+            <Field label={tx("Email")} required>
               <input className="field" type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="you@example.com" />
             </Field>
             <Button className="w-full" size="lg" onClick={() => setSent(true)} disabled={!/^\S+@\S+\.\S+$/.test(email)}>Send reset link</Button>

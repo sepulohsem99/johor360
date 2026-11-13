@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react'
+import { usePrefs } from '../../app/prefs'
 import { T } from '../../components/ui/T'
 import { Link, useNavigate } from 'react-router-dom'
 import clsx from 'clsx'
@@ -15,6 +16,7 @@ import { hoursLabel, money, dateLabel } from '../../services/storage'
 import { useMoneyText } from '../../app/currency'
 
 export function VisitorDashboard() {
+  const { tx } = usePrefs()
   const money = useMoneyText()
   const nav = useNavigate()
   const { profile, itineraries, favourites, experiences } = useApp()
@@ -84,7 +86,7 @@ export function VisitorDashboard() {
         <Stat label="Matched" value={matches.length > 0 ? `${matches.length}+` : '0'} icon="sparkles" tone="royal" hint="verified experiences fit your constraints" />
         <Stat label="Saved" value={favourites.length} icon="heart" tone="johor" hint="experiences in your favourites" />
         <Stat label="Itineraries" value={itineraries.length} icon="route" tone="emerald2" hint="saved and generated plans" />
-        <Stat label="Station" value={station?.name ?? '—'} icon="train-front" tone="navy" hint={`~${station?.minutesFromJB ?? 0} min from JB Sentral`} />
+        <Stat label={tx("Station")} value={station?.name ?? '—'} icon="train-front" tone="navy" hint={`~${station?.minutesFromJB ?? 0} min from JB Sentral`} />
       </div>
 
       {/* plans */}
@@ -130,7 +132,7 @@ export function VisitorDashboard() {
           </Link>
         </div>
         {matches.length === 0 ? (
-          <EmptyState icon="filter-x" title="Nothing passes your constraints" body="Your accessibility or time requirements exclude everything near this station. Try a different station or widen your window." action={<Button variant="ghost" onClick={() => nav('/visitor/profile')}><T>Edit preferences</T></Button>} />
+          <EmptyState icon="filter-x" title={tx("Nothing passes your constraints")} body="Your accessibility or time requirements exclude everything near this station. Try a different station or widen your window." action={<Button variant="ghost" onClick={() => nav('/visitor/profile')}><T>Edit preferences</T></Button>} />
         ) : (
           <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
             {matches.map((m) => (
@@ -201,6 +203,7 @@ export function VisitorDashboard() {
 }
 
 export function Recommendations() {
+  const { tx } = usePrefs()
   const money = useMoneyText()
   const { profile, setProfile, toast } = useApp()
   const exps = usePublishedExperiences()
@@ -262,7 +265,7 @@ export function Recommendations() {
         <div className="rounded-2xl border border-royal-200 bg-royal-50/60 p-4 animate-fadeUp">
           <div className="flex items-start justify-between">
             <p className="text-[13px] font-extrabold text-navy"><T>How the matching engine works</T></p>
-            <button onClick={() => setShowExplainer(false)} aria-label="Close" className="text-ink-faint hover:text-navy">
+            <button onClick={() => setShowExplainer(false)} aria-label={tx("Close")} className="text-ink-faint hover:text-navy">
               <Icon name="x" size={15} />
             </button>
           </div>
@@ -309,7 +312,7 @@ export function Recommendations() {
             <p className="mb-1.5 flex items-center justify-between text-[10.5px] font-bold uppercase tracking-wider text-ink-faint">
               <T>Budget</T> <span className="text-[11px] text-navy num">{money(budget)}</span>
             </p>
-            <input type="range" min={30} max={600} step={10} value={budget} onChange={(e) => setBudget(Number(e.target.value))} className="w-full accent-royal" aria-label="Budget" />
+            <input type="range" min={30} max={600} step={10} value={budget} onChange={(e) => setBudget(Number(e.target.value))} className="w-full accent-royal" aria-label={tx("Budget")} />
           </div>
 
           <div>
@@ -425,7 +428,7 @@ export function Recommendations() {
           <span className="text-[11px] text-ink-faint">Score shown as percentage</span>
         </div>
         {results.length === 0 ? (
-          <EmptyState icon="filter-x" title="No experiences pass your constraints" body="Every listing was excluded by an accessibility requirement or time mismatch. Try a longer window, a different station, or review your accessibility needs." action={<Button variant="ghost" onClick={reset} icon="rotate-ccw">Reset scenario</Button>} />
+          <EmptyState icon="filter-x" title={tx("No experiences pass your constraints")} body="Every listing was excluded by an accessibility requirement or time mismatch. Try a longer window, a different station, or review your accessibility needs." action={<Button variant="ghost" onClick={reset} icon="rotate-ccw">Reset scenario</Button>} />
         ) : (
           <div className="space-y-2.5">
             {results.map((r) => (
@@ -467,6 +470,7 @@ export function Recommendations() {
 }
 
 export function VisitorProfilePage() {
+  const { tx } = usePrefs()
   const money = useMoneyText()
   const { profile, setProfile, toast } = useApp()
   const [draft, setDraft] = useState({ ...profile })
@@ -492,10 +496,10 @@ export function VisitorProfilePage() {
       <div className="rounded-2xl border border-line bg-white p-5">
         <h2 className="text-[14px] font-extrabold"><T>About you</T></h2>
         <div className="mt-3 grid gap-3 sm:grid-cols-2">
-          <Field label="Display name">
+          <Field label={tx("Display name")}>
             <input className="field" value={draft.name} onChange={(e) => set('name', e.target.value)} />
           </Field>
-          <Field label="Email (mock)">
+          <Field label={tx("Email (mock)")}>
             <input className="field" type="email" value={draft.email} onChange={(e) => set('email', e.target.value)} placeholder="you@example.com" />
           </Field>
           <Field label="Country">
@@ -533,17 +537,17 @@ export function VisitorProfilePage() {
               <p className="text-[12px] font-semibold text-ink-soft"><T>Available time</T></p>
               <span className="text-[12px] font-bold text-navy num">{hoursLabel(draft.availableMins)}</span>
             </div>
-            <input type="range" min={60} max={480} step={30} value={draft.availableMins} onChange={(e) => set('availableMins', Number(e.target.value))} className="w-full accent-royal" aria-label="Available time" />
+            <input type="range" min={60} max={480} step={30} value={draft.availableMins} onChange={(e) => set('availableMins', Number(e.target.value))} className="w-full accent-royal" aria-label={tx("Available time")} />
           </div>
           <div>
             <div className="mb-1.5 flex justify-between">
               <p className="text-[12px] font-semibold text-ink-soft"><T>Budget per person</T></p>
               <span className="text-[12px] font-bold text-navy num">{money(draft.budget)}</span>
             </div>
-            <input type="range" min={30} max={600} step={10} value={draft.budget} onChange={(e) => set('budget', Number(e.target.value))} className="w-full accent-royal" aria-label="Budget" />
+            <input type="range" min={30} max={600} step={10} value={draft.budget} onChange={(e) => set('budget', Number(e.target.value))} className="w-full accent-royal" aria-label={tx("Budget")} />
           </div>
           <div className="grid gap-3 sm:grid-cols-2">
-            <Field label="Preferred station">
+            <Field label={tx("Preferred station")}>
               <select className="field" value={draft.stationId} onChange={(e) => set('stationId', e.target.value)}>
                 {CORRIDOR.map((s) => <option key={s.id} value={s.id}>{s.name}</option>)}
               </select>
@@ -598,6 +602,7 @@ export function VisitorProfilePage() {
 }
 
 export function Favourites() {
+  const { tx } = usePrefs()
   const { favourites, experiences } = useApp()
   const saved = experiences.filter((e) => favourites.includes(e.id))
 
@@ -608,7 +613,7 @@ export function Favourites() {
         <p className="mt-1 text-[13px] text-ink-mute">{saved.length} saved · stored in this browser</p>
       </div>
       {saved.length === 0 ? (
-        <EmptyState icon="heart" title="Nothing saved yet" body="Tap the heart on any experience to keep it here for later." action={<Link to="/explore" className="btn btn-primary btn-md"><T>Explore experiences</T></Link>} />
+        <EmptyState icon="heart" title="Nothing saved yet" body={tx("Tap the heart on any experience to keep it here for later.")} action={<Link to="/explore" className="btn btn-primary btn-md"><T>Explore experiences</T></Link>} />
       ) : (
         <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
           {saved.map((e) => <ExperienceCard key={e.id} exp={e} />)}

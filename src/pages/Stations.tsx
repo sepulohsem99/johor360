@@ -1,4 +1,5 @@
 import React, { useMemo } from 'react'
+import { usePrefs } from '../app/prefs'
 import { T } from '../components/ui/T'
 import { Link, useParams } from 'react-router-dom'
 import clsx from 'clsx'
@@ -125,6 +126,7 @@ export function StationsIndex() {
 }
 
 export function StationDetail() {
+  const { tx } = usePrefs()
   const { stationId } = useParams()
   const station = stationById(stationId)
   const exps = usePublishedExperiences()
@@ -132,7 +134,7 @@ export function StationDetail() {
   if (!station) {
     return (
       <div className="shell py-20">
-        <EmptyState icon="map-pin-off" title="Station not found" body="That station is not part of the JOHOR360 demo corridor." action={<Link to="/explore/stations" className="btn btn-primary btn-md"><T>Back to corridor</T></Link>} />
+        <EmptyState icon="map-pin-off" title={tx("Station not found")} body={tx("That station is not part of the JOHOR360 demo corridor.")} action={<Link to="/explore/stations" className="btn btn-primary btn-md"><T>Back to corridor</T></Link>} />
       </div>
     )
   }
@@ -200,7 +202,7 @@ export function StationDetail() {
             {list.length === 0 ? (
               <EmptyState
                 icon="circle-slash"
-                title="No listed operator here yet"
+                title={tx("No listed operator here yet")}
                 body={`${station.name} is on the corridor but no verified operator has been onboarded in this demo dataset. This is exactly the gap JOHOR360 is built to close.`}
                 action={<Link to="/explore" className="btn btn-ghost btn-md">Browse whole corridor</Link>}
               />

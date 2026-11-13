@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react'
+import { usePrefs } from '../../app/prefs'
 import { T } from '../../components/ui/T'
 import { Link, useNavigate } from 'react-router-dom'
 import clsx from 'clsx'
@@ -14,6 +15,7 @@ import { useMoneyText } from '../../app/currency'
 
 // ------------------------------------------------------------------ Dashboard
 export function AdminDashboard() {
+  const { tx } = usePrefs()
   const { experiences, operators, enquiries, reviews, events } = useApp()
   const pending = experiences.filter((e) => e.verification === 'pending')
   const verified = experiences.filter((e) => e.verification === 'verified')
@@ -31,10 +33,10 @@ export function AdminDashboard() {
       </div>
 
       <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-        <Stat label="Operators" value={operators.length} icon="store" tone="navy" hint={`${operators.filter((o) => o.verification === 'verified').length} verified`} />
-        <Stat label="Experiences" value={experiences.length} icon="package" tone="royal" hint={`${verified.length} published`} />
-        <Stat label="Pending review" value={pending.length} icon="clipboard-check" tone="gold" hint="awaiting verification" />
-        <Stat label="New enquiries" value={newEnq.length} icon="message-square" tone="johor" hint="across all operators" />
+        <Stat label={tx("Operators")} value={operators.length} icon="store" tone="navy" hint={`${operators.filter((o) => o.verification === 'verified').length} verified`} />
+        <Stat label={tx("Experiences")} value={experiences.length} icon="package" tone="royal" hint={`${verified.length} published`} />
+        <Stat label={tx("Pending review")} value={pending.length} icon="clipboard-check" tone="gold" hint="awaiting verification" />
+        <Stat label={tx("New enquiries")} value={newEnq.length} icon="message-square" tone="johor" hint="across all operators" />
       </div>
 
       <div className="grid gap-4 lg:grid-cols-[1fr_330px]">
@@ -135,6 +137,7 @@ export function AdminDashboard() {
 
 // ------------------------------------------------------------------ Verifications
 export function AdminVerifications() {
+  const { tx } = usePrefs()
   const money = useMoneyText()
   const { experiences, setExperienceStatus, toast, events } = useApp()
   const [active, setActive] = useState<string | null>(null)
@@ -189,7 +192,7 @@ export function AdminVerifications() {
       </div>
 
       {queue.length === 0 ? (
-        <EmptyState icon="check-circle-2" title="Queue is clear" body="No listings are awaiting verification. New SME submissions will appear here." action={<Link to="/sme/listings/new" className="btn btn-ghost btn-md">Create a test listing</Link>} />
+        <EmptyState icon="check-circle-2" title={tx("Queue is clear")} body={tx("No listings are awaiting verification. New SME submissions will appear here.")} action={<Link to="/sme/listings/new" className="btn btn-ghost btn-md">Create a test listing</Link>} />
       ) : (
         <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
           {queue.map((e) => {
@@ -312,9 +315,9 @@ export function AdminVerifications() {
               </div>
             )}
 
-            <Field label="Reviewer note (optional)" hint="Recorded in the audit log and shown to the operator.">
+            <Field label={tx("Reviewer note (optional)")} hint={tx("Recorded in the audit log and shown to the operator.")}>
               <textarea className="field field-area" rows={2} value={note} onChange={(e) => setNote(e.target.value)}
-                placeholder="Accessibility statement verified against photographs. Approved for publication." />
+                placeholder={tx("Accessibility statement verified against photographs. Approved for publication.")} />
             </Field>
           </div>
         )}
@@ -325,6 +328,7 @@ export function AdminVerifications() {
 
 // ------------------------------------------------------------------ Operators
 export function AdminOperators() {
+  const { tx } = usePrefs()
   const { operators, experiences } = useApp()
   const [q, setQ] = useState('')
 
@@ -339,7 +343,7 @@ export function AdminOperators() {
           <h1 className="text-[24px] font-extrabold"><T>Operators</T></h1>
           <p className="mt-1 text-[13px] text-ink-mute">{operators.length} registered · {operators.filter((o) => o.verification === 'verified').length} verified</p>
         </div>
-        <input className="field !h-9 !w-auto !text-[12px]" placeholder="Search operators…" value={q} onChange={(e) => setQ(e.target.value)} />
+        <input className="field !h-9 !w-auto !text-[12px]" placeholder={tx("Search operators…")} value={q} onChange={(e) => setQ(e.target.value)} />
       </div>
 
       <div className="overflow-hidden rounded-2xl border border-line bg-white">
@@ -391,6 +395,7 @@ export function AdminOperators() {
 
 // ------------------------------------------------------------------ Experiences
 export function AdminExperiences() {
+  const { tx } = usePrefs()
   const money = useMoneyText()
   const { experiences, setExperienceStatus, toast } = useApp()
   const [q, setQ] = useState('')
@@ -411,7 +416,7 @@ export function AdminExperiences() {
           <p className="mt-1 text-[13px] text-ink-mute">{experiences.length} listings across {STATIONS.length} stations</p>
         </div>
         <div className="flex gap-2">
-          <input className="field !h-9 !w-auto !text-[12px]" placeholder="Search listings…" value={q} onChange={(e) => setQ(e.target.value)} />
+          <input className="field !h-9 !w-auto !text-[12px]" placeholder={tx("Search listings…")} value={q} onChange={(e) => setQ(e.target.value)} />
           <select className="field !h-9 !w-auto !py-0 !text-[12px]" value={status} onChange={(e) => setStatus(e.target.value)}>
             <option value="all"><T>All statuses</T></option>
             <option value="verified"><T>Verified</T></option>
@@ -424,7 +429,7 @@ export function AdminExperiences() {
       </div>
 
       {list.length === 0 ? (
-        <EmptyState icon="search-x" title="No listings match" body="Try clearing the search or status filter." />
+        <EmptyState icon="search-x" title={tx("No listings match")} body={tx("Try clearing the search or status filter.")} />
       ) : (
         <div className="overflow-hidden rounded-2xl border border-line bg-white">
           <div className="overflow-x-auto">
@@ -477,6 +482,7 @@ export function AdminExperiences() {
 
 // ------------------------------------------------------------------ Reviews
 export function AdminReviews() {
+  const { tx } = usePrefs()
   const { reviews, experiences, moderateReview, toast } = useApp()
   const [filter, setFilter] = useState<'pending' | 'published' | 'all'>('pending')
 
@@ -499,7 +505,7 @@ export function AdminReviews() {
       </div>
 
       {list.length === 0 ? (
-        <EmptyState icon="message-square" title="Nothing to moderate" body="New visitor reviews appear here before publishing." />
+        <EmptyState icon="message-square" title={tx("Nothing to moderate")} body={tx("New visitor reviews appear here before publishing.")} />
       ) : (
         <div className="space-y-2">
           {list.map((r) => (
@@ -544,6 +550,7 @@ export function AdminReviews() {
 
 // ------------------------------------------------------------------ Analytics
 export function AdminAnalytics() {
+  const { tx } = usePrefs()
   const { experiences, enquiries, reviews } = useApp()
 
   const purposeDist = [
@@ -573,7 +580,7 @@ export function AdminAnalytics() {
       <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
         <Stat label="Sessions" value="412" icon="activity" tone="royal" hint="simulated discovery sessions" />
         <Stat label="Itineraries generated" value="187" icon="route" tone="emerald2" hint="45% of sessions" />
-        <Stat label="Enquiries sent" value={enquiries.length + 96} icon="message-square" tone="gold" hint="to small operators" />
+        <Stat label={tx("Enquiries sent")} value={enquiries.length + 96} icon="message-square" tone="gold" hint="to small operators" />
         <Stat label="Avg session" value="6m 40s" icon="clock" tone="navy" hint="simulated engagement" />
       </div>
 
@@ -642,6 +649,7 @@ export function AdminAnalytics() {
 
 // ------------------------------------------------------------------ Impact
 export function AdminImpact() {
+  const { tx } = usePrefs()
   const { experiences, enquiries, operators, reviews } = useApp()
   const verified = experiences.filter((e) => e.verification === 'verified')
   const beyondJB = verified.filter((e) => e.stationId !== 'jb-sentral')
@@ -709,7 +717,7 @@ export function AdminImpact() {
         <div className="rounded-2xl border border-line bg-white p-4">
           <div className="mb-3 flex items-center justify-between">
             <p className="text-[12px] font-bold text-navy">SME discovery & enquiries by station</p>
-            <DemoTag label="Per station" />
+            <DemoTag label={tx("Per station")} />
           </div>
           <div className="overflow-x-auto">
             <table className="w-full min-w-[440px] text-left">

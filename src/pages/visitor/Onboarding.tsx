@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { usePrefs } from '../../app/prefs'
 import { T } from '../../components/ui/T'
 import { useNavigate } from 'react-router-dom'
 import clsx from 'clsx'
@@ -13,6 +14,7 @@ import { useMoneyText } from '../../app/currency'
 const STEP_COUNT = 4
 
 export default function Onboarding() {
+  const { tx } = usePrefs()
   const money = useMoneyText()
   const nav = useNavigate()
   const { profile, setProfile, toast } = useApp()
@@ -120,7 +122,7 @@ export default function Onboarding() {
               </div>
 
               <div className="mt-6 grid gap-3 sm:grid-cols-2">
-                <Field label="Country of origin">
+                <Field label={tx("Country of origin")}>
                   <select className="field" value={draft.country} onChange={(e) => set('country', e.target.value)}>
                     {COUNTRIES.map((c) => <option key={c}>{c}</option>)}
                   </select>
@@ -175,12 +177,12 @@ export default function Onboarding() {
               </div>
 
               <div className="grid gap-3 sm:grid-cols-2">
-                <Field label="Preferred ETS station">
+                <Field label={tx("Preferred ETS station")}>
                   <select className="field" value={draft.stationId} onChange={(e) => set('stationId', e.target.value)}>
                     {STATIONS.map((s) => <option key={s.id} value={s.id}>{s.name} — {s.district}</option>)}
                   </select>
                 </Field>
-                <Field label="Number of travellers">
+                <Field label={tx("Number of travellers")}>
                   <select className="field" value={draft.partySize} onChange={(e) => set('partySize', Number(e.target.value))}>
                     {Array.from({ length: 12 }, (_, i) => i + 1).map((n) => (
                       <option key={n} value={n}>{n} {n === 1 ? 'person' : 'people'}</option>
@@ -265,7 +267,7 @@ export default function Onboarding() {
         </div>
 
         <p className="mt-6 text-center text-[11px] text-ink-faint">
-          <DemoTag label="No account needed" /> <T>Preferences are stored in this browser only.</T>
+          <DemoTag label={tx("No account needed")} /> <T>Preferences are stored in this browser only.</T>
         </p>
       </div>
     </div>
